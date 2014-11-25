@@ -24,5 +24,6 @@ public class LogicaRol {
             return null;
         }
 
+        
     }
 }
