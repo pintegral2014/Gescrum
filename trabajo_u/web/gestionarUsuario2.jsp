@@ -254,7 +254,7 @@
                 url : 'buscarDataUsuario.action',
                 data : {'usuarioModel.idUsuario': id},
                 success : function(data) {
-                    $('#nombrehistoria').val(data.historiaDTO.nombrehistoria);
+                    $('#nombre').val(data.usuarioDTO.usuNombre);
                     $('#myModal').modal('show');
                 },
                 error : function(erro) {

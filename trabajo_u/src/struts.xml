@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.ui.templateDir" value="template" />
+    <constant name="struts.ui.templateSuffix" value="ftl" />
+    <constant name="struts.multipart.maxSize" value="10485760" />
+
+    <package name="trabajoLogin" namespace="/" extends="struts-default,json-default">
+
+        <global-exception-mappings>
+
+            <exception-mapping exception="java.lang.NullPointerException" result="error" />
+        </global-exception-mappings>
+
+
+        <action name="Login" class="action.Login">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+        </action>
+
+        <action name="listaUsuarios" class="action.Usuario"  method="listaruser">
+            <result  name="success">/gestionarUsuario2.jsp</result>
+        </action>
+
+        <action name="eliminar" class="action.Login"  method="eliminarusuario">
+            <result  name="success">/listausuarios.jsp</result>
+        </action>
+
+        <action name="listadojson" class="action.Login"  method="getJSON">
+            <result  name="success" type="json">
+                <param name="includeProperties">listauser.*</param>
+            </result>
+        </action>
+
+        <action name="ingresaNewUsuario" class="action.Usuario" method="crearUsuario">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+        </action>
+
+        <action name="listaRoles" class="action.Rol" method="listarol">
+            <result name="success">/ingresarUsuario2.jsp</result>
+        </action>
+
+        <action name="logout" class="action.Login" method="logout">
+            <result name="success">/login.jsp</result>
+        </action>
+        <action name="listaProyecto" class="action.Historia" method="listaProyectos">
+            <result name="success">/ingresarHistoriaDef.jsp</result>
+        </action>
+        <action name="ingresarHistoria" class="action.Historia" method="crearHistoria">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <!--<result name="success">/ingresarHistoriaDef.jsp</result>-->
+        </action>
+        <action name="listarHistorias" class="action.Historia" method="listarHDU">
+            <result name="success">/gestionarHistoria2.jsp</result>
+            <result name="error">/gestionarHistoria2.jsp</result>
+        </action>
+        <action name="buscarData" class="action.Historia" method="buscarDataHistoria">
+            <result name="historiaDataJSON" type="json">
+                <param name="includeProperties">historiaDTO.*</param>
+            </result>
+
+        </action>
+
+        <action name="listaGrupos" class="action.Grupo"  method="listargrupo">
+            <result name="success">/asociarUsuario.jsp</result>
+            <result name="error">/asociarUsuario.jsp</result>
+        </action>
+
+        <action name="listaGrupos2" class="action.Grupo"  method="listargrupo">
+            <result name="success">/gestionarGrupo.jsp</result>
+            <result name="error">/gestionarGrupo.jsp</result>
+        </action>
+
+        <action name="listaGruposUsuario" class="action.GrupoUsuario" method="listargrupousuario">
+            <result name="success">/tablasAsociarUsuario2.jsp
+            </result>
+        </action>
+
+        <action name="asociarUsuario" class="action.GrupoUsuario" method="asociarusuario">
+            <result type="redirectAction">
+                <param name="actionName">listaGruposUsuario</param>
+                <param name="gruId">${param}</param>
+            </result>
+        </action>
+
+        <action name="desasociarUsuario" class="action.GrupoUsuario" method="desasociarusuario">
+            <result type="redirectAction">
+                <param name="actionName">listaGruposUsuario</param>
+                <param name="gruId">${param}</param>
+            </result>
+        </action>
+        <action name ="descarga" class ="action.CargaArchivo" method = "listarRepositorios">
+            <result name="success">/descarga.jsp</result>
+        </action>
+        <action name="cargaArchivo" class="action.CargaArchivo" method="cargarArchivo">
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">2097152</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+            <result>/gestionarHistoria2.jsp</result>
+            <result name="input">/gestionarHistoria2.jsp</result>
+
+        </action>
+        <action name="listarProyectos" class="action.Proyecto" method="listaProyectos">
+            <result name="success">/gestionarProyecto2.jsp</result>
+            <result name="error">/gestionarProyecto2.jsp</result>
+        </action>
+
+        <action name="DataProyecto" class="action.Proyecto" method="buscarInfoProyecto">
+            <result name="historiaDataJSON" type="json">
+                <param name="includeProperties">proyectoDTO.*</param>
+            </result>
+            <result name="error">/gestionarProyecto2.jsp</result>
+        </action>
+
+        <action name="DataGrupo" class="action.Grupo" method="buscarInfoGrupo">
+            <result name="grupoDataJSON" type="json">
+                <param name="includeProperties">grupoDTO.*</param>
+            </result>
+            <result name="error">/gestionarGrupo.jsp</result>
+        </action>
+
+        <action name="modDataPro" class="action.Proyecto" method="modificarDataProyecto">
+            <result name="success" type="json">
+                <param name="includeProperties">mensajeDTO.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensajeDTO.*</param>
+            </result>
+        </action>
+
+        <action name="modDataGru" class="action.Grupo" method="modificarDataGrupo">
+            <result name="success" type="json">
+                <param name="includeProperties">mensajeDTO.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensajeDTO.*</param>
+            </result>
+        </action>
+
+        <action name="listaGestionTarea" class="action.Historia" method="listaProyectos">
+            <result name="success">/inicioTarea.jsp</result>
+            <result name="error">/inicioTarea.jsp</result>
+        </action>
+
+        <action name="listarHduFiltro" class="action.Historia" method="proyectoListaHistoria">
+            <result name="success">/historiaTarea.jsp</result>
+            <result name="error">/historiaTarea.jsp</result>
+        </action>
+
+        <action name="listaHduTarea" class="action.Tarea" method="ListaTareaHdu">
+            <result name="success">/gestionarTarea.jsp</result>
+        </action>
+
+        <action name="ingresaTarea" class="action.Tarea" method="IngresarTarea">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+        </action>
+        <action name="listarHduSprint" class="action.HduSprint" method="listarHduSprint">
+            <result name="success">/prueba.jsp</result>
+        </action>
+        <action name="buscarDataUsuario" class="action.Usuario" method="buscarDataUsuario">
+            <result name="usuarioDataJSON" type="json">
+                <param name="includeProperties">usuarioDTO.*</param>
+            </result>
+            <result name="error">/gestionarUsuario2.jsp</result>
+         </action>
+
+    </package>
+
+</struts>

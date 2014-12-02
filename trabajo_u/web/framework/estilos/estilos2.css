@@ -1,0 +1,131 @@
+/* estilos data-table */
+#data-table
+{
+ font-size: 12px;
+}
+/* estilos data-table, pie, páginas mostradas */
+#data-table_info
+{
+    font-size: 12px;
+}
+table.display
+{
+    font-size: 12px;
+}
+.dataTables_info
+{
+    font-size: 12px;
+}
+.page-tables table.display
+{
+    margin-bottom: 20px;
+}
+.page-tables table.display thead th
+{
+    border-bottom: 0 none;
+    font-weight: normal;
+    padding: 7px 10px;
+}
+.page-tables table.display td
+{
+    background: none repeat scroll 0 0 #fcfcfc;
+    border-top: 1px solid #ddd;
+}
+
+
+/* estilos data-table, pie, botones paginador */
+a.paginate_button
+{
+    font-size: 12px;
+}
+/* estilos data-table, encabezado, mostrar entradas */
+div.dataTables_length label
+{
+    font-size: 12px;
+}
+/* estilos data-table, encabezado, select número de entradas */
+select#buscador
+{
+    font-size: 12px;
+    border-radius: 30px;
+}
+/* label buscar data-table */
+div.dataTables_filter label
+{
+    font-size: 12px;
+}
+/* input buscador data-table */
+input#buscadors
+{
+    border-radius: 30px;
+    font-size: 12px;
+}
+/* Botones dentro de datatable */
+td button.btnChico
+{
+    font-size: 12px;
+    /*width: 20px;*/
+    padding-bottom: 5px;
+    padding-top: 3px;
+    border-radius: 100px;
+}
+
+/* Título de los widget*/
+div.widget-head div.pull-left
+{
+    font-size: 12px;
+}
+
+
+/*           Barra lateral          */
+div.sidebar, .tituloMenu, div.sidebar .fa, div.sidebar i
+{
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+/* Circulos que contiene icono en barra de menú lateral */
+.sidebar #nav li i{
+    display:inline-block;
+    margin-right: 5px ;
+    background: #eee ;
+    color:#888;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-left: -15px;
+}
+/* Ancho de barra lateral de menú (se debe modificar el margin-left de .mainbar también) */
+div.sidebar
+{
+    width: 180px;
+}
+.mainbar{
+    position: relative;
+    margin-left: 180px;
+    margin-right: 0px;
+    width: auto;
+
+    border-left: 1px solid #ccc;
+    z-index: 50;
+    min-height: 800px;
+}
+
+/* Títulos de las páginas*/
+.titulos
+{
+    font-size: 24px;
+    background-color: #EEEEEE;
+    padding: 10px;
+    border: 1px solid #D2D2D2;
+    border-radius: 10px;
+    margin-left: 30px;
+
+}
+.limiteSuperior
+{
+    margin-top: 30px;
+}
