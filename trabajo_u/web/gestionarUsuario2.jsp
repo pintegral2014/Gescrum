@@ -271,6 +271,7 @@ function prueba(id,nombre,paterno,materno,correo,usuario,estado,contrasena,rolId
         $('#paterno').val(paterno);
         $('#materno').val(materno);
         $('#correo').val(correo);
+
         $('#usuario').val(usuario);
         $('#estado').val(estado);
         $('#contrasena').val(contrasena);
