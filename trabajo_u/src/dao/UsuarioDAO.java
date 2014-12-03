@@ -171,7 +171,7 @@ public class UsuarioDAO {
         try{
             Connection conn = interfaceConn.getConnectionDB();
 
-            String sql = "select u.usu_nombre, u.usu_apellido_paterno, u.usu_apellido_materno, u.usu_correo, u.usu_clave, " +
+            String sql = "select u.usu_id, u.usu_nombre, u.usu_apellido_paterno, u.usu_apellido_materno, u.usu_correo, u.usu_clave, " +
                          "u.usu_estado, u.usu_login_conexion, r.rol_id, r.rol_descripcion " +
                          "from gescrum.tbl_usuario u, gescrum.tbl_rol r, gescrum.tbl_rol_x_usuario ru  " +
                          "where u.usu_id = ru.tbl_usuario_usu_id  and r.rol_id = ru.tbl_rol_rol_id and u.usu_id = ? ";
@@ -180,6 +180,7 @@ public class UsuarioDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 usuarioDTO = new UsuarioDTO();
+                usuarioDTO.setUsuId(resultSet.getInt("usu_id"));
                 usuarioDTO.setUsuNombre(resultSet.getString("usu_nombre"));
                 usuarioDTO.setUsuApellidoPaterno(resultSet.getString(("usu_apellido_paterno")));
                 usuarioDTO.setUsuApellidoMaterno(resultSet.getString("usu_apellido_materno"));
@@ -308,7 +309,7 @@ public class UsuarioDAO {
         try{
             Connection conn = interfaceConn.getConnectionDB();
             String sql = "update tbl_usuario  set usu_nombre = ?, usu_apellido_paterno = ?, usu_apellido_materno = ?, usu_correo = ?, usu_clave = ?, " +
-                    "usu_fecha_modificacion = ?, usu_modificado_por = ? where pro_id = ?";
+                    "usu_fecha_modificacion = ?, usu_modificado_por = ? where usu_id = ?";
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, usuarioDTO.getUsuNombre());
             preparedStatement.setString(2, usuarioDTO.getUsuApellidoPaterno());

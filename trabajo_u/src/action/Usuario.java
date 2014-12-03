@@ -109,7 +109,7 @@ public class Usuario extends ActionSupport implements ModelDriven {
 
 
     public String buscarDataUsuario()throws Exception{
-        //this.usuarioModel.setListarol( new LogicaRol().listRol());
+        this.usuarioModel.setListarol( new LogicaRol().listRol());
         UsuarioDTO usuarioDTO = LogicaUsuario.traerDataUsuario(this.usuarioId);
 
         if(usuarioDTO != null){
