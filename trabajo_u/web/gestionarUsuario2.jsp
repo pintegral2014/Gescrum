@@ -291,10 +291,10 @@
                 dataType:"json",
                 success: function (data) {
 
-                    if(data.mensajeDTO.tipo == "success"){
+                    if(data.mensaje.tipo == "success"){
 
                         $('#myModal').modal('hide');
-                        $.growlUI(data.mensajeDTO.texto);
+                        $.growlUI(data.mensaje.texto);
                         setTimeout(function(){
 
                             $.ajax({

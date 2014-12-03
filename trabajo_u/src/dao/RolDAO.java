@@ -77,6 +77,7 @@ public class RolDAO {
     public static int selectRolUsuario (int idUsuario){
         PreparedStatement p = null;
         RolDTO rolDTO = null;
+        int rol = 0;
         ConnectionDB interfaceConn = new ConnectionDB();
         try {
             Connection conn = interfaceConn.getConnectionDB();
@@ -86,15 +87,15 @@ public class RolDAO {
             ResultSet rs = p.executeQuery();
             if (rs.next()) {
                 rolDTO = new RolDTO();
-                rolDTO.setRol_id(idUsuario);
-
+                rolDTO.setRol_id(rs.getInt("tbl_rol_rol_id"));
+                rol = rolDTO.getRol_id();
             }
             p.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             interfaceConn.cerrarConexion();
-            return idUsuario;
+            return rol;
         }
 
     }
