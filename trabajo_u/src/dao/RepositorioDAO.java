@@ -1,4 +1,5 @@
 package dao;
+
 import connection.ConnectionDB;
 import dto.RepositorioDTO;
 
@@ -11,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by EmilioCesar on 26-11-2014.
  */
@@ -23,12 +25,12 @@ public class RepositorioDAO {
     }
 
 
-    public static boolean ingresarRepositorio (RepositorioDTO repositorio){
+    public static boolean ingresarRepositorio(RepositorioDTO repositorio) {
         PreparedStatement p = null;
 
         boolean query = false;
         ConnectionDB interfaceConn = new ConnectionDB();
-        try{
+        try {
             Connection conn = interfaceConn.getConnectionDB();
             String sql = "insert into tbl_repositorio (rep_nombre,rep_descripcion,rep_fecha_creacion,tbl_hdu_hdu_id)\n" +
                     "values (?,?,?,?);";
@@ -44,8 +46,7 @@ public class RepositorioDAO {
             if (insertRepo == 0) {
                 query = false;
                 return query;
-            }
-            else
+            } else
                 query = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,35 +56,36 @@ public class RepositorioDAO {
         }
     }
 
-    public static List<RepositorioDTO> listarRepositorio(RepositorioDTO hdu){
-    PreparedStatement p = null;
-    List<RepositorioDTO> listarepo = null;
-    ConnectionDB interfaceConn = new ConnectionDB();
+    public static List<RepositorioDTO> listarRepositorio(RepositorioDTO hdu) {
+        PreparedStatement p;
+        List<RepositorioDTO> listarepo = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
 
-    try {
-        Connection conn = interfaceConn.getConnectionDB();
-        String sql = "select rep_nombre,rep_descripcion,rep_fecha_creacion from tbl_repositorio where tbl_hdu_hdu_id = ?; ";
-        p = conn.prepareStatement(sql);
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select rep_nombre,rep_descripcion,rep_fecha_creacion from tbl_repositorio where tbl_hdu_hdu_id = ?; ";
+            p = conn.prepareStatement(sql);
 
-        p.setInt(1,hdu.getIdHdu());
+            p.setInt(1, hdu.getIdHdu());
 
-        ResultSet res = p.executeQuery();
-        listarepo = new ArrayList<RepositorioDTO>();
-        while (res.next()){
-            RepositorioDTO repo = new RepositorioDTO();
-            repo.setArchivoFileName(res.getString("rep_nombre"));
-            repo.setDescripcionRepo(res.getString("rep_descripcion"));
-            repo.setFechaCreacion(res.getDate("rep_fecha_creacion"));
+            ResultSet res = p.executeQuery();
+            listarepo = new ArrayList<RepositorioDTO>();
+            while (res.next()) {
+                RepositorioDTO repo = new RepositorioDTO();
+                repo.setArchivoFileName(res.getString("rep_nombre"));
+                repo.setDescripcionRepo(res.getString("rep_descripcion"));
+                repo.setFechaCreacion(res.getDate("rep_fecha_creacion"));
 
 
-            listarepo.add(repo);
+                listarepo.add(repo);
+            }
+            p.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            interfaceConn.cerrarConexion();
         }
-        p.close();
-    }catch (Exception e){
-        e.printStackTrace();
-    }finally {
-        interfaceConn.cerrarConexion();
         return listarepo;
     }
-}
 }

@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by jordan on 06-07-2014.
  */
 public class RolDTO {
-    private int rol_id;
+    private int rolId;
     private String rol_descripcion;
     private String rol_estado;
     private Date rol_fecha_modificacion;
@@ -15,19 +15,19 @@ public class RolDTO {
     }
 
 
-    public RolDTO(int rol_id, String rol_descripcion, String rol_estado, Date rol_fecha_modificacion) {
-        this.rol_id = rol_id;
+    public RolDTO(int rolId, String rol_descripcion, String rol_estado, Date rol_fecha_modificacion) {
+        this.rolId = rolId;
         this.rol_descripcion = rol_descripcion;
         this.rol_estado = rol_estado;
         this.rol_fecha_modificacion = rol_fecha_modificacion;
     }
 
-    public int getRol_id() {
-        return rol_id;
+    public int getRolId() {
+        return rolId;
     }
 
-    public void setRol_id(int rol_id) {
-        this.rol_id = rol_id;
+    public void setRolId(int rolId) {
+        this.rolId = rolId;
     }
 
     public String getRol_descripcion() {

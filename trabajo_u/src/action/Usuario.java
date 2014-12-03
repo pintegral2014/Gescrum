@@ -9,7 +9,6 @@ import logica.LogicaRol;
 import logica.LogicaUsuario;
 import action.model.UsuarioModel;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +49,7 @@ public class Usuario extends ActionSupport implements ModelDriven {
         //newUsuario.setRolId(usuarioModel.getIdRol());
         newUsuario.setUsuCreador(usuarioSession);
         RolDTO rolDTO = new RolDTO();
-        rolDTO.setRol_id(usuarioModel.getRol().getRol_id());
+        rolDTO.setRolId(usuarioModel.getRol().getRolId());
         newUsuario.setRol(rolDTO);
 
         LogicaUsuario pruebaUsuario = new LogicaUsuario(newUsuario);
@@ -135,7 +134,7 @@ public class Usuario extends ActionSupport implements ModelDriven {
         usuarioDTO.setUsuLoginConexion(usuarioModel.getUsuLoginConexion());
         usuarioDTO.setUsuModificadoPor(usuarioSession);
         RolDTO rolDTO = new RolDTO();
-        rolDTO.setRol_id(usuarioModel.getRol().getRol_id());
+        rolDTO.setRolId(usuarioModel.getRol().getRolId());
         usuarioDTO.setRol(rolDTO);
 
         LogicaUsuario logicaUsuario = new LogicaUsuario();

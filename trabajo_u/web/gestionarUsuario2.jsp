@@ -181,12 +181,12 @@
                           <label class="col-lg-4 control-label">Rol</label>
                           <div class="col-lg-5">
                               <s:select
-                                      name="rol.rol_id"
-                                      id="rol_id"
+                                      name="rol.rolId"
+                                      id="rolId"
                                       headerKey="-1"
                                       headerValue="-- seleccionar rol --"
                                       list="listarol"
-                                      listKey="rol_id"
+                                      listKey="rolId"
                                       listValue="rol_descripcion"
                                       cssClass="form-control"
                                       />
@@ -271,7 +271,7 @@
                     $('#usuClave').val(data.usuarioDTO.usuClave)
                     $('#usuEstado').val(data.usuarioDTO.usuEstado)
                     $('#usuLoginConexion').val(data.usuarioDTO.usuLoginConexion)
-                    $('#rol_id').val(data.usuarioDTO.rol.rol_id)
+                    $('#rolId').val(data.usuarioDTO.rol.rolId)
                     $('#myModal').modal('show');
                 },
                 error : function(erro) {
@@ -280,7 +280,7 @@
             });
 
 
-        };
+        }
 
         $('#btnModUsu').click(function(){
 

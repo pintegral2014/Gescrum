@@ -125,12 +125,12 @@
                                 <label class="col-lg-2 control-label">Rol</label>
                                 <div class="col-lg-5">
                                     <s:select
-                                            name="rol_id"
-                                            id="rol_id"
+                                            name="rolId"
+                                            id="rolId"
                                             headerKey="-1"
                                             headerValue="-- seleccionar rol --"
                                             list="listarol"
-                                            listKey="rol_id"
+                                            listKey="rolId"
                                             listValue="rol_descripcion"
                                             cssClass="form-control"
                                             />

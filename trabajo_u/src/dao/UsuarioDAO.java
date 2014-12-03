@@ -4,7 +4,6 @@ import dto.RolDTO;
 import dto.UsuarioDTO;
 import connection.ConnectionDB;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -189,7 +188,7 @@ public class UsuarioDAO {
                 usuarioDTO.setUsuEstado(resultSet.getString("usu_estado"));
                 usuarioDTO.setUsuLoginConexion(resultSet.getString("usu_login_conexion"));
                 RolDTO rolDTO = new RolDTO();
-                rolDTO.setRol_id(resultSet.getInt("rol_id"));
+                rolDTO.setRolId(resultSet.getInt("rol_id"));
                 rolDTO.setRol_descripcion(resultSet.getString("rol_descripcion"));
                 usuarioDTO.setRol(rolDTO);
             }

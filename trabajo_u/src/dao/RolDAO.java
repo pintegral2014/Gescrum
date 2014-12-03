@@ -2,9 +2,7 @@ package dao;
 
 import dto.RolDTO;
 import connection.ConnectionDB;
-import dto.UsuarioDTO;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,7 @@ public class RolDAO {
             listarol = new ArrayList<RolDTO>();
             while (res.next()){
                 RolDTO rol = new RolDTO();
-                rol.setRol_id(res.getInt("rol_id"));
+                rol.setRolId(res.getInt("rol_id"));
                 rol.setRol_descripcion(res.getString("rol_descripcion"));
                 rol.setRol_estado(res.getString("rol_estado"));
                 listarol.add(rol);
@@ -87,8 +85,8 @@ public class RolDAO {
             ResultSet rs = p.executeQuery();
             if (rs.next()) {
                 rolDTO = new RolDTO();
-                rolDTO.setRol_id(rs.getInt("tbl_rol_rol_id"));
-                rol = rolDTO.getRol_id();
+                rolDTO.setRolId(rs.getInt("tbl_rol_rol_id"));
+                rol = rolDTO.getRolId();
             }
             p.close();
         } catch (Exception e) {
