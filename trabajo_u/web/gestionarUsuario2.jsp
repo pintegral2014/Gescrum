@@ -127,59 +127,69 @@
                 <h4 class="modal-title" id="myModalLabel">Modificar Usuario</h4>
             </div>
             <div class="modal-body" style="min-height: 300px;">
-                  <form method="post" action="#" name="formModificarUsu">
-                        
+                  <form role="form" id="formModUsu">
+                      <div class="form-group" style="display: none;">
+                          <label class="col-lg-4 control-label">usuId</label>
+                          <div class="col-lg-5">
+                              <input type="text" name="usuId" id="usuId" class="form-control" placeholder="">
+                          </div><br>
+                      </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Nombre</label>
                         <div class="col-lg-5">
-                          <input type="text" name="nombre" id="nombre" class="form-control" placeholder="">
+                          <input type="text" name="usuNombre" id="usuNombre" class="form-control" placeholder="">
                         </div><br>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Apellido Paterno</label>
                         <div class="col-lg-5">
-                          <input type="text" name="paterno" id="paterno" class="form-control" placeholder="">
+                          <input type="text" name="usuApellidoPaterno" id="usuApellidoPaterno" class="form-control" placeholder="">
                         </div><br>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Apellido Materno</label>
                         <div class="col-lg-5">
-                          <input type="text" name="materno" id="materno" class="form-control" placeholder="">
+                          <input type="text" name="usuApellidoMaterno" id="usuApellidoMaterno" class="form-control" placeholder="">
                         </div><br>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Correo</label>
                         <div class="col-lg-5">
-                          <input type="email" name="correo" id="correo" class="form-control" placeholder="">
+                          <input type="email" name="usuCorreo" id="usuCorreo" class="form-control" placeholder="">
                         </div><br>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Contrasena</label>
                         <div class="col-lg-5">
-                          <input type="password" name="contrasena" id="contrasena" class="form-control" placeholder="******">
+                          <input type="password" name="usuClave" id="usuClave" class="form-control" placeholder="******">
                         </div><br>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Estado</label>
                         <div class="col-lg-5">
-                          <input type="text" name="estado" id="estado" class="form-control" placeholder="">
+                          <input type="text" name="usuEstado" id="usuEstado" class="form-control" placeholder="">
                         </div><br>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Usuario</label>
                         <div class="col-lg-5">
-                          <input type="text" name="usuario" id="usuario" class="form-control" placeholder="">
+                          <input type="text" name="usuLoginConexion" id="usuLoginConexion" class="form-control" readonly>
                         </div><br>
                     </div>
                       
                       <div class="form-group">
                           <label class="col-lg-4 control-label">Rol</label>
                           <div class="col-lg-5">
-                              <select name="idRol" id="idRol" class="form-control ">
-                                  <s:iterator value="listarol">
-                                      <option value="<s:property value="rol_id"/>"><s:property value="rol_descripcion"/></option>
-                                  </s:iterator>
-                              </select>
+                              <s:select
+                                      name="rol_id"
+                                      id="rol_id"
+                                      headerKey="-1"
+                                      headerValue="-- seleccionar rol --"
+                                      list="listarol"
+                                      listKey="rol_id"
+                                      listValue="rol_descripcion"
+                                      cssClass="form-control"
+                                      />
                           </div>
                       </div>
                       
@@ -188,7 +198,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                <button type="button" class="btn btn-primary" id="btnModUsu">Guardar Cambios</button>
             </div>
         </div>
     </div>
@@ -247,14 +257,21 @@
 
     });
         function onClickEditarUsuario(id) {
-            // alert("La historia que seleccionaste es la :"+id);
 
             $.ajax({
                 type : 'POST',
                 url : 'buscarDataUsuario.action',
-                data : {'usuarioModel.idUsuario': id},
+                data : {'usuarioId': id},
                 success : function(data) {
-                    $('#nombre').val(data.usuarioDTO.usuNombre);
+                    $('#usuId').val(data.usuarioDTO.usuId);
+                    $('#usuNombre').val(data.usuarioDTO.usuNombre);
+                    $('#usuApellidoPaterno').val(data.usuarioDTO.usuApellidoPaterno);
+                    $('#usuApellidoMaterno').val(data.usuarioDTO.usuApellidoMaterno);
+                    $('#usuCorreo').val(data.usuarioDTO.usuCorreo);
+                    $('#usuClave').val(data.usuarioDTO.usuClave)
+                    $('#usuEstado').val(data.usuarioDTO.usuEstado)
+                    $('#usuLoginConexion').val(data.usuarioDTO.usuLoginConexion)
+                    $('#rol_id').val(data.usuarioDTO.rol.rol_id)
                     $('#myModal').modal('show');
                 },
                 error : function(erro) {
@@ -263,24 +280,40 @@
             });
 
 
-        }
-function prueba(id,nombre,paterno,materno,correo,usuario,estado,contrasena,rolId)
-{
-        $('#id').val(id);
-        $('#nombre').val(nombre);
-        $('#paterno').val(paterno);
-        $('#materno').val(materno);
-        $('#correo').val(correo);
+        };
 
-        $('#usuario').val(usuario);
-        $('#estado').val(estado);
-        $('#contrasena').val(contrasena);
-       // $('#idRol').form(rolId);
-       // document.formModificarUsu.idRol.selectedIndex=rolId-1;
-        $('.conte').show();
+        $('#btnModUsu').click(function(){
 
-        $('#myModal').modal('show')
-}
+            $.ajax({
+                url: "modDataUsu.action",
+                data: $('#formModUsu').serializeArray(),
+                type:"post",
+                dataType:"json",
+                success: function (data) {
+
+                    if(data.mensajeDTO.tipo == "success"){
+
+                        $('#myModal').modal('hide');
+                        $.growlUI(data.mensajeDTO.texto);
+                        setTimeout(function(){
+
+                            $.ajax({
+                                url: 'listaUsuarios.action',
+                                success: function(data){
+                                    $('#contenidoPagina').html("");
+                                    $('#contenidoPagina').html(data);
+                                }
+                            });
+
+                        }, 2000);
+                    }
+                    else{
+                        $('#myModal').modal('hide');
+                        $.growlUI(data.mensajeDTO.texto);
+                    }
+                }
+            });
+        });
 </script>
 </body>
 </html>

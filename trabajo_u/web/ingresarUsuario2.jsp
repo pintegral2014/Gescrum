@@ -74,59 +74,59 @@
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Nombre:</label>
                                 <div class="col-lg-5">
-                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="">
-                                    <span class="glyphicon form-control-feedback" id="nombre1"></span>
+                                    <input type="text" name="usuNombre" id="usuNombre" class="form-control" placeholder="">
+                                    <span class="glyphicon form-control-feedback" id="usuNombre1"></span>
                                 </div>
                             </div>
 
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Ap. Paterno:</label>
                                 <div class="col-lg-5">
-                                    <input type="text" name="apaterno" id="apaterno" class="form-control" placeholder="">
-                                    <span class="glyphicon form-control-feedback" id="apaterno1"></span>
+                                    <input type="text" name="usuApellidoPaterno" id="usuApellidoPaterno" class="form-control" placeholder="">
+                                    <span class="glyphicon form-control-feedback" id="usuApellidoPaterno1"></span>
                                 </div>
                             </div>
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Ap. Materno:</label>
                                 <div class="col-lg-5">
-                                    <input type="text" name="amaterno" id="amaterno" class="form-control" placeholder="">
-                                    <span class="glyphicon form-control-feedback" id="amaterno1"></span>
+                                    <input type="text" name="usuApellidoMaterno" id="usuApellidoMaterno" class="form-control" placeholder="">
+                                    <span class="glyphicon form-control-feedback" id="usuApellidoMaterno1"></span>
                                 </div>
                             </div>
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Correo:</label>
                                 <div class="col-lg-5">
-                                    <input type="email" name="correo" id="correo" class="form-control" placeholder="usuario@correo.cl">
-                                    <span class="glyphicon form-control-feedback" id="correo1"></span>
+                                    <input type="email" name="usuCorreo" id="usuCorreo" class="form-control" placeholder="usuario@correo.cl">
+                                    <span class="glyphicon form-control-feedback" id="usuCorreo1"></span>
                                 </div>
                             </div>
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Clave:</label>
                                 <div class="col-lg-5">
-                                    <input type="password" name="clave" id="clave" class="form-control" placeholder="">
-                                    <span class="glyphicon form-control-feedback" id="clave1"></span>
+                                    <input type="password" name="usuClave" id="usuClave" class="form-control" placeholder="">
+                                    <span class="glyphicon form-control-feedback" id="usuClave1"></span>
                                 </div>
                             </div>
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Estado:</label>
                                 <div class="col-lg-5">
-                                    <input type="text" name="estado" id="estado" class="form-control" value="vigente" readonly>
-                                    <span class="glyphicon form-control-feedback" id="estado1"></span>
+                                    <input type="text" name="usuEstado" id="usuEstado" class="form-control" value="vigente" readonly>
+                                    <span class="glyphicon form-control-feedback" id="usuEstado1"></span>
                                 </div>
                             </div>
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Login:</label>
                                 <div class="col-lg-5">
-                                    <input type="text" name="loginConexion" id="loginConexion" class="form-control" placeholder="">
-                                    <span class="glyphicon form-control-feedback" id="loginConexion1"></span>
+                                    <input type="text" name="usuLoginConexion" id="usuLoginConexion" class="form-control" placeholder="">
+                                    <span class="glyphicon form-control-feedback" id="usuLoginConexion1"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label">Proyecto</label>
+                                <label class="col-lg-2 control-label">Rol</label>
                                 <div class="col-lg-5">
                                     <s:select
-                                            name="rol.rol_id"
-                                            id="rol"
+                                            name="rol_id"
+                                            id="rol_id"
                                             headerKey="-1"
                                             headerValue="-- seleccionar rol --"
                                             list="listarol"

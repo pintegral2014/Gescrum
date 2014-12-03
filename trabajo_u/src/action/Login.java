@@ -45,15 +45,17 @@ public class Login extends ActionSupport implements ModelDriven{
     @Override
         public String execute() throws Exception {
 
-        UsuarioDTO usuarioLogin = LogicaUsuario.validar_usuario(usuarioModel.getLoginConexion(),usuarioModel.getClave());
+        UsuarioDTO usuarioLogin = LogicaUsuario.validar_usuario(usuarioModel.getUsuLoginConexion(),usuarioModel.getUsuClave());
         if(usuarioLogin != null){
-            ActionContext.getContext().getSession().put("loginConexion", usuarioModel.getLoginConexion());
+            ActionContext.getContext().getSession().put("loginConexion", usuarioModel.getUsuLoginConexion());
             // seteo el mensaje success al json para redireccionar al home
             usuarioModel.setMensaje(new MensajeDTO("success"));
             return SUCCESS;
         } else {
             // seteo el mensaje error al json para que muestre mensaje de error
-            usuarioModel.setMensaje(new MensajeDTO("error","<span class='glyphicon glyphicon-remove' style='color:red; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> Usuario "+ usuarioModel.getLoginConexion()+  " sin acceso al sistema, comuniquese con el administrador</span>" ));
+            usuarioModel.setMensaje(new MensajeDTO("error","<span class='glyphicon glyphicon-remove' style='color:red; text-align: " +
+                    "left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> Usuario "+ usuarioModel.getUsuLoginConexion()+  " " +
+                    "sin acceso al sistema, comuniquese con el administrador</span>" ));
             return ERROR;
         }
         }

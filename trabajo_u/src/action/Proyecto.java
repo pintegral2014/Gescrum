@@ -52,7 +52,7 @@ public class Proyecto extends ActionSupport implements ModelDriven {
 
     public String buscarInfoProyecto()throws Exception{
         LogicaProyecto logicaProyecto = new LogicaProyecto();
-        //this.historiaR = logicaHistoria.traerDataHistoria(Integer.parseInt(this.idHis));
+
         ProyectoDTO proyectoDTO = logicaProyecto.traerDataProyecto(this.idPro);
 
         if(proyectoDTO != null)

@@ -88,22 +88,22 @@ To change this template use File | Settings | File Templates.
                             <form class="form-horizontal" action="Login.action" id="formLogin" method="post">
                                 <!-- Login  -->
                                 <div class="form-group has-feedback">
-                                    <label class="col-md-3 control-label" for="loginConexion">Login</label>
+                                    <label class="col-md-3 control-label" for="usuLoginConexion">Login</label>
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <s:textfield name="loginConexion"  id="loginConexion" cssClass="form-control" placeholder="Ingrese login usuario"/>
-                                            <span class="glyphicon glyphicon form-control-feedback" id="loginConexion1"></span>
+                                            <s:textfield name="usuLoginConexion"  id="usuLoginConexion" cssClass="form-control" placeholder="Ingrese login usuario"/>
+                                            <span class="glyphicon glyphicon form-control-feedback" id="usuLoginConexion1"></span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Password -->
                                 <div class="form-group has-feedback">
-                                    <label class="col-md-3 control-label" for="clave">Clave</label>
+                                    <label class="col-md-3 control-label" for="usuClave">Clave</label>
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <s:password name="clave"  id="clave"  cssClass="form-control" placeholder="Ingrese clave"/>
-                                            <span class="glyphicon form-control-feedback" id="clave1"></span>
+                                            <s:password name="usuClave"  id="usuClave"  cssClass="form-control" placeholder="Ingrese clave"/>
+                                            <span class="glyphicon form-control-feedback" id="usuClave1"></span>
                                         </div>
                                     </div>
                                 </div>

@@ -2,12 +2,12 @@ $( document ).ready(function() {
     /* Corresponde a login */
     $('#formLogin').validate({
         rules: {
-            'loginConexion': 'required',
-            'clave': 'required'
+            'usuLoginConexion': 'required',
+            'usuClave': 'required'
         },
         messages: {
-            'loginConexion': 'Debe ingresar el login usuario',
-            'clave': 'Debe ingresar clave de usuario'
+            'usuLoginConexion': 'Debe ingresar el login usuario',
+            'usuClave': 'Debe ingresar clave de usuario'
         },
 
         highlight: function(element) {
@@ -78,25 +78,25 @@ $( document ).ready(function() {
     /* Crear usuario*/
      $('#formUsuario').validate({
         rules: {
-            'nombre': 'required',
-            'apaterno': 'required',
-            'correo': 'required',
-            'clave': 'required',
-            'estado': 'required',
-            'loginConexion': 'required',
-            'idRol': 'required',
-            'usuCreador': 'required'
+            'usuNombre': 'required',
+            'usuApellidoPaterno': 'required',
+            'usuCorreo': 'required',
+            'usuClave': 'required',
+            'usuEstado': 'required',
+            'usuLoginConexion': 'required',
+            'rol_id': 'required'
+
             
         },
         messages: {
-            'nombre': 'Debe ingresar un nombre',
-            'apaterno': 'Debe ingresar apellido paterno',
-            'correo': 'Debe ingresar correo',
-            'clave': 'Debe ingresar clave',
-            'estado': 'Debe ingresar estado',
-            'loginConexion': 'Debe ingresar usuario',
-            'idRol': '',
-            'usuCreador': ''
+            'usuNombre': 'Debe ingresar un nombre',
+            'usuApellidoPaterno': 'Debe ingresar apellido paterno',
+            'usuCorreo': 'Debe ingresar correo',
+            'usuClave': 'Debe ingresar clave',
+            'usuEstado': 'Debe ingresar estado',
+            'usuLoginConexion': 'Debe ingresar usuario',
+            'rol_id': 'debe seleccionar un rol'
+
         },
 
         highlight: function(element) {

@@ -21,9 +21,15 @@ public class Usuario extends ActionSupport implements ModelDriven {
 
     UsuarioModel usuarioModel= new UsuarioModel();
 
-    Integer idUsuario= null;
+    private int usuarioId;
 
+    public int getUsuarioId() {
+        return usuarioId;
+    }
 
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 
     @Override
     public Object getModel() {
@@ -34,13 +40,13 @@ public class Usuario extends ActionSupport implements ModelDriven {
         Map session = ActionContext.getContext().getSession();
         String usuarioSession = (String) session.get("loginConexion");
         UsuarioDTO newUsuario= new UsuarioDTO();
-        newUsuario.setUsuNombre(usuarioModel.getNombre());
-        newUsuario.setUsuApellidoPaterno(usuarioModel.getApaterno());
-        newUsuario.setUsuApellidoMaterno(usuarioModel.getAmaterno());
-        newUsuario.setUsuCorreo(usuarioModel.getCorreo());
-        newUsuario.setUsuClave(usuarioModel.getClave());
-        newUsuario.setUsuEstado(usuarioModel.getEstado());
-        newUsuario.setUsuLoginConexion(usuarioModel.getLoginConexion());
+        newUsuario.setUsuNombre(usuarioModel.getUsuNombre());
+        newUsuario.setUsuApellidoPaterno(usuarioModel.getUsuApellidoPaterno());
+        newUsuario.setUsuApellidoMaterno(usuarioModel.getUsuApellidoMaterno());
+        newUsuario.setUsuCorreo(usuarioModel.getUsuCorreo());
+        newUsuario.setUsuClave(usuarioModel.getUsuClave());
+        newUsuario.setUsuEstado(usuarioModel.getUsuEstado());
+        newUsuario.setUsuLoginConexion(usuarioModel.getUsuLoginConexion());
         //newUsuario.setRolId(usuarioModel.getIdRol());
         newUsuario.setUsuCreador(usuarioSession);
         RolDTO rolDTO = new RolDTO();
@@ -51,13 +57,17 @@ public class Usuario extends ActionSupport implements ModelDriven {
         boolean prueba = pruebaUsuario.validar_creacionusuario();
         if(prueba){
 
-            usuarioModel.setMensaje(new MensajeDTO("success","<span class='glyphicon glyphicon-ok' style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> Usuario "+ usuarioModel.getLoginConexion()+  " creado con exito</span>" ));
+            usuarioModel.setMensaje(new MensajeDTO("success","<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: " +
+                    "18px; text-align: center;'> Usuario "+ usuarioModel.getUsuLoginConexion()+  " creado con exito</span>" ));
             //se crea el registro de usuario en la bd
             return SUCCESS;
         } else {
             // no se crea registro de usuario
 
-            usuarioModel.setMensaje(new MensajeDTO("error","<span class='glyphicon glyphicon-remove' style='color:red; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> Usuario " + usuarioModel.getLoginConexion() + " existente en registros</span>"));
+            usuarioModel.setMensaje(new MensajeDTO("error","<span class='glyphicon glyphicon-remove' style='color:red; " +
+                    "text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "Usuario " + usuarioModel.getUsuLoginConexion() + " existente en registros</span>"));
             return ERROR;
         }
     }
@@ -96,12 +106,11 @@ public class Usuario extends ActionSupport implements ModelDriven {
             return ERROR;
         }
     }
-    public String getJSON() throws Exception {
-        return listaruser();
-    }
+
 
     public String buscarDataUsuario()throws Exception{
-        UsuarioDTO usuarioDTO = LogicaUsuario.traerDataUsuario(this.usuarioModel.getIdUsuario());
+        //this.usuarioModel.setListarol( new LogicaRol().listRol());
+        UsuarioDTO usuarioDTO = LogicaUsuario.traerDataUsuario(this.usuarioId);
 
         if(usuarioDTO != null){
             usuarioModel.setUsuarioDTO(usuarioDTO);
@@ -110,28 +119,39 @@ public class Usuario extends ActionSupport implements ModelDriven {
         else{
             return ERROR;
         }
-
-
     }
 
-    public String modificarDataUsuario(){
+    public String modifDataUsuario() throws Exception {
         Map session = ActionContext.getContext().getSession();
         String usuarioSession = (String) session.get("loginConexion");
 
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setUsuNombre(usuarioModel.getNombre());
-        usuarioDTO.setUsuApellidoPaterno(usuarioModel.getApaterno());
-        usuarioDTO.setUsuApellidoMaterno(usuarioModel.getAmaterno());
-        usuarioDTO.setUsuClave(usuarioModel.getClave());
-        usuarioDTO.setUsuCorreo(usuarioModel.getCorreo());
-        usuarioDTO.setUsuLoginConexion(usuarioModel.getLoginConexion());
+        usuarioDTO.setUsuId(usuarioModel.getUsuId());
+        usuarioDTO.setUsuNombre(usuarioModel.getUsuNombre());
+        usuarioDTO.setUsuApellidoPaterno(usuarioModel.getUsuApellidoPaterno());
+        usuarioDTO.setUsuApellidoMaterno(usuarioModel.getUsuApellidoMaterno());
+        usuarioDTO.setUsuClave(usuarioModel.getUsuClave());
+        usuarioDTO.setUsuCorreo(usuarioModel.getUsuCorreo());
+        usuarioDTO.setUsuLoginConexion(usuarioModel.getUsuLoginConexion());
         usuarioDTO.setUsuModificadoPor(usuarioSession);
         RolDTO rolDTO = new RolDTO();
         rolDTO.setRol_id(usuarioModel.getRol().getRol_id());
         usuarioDTO.setRol(rolDTO);
 
         LogicaUsuario logicaUsuario = new LogicaUsuario();
+        boolean update = logicaUsuario.modDataUsuario(usuarioDTO);
+        if (update) {
+            usuarioModel.setMensaje(new MensajeDTO("success", "<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "Historia " + usuarioModel.getUsuLoginConexion() + " creado con exito</span>"));
+            //se crea el registro de usuario en la bd
+            return SUCCESS;
+        } else {
 
-        return SUCCESS;
+            usuarioModel.setMensaje(new MensajeDTO("error", "<span class='glyphicon glyphicon-remove' " +
+                    "style='color:red; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "Historia " + usuarioModel.getUsuLoginConexion() + " existente en registros</span>"));
+            return ERROR;
+        }
     }
 }

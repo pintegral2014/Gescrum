@@ -1,6 +1,6 @@
 package action.model;
 
-import dao.UsuarioDAO;
+
 import dto.RolDTO;
 import dto.MensajeDTO;
 import dto.UsuarioDTO;
@@ -11,19 +11,18 @@ import java.util.List;
  * Created by jordan on 27-05-2014.
  */
 public class UsuarioModel {
-    private int idUsuario;
-    private String nombre;
-    private String loginConexion;
+    private int usuId;
+    private String usuNombre;
+    private String usuLoginConexion;
     private RolDTO rol;
-    private String apaterno;
-    private String amaterno;
-    private String correo;
-    private int clave;
-    private String estado;
+    private String usuApellidoPaterno;
+    private String usuApellidoMaterno;
+    private String usuCorreo;
+    private int usuClave;
+    private String usuEstado;
     private List<UsuarioDTO> listauser;
     private List<RolDTO> listarol;
     private MensajeDTO mensaje;
-    private UsuarioDAO usuarioDAO;
     private String usuCreador;
     private UsuarioDTO usuarioDTO;
 
@@ -31,100 +30,76 @@ public class UsuarioModel {
     public UsuarioModel() {
     }
 
-    public UsuarioDTO getUsuarioDTO() {
-        return usuarioDTO;
+    public int getUsuId() {
+        return usuId;
     }
 
-    public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
-        this.usuarioDTO = usuarioDTO;
+    public void setUsuId(int usuId) {
+        this.usuId = usuId;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public String getUsuNombre() {
+        return usuNombre;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuNombre(String usuNombre) {
+        this.usuNombre = usuNombre;
     }
 
-    public List<RolDTO> getListarol() {
-        return listarol;
+    public String getUsuLoginConexion() {
+        return usuLoginConexion;
     }
 
-    public void setListarol(List<RolDTO> listarol) {
-        this.listarol = listarol;
-    }
-
-    public String getUsuCreador() {
-        return usuCreador;
-    }
-
-    public void setUsuCreador(String usuCreador) {
-        this.usuCreador = usuCreador;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getLoginConexion() {
-        return loginConexion;
+    public void setUsuLoginConexion(String usuLoginConexion) {
+        this.usuLoginConexion = usuLoginConexion;
     }
 
     public RolDTO getRol() {
         return rol;
     }
 
-    public String getApaterno() {
-        return apaterno;
-    }
-
-    public String getAmaterno() {
-        return amaterno;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public int getClave() {
-        return clave;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setLoginConexion(String loginConexion) {
-        this.loginConexion = loginConexion;
-    }
-
     public void setRol(RolDTO rol) {
         this.rol = rol;
     }
 
-    public void setApaterno(String apaterno) {
-        this.apaterno = apaterno;
+    public String getUsuApellidoPaterno() {
+        return usuApellidoPaterno;
     }
 
-    public void setAmaterno(String amaterno) {
-        this.amaterno = amaterno;
+    public void setUsuApellidoPaterno(String usuApellidoPaterno) {
+        this.usuApellidoPaterno = usuApellidoPaterno;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public String getUsuApellidoMaterno() {
+        return usuApellidoMaterno;
     }
 
-    public void setClave(int clave) {
-        this.clave = clave;
+    public void setUsuApellidoMaterno(String usuApellidoMaterno) {
+        this.usuApellidoMaterno = usuApellidoMaterno;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public String getUsuCorreo() {
+        return usuCorreo;
+    }
+
+    public void setUsuCorreo(String usuCorreo) {
+        this.usuCorreo = usuCorreo;
+    }
+
+    public int getUsuClave() {
+        return usuClave;
+    }
+
+    public void setUsuClave(int usuClave) {
+        this.usuClave = usuClave;
+    }
+
+    public String getUsuEstado() {
+        return usuEstado;
+    }
+
+    public void setUsuEstado(String usuEstado) {
+        this.usuEstado = usuEstado;
     }
 
     public List<UsuarioDTO> getListauser() {
@@ -135,6 +110,14 @@ public class UsuarioModel {
         this.listauser = listauser;
     }
 
+    public List<RolDTO> getListarol() {
+        return listarol;
+    }
+
+    public void setListarol(List<RolDTO> listarol) {
+        this.listarol = listarol;
+    }
+
     public MensajeDTO getMensaje() {
         return mensaje;
     }
@@ -143,13 +126,19 @@ public class UsuarioModel {
         this.mensaje = mensaje;
     }
 
-    public UsuarioDAO getUsuarioDAO() {
-        return usuarioDAO;
+    public String getUsuCreador() {
+        return usuCreador;
     }
 
-    public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
-        this.usuarioDAO = usuarioDAO;
+    public void setUsuCreador(String usuCreador) {
+        this.usuCreador = usuCreador;
     }
 
+    public UsuarioDTO getUsuarioDTO() {
+        return usuarioDTO;
+    }
 
+    public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
+        this.usuarioDTO = usuarioDTO;
+    }
 }

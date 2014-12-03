@@ -80,7 +80,7 @@ public class LogicaUsuario {
             updateUsuario = UsuarioDAO.updateDataUsuario(usuarioDTO);
             if(updateUsuario == true){
                     // obtengo el rol del usuario
-                    rolUsuario = RolDAO.selectRolUsuario(usuarioDTO.getRol().getRol_id());
+                    rolUsuario = RolDAO.selectRolUsuario(usuarioDTO.getUsuId());
                 if(usuarioDTO.getRol().getRol_id() != rolUsuario){
                     // si el rol del usuario es distinto al de la bd realiza el update de rol
                         RolDAO.updateRolXUsuario(usuarioDTO.getRol().getRol_id(), usuarioDTO.getUsuId());

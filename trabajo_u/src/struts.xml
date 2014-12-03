@@ -192,6 +192,14 @@
             </result>
             <result name="error">/gestionarUsuario2.jsp</result>
          </action>
+        <action name="modDataUsu" class="action.Usuario" method="modifDataUsuario">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+        </action>
 
     </package>
 

@@ -181,7 +181,7 @@ public class UsuarioDAO {
             if(resultSet.next()){
                 usuarioDTO = new UsuarioDTO();
                 usuarioDTO.setUsuNombre(resultSet.getString("usu_nombre"));
-                usuarioDTO.setUsuApellidoMaterno(resultSet.getString(("usu_apellido_paterno")));
+                usuarioDTO.setUsuApellidoPaterno(resultSet.getString(("usu_apellido_paterno")));
                 usuarioDTO.setUsuApellidoMaterno(resultSet.getString("usu_apellido_materno"));
                 usuarioDTO.setUsuCorreo(resultSet.getString("usu_correo"));
                 usuarioDTO.setUsuClave(resultSet.getInt("usu_clave"));
