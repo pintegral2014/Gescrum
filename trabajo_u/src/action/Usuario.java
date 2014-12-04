@@ -153,4 +153,13 @@ public class Usuario extends ActionSupport implements ModelDriven {
             return ERROR;
         }
     }
+    public String bloqUsuario()throws Exception{
+        Map session = ActionContext.getContext().getSession();
+        String usuarioSession = (String) session.get("loginConexion");
+
+        LogicaUsuario logicaUsuario = new LogicaUsuario();
+        boolean update = logicaUsuario.bloquearUsuario(usuarioId, usuarioModel.getUsuEstado());
+
+        return null;
+    }
 }

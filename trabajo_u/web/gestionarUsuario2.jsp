@@ -66,8 +66,15 @@
                                             <td><s:property value="usuLoginConexion"/></td>
                                             <td><s:property value="usuEstado"/></td>
                                             <td><s:property value="rol.rol_descripcion"/></td>
-                                            <td><button class="btn btn-xs btnChico btn-warning mod" onclick="onClickEditarUsuario('<s:property value="usuId"/>')">
-                                                    <span class="glyphicon glyphicon-edit" ></span></button></td>
+                                            <td><button class="btn btn-xs btnChico btn-warning mod" data-toggle="tooltip" data-placement="bottom" title="Editar usuario"
+                                                        onclick="onClickEditarUsuario('<s:property value="usuId"/>')">
+                                                    <span class="glyphicon glyphicon-edit" ></span>
+                                                </button>
+                                                <button class="btn btn-xs btnChico btn-danger mod" data-toggle="tooltip" data-placement="bottom" title="Deshabilitar usuario"
+                                                        onclick="onClickBloquearUsuario('<s:property value="usuId"/>','<s:property value="usuEstado"/>')">
+                                                    <span class="glyphicon glyphicon-remove" ></span>
+                                                </button>
+                                            </td>
 
                                         </tr>
                                     </s:iterator>
@@ -167,9 +174,14 @@
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Estado</label>
                         <div class="col-lg-5">
-                          <input type="text" name="usuEstado" id="usuEstado" class="form-control" placeholder="">
-                        </div><br>
+                                <select name="usuEstado" id="usuEstado" class="form-control">
+                                    <option value="vigente">vigente</option>
+                                    <option value="no vigente">no vigente</option>
+                                </select>
+                          <!--<input type="text" name="usuEstado" id="usuEstado" class="form-control" placeholder="">-->
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Usuario</label>
                         <div class="col-lg-5">
@@ -215,6 +227,7 @@
         <![endif]-->
         <script src="framework/macAdminStyle/js/respond.min.js"></script>
         <script src="framework/macAdminStyle/js/bootstrap.min.js"></script> <!-- Bootstrap-->
+
         <!-- fin  Librerías para el tema macadmin -->
 
 <script>
@@ -280,6 +293,22 @@
             });
 
 
+        }
+
+
+        function onClickBloquearUsuario(idUsuario, estadoUs){
+            var confirmar = confirm(String.fromCharCode(191)+"Esta seguro que desea deshabilitar el usuario?");
+            if(confirmar == true){
+                $.ajax({
+                    type:'post',
+                    url:'bloqueaUsuario.action',
+                    data:{'usuarioId':idUsuario,
+                          'usuarioModel.usuEstado': estadoUs},
+                    success: function(data){
+
+                    }
+                });
+            }
         }
 
         $('#btnModUsu').click(function(){

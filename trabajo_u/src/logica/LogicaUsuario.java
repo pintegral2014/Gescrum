@@ -95,6 +95,10 @@ public class LogicaUsuario {
         }
         return null;
     }
+
+    public boolean bloquearUsuario(int idUsu, String estado)throws Exception{
+        return true;
+    }
 }
 
 
