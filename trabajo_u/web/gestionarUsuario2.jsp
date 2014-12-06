@@ -217,16 +217,21 @@
 </div>
 
         <!-- Librerías JS para el tema macadmin -->
+        <script src="framework/jquery/jquery.validate.js"></script>
+        <script src="framework/jquery/login.validate.2.js" type="text/javascript"></script>
+        <script src="framework/bootstrap-3.2.0/dist/js/bootstrap.min.js"></script>
         <script src="framework/datatable/jquery.dataTables2.js"></script>
-        <script src="framework/bootstrap-3.2.0/dist/js/bootstrap.js"></script> <!-- Bootstrap -->
-        <script src="framework/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
-        <script src="framework/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <script src="framework/macAdminStyle/js/respond.min.js"></script>
-        <script src="framework/macAdminStyle/js/bootstrap.min.js"></script> <!-- Bootstrap-->
+        <script src="framework/jquery/jquery.blockUI.js" type="text/javascript"></script>
+        <style type="text/css">
+            div.growlUI{
+                background: black;
+                position: absolute;
+            }
+            div.growlUI{
+                color: #ffffff;
+                padding: 10px;
+            }
+        </style>
 
         <!-- fin  Librerías para el tema macadmin -->
 
