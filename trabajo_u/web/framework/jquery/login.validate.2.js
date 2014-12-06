@@ -32,7 +32,7 @@ $( document ).ready(function() {
 
     });
     
-    $("#clave, #prioridad, #eventum").keydown(function(event) {
+    $("#usuClave, #prioridad, #eventum").keydown(function(event) {
             if(event.shiftKey)
             {  event.preventDefault();}
             if (event.keyCode == 46 || event.keyCode == 8)    {
