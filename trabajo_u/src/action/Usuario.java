@@ -20,15 +20,7 @@ public class Usuario extends ActionSupport implements ModelDriven {
 
     UsuarioModel usuarioModel= new UsuarioModel();
 
-    private int usuarioId;
 
-    public int getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
-    }
 
     @Override
     public Object getModel() {
@@ -109,7 +101,7 @@ public class Usuario extends ActionSupport implements ModelDriven {
 
     public String buscarDataUsuario()throws Exception{
         this.usuarioModel.setListarol( new LogicaRol().listRol());
-        UsuarioDTO usuarioDTO = LogicaUsuario.traerDataUsuario(this.usuarioId);
+        UsuarioDTO usuarioDTO = LogicaUsuario.traerDataUsuario(this.usuarioModel.getUsuId());
 
         if(usuarioDTO != null){
             usuarioModel.setUsuarioDTO(usuarioDTO);
@@ -158,7 +150,7 @@ public class Usuario extends ActionSupport implements ModelDriven {
         String usuarioSession = (String) session.get("loginConexion");
 
         LogicaUsuario logicaUsuario = new LogicaUsuario();
-        boolean update = logicaUsuario.bloquearUsuario(usuarioId, usuarioModel.getUsuEstado());
+        boolean update = logicaUsuario.bloquearUsuario(usuarioModel.getUsuId(), usuarioModel.getUsuEstado());
 
         return null;
     }

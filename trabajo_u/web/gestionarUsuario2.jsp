@@ -274,7 +274,7 @@
             $.ajax({
                 type : 'POST',
                 url : 'buscarDataUsuario.action',
-                data : {'usuarioId': id},
+                data : {'usuId': id},
                 success : function(data) {
                     $('#usuId').val(data.usuarioDTO.usuId);
                     $('#usuNombre').val(data.usuarioDTO.usuNombre);
@@ -302,10 +302,10 @@
                 $.ajax({
                     type:'post',
                     url:'bloqueaUsuario.action',
-                    data:{'usuarioId':idUsuario,
-                          'usuarioModel.usuEstado': estadoUs},
+                    data:{'usuId':idUsuario,
+                          'usuEstado': estadoUs},
                     success: function(data){
-
+                           alert("esta hecho lokito xD .....!!!!!!!");
                     }
                 });
             }
