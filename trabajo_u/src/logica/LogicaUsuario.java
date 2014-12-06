@@ -42,8 +42,13 @@ public class LogicaUsuario {
             usuInsert = UsuarioDAO.crearUsuario2(usuario);
             if (usuInsert == true) {
                 RolDAO.insertRolxUsuario(usuario.getRol().getRolId(), usuario.getUsuLoginConexion(), usuario.getUsuCreador());
+            }else{
+                exito = false;
             }
             exito = true;
+        }
+        else {
+            exito = false;
         }
         return exito;
     }
