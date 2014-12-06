@@ -78,7 +78,7 @@ public class UsuarioDAO {
         try{
             Connection conn = interfaceConn.getConnectionDB();
             String sql = "insert into tbl_usuario (usu_nombre,usu_login_conexion,usu_apellido_paterno,usu_apellido_materno,"+
-                    "usu_correo,usu_clave,usu_estado,usu_fecha_inicio,usu_fecha_modificacion, usu_creado_por) values (?,?,?,?,?,?,?,?,?,?);";
+                    "usu_correo,usu_clave,usu_estado,usu_fecha_inicio,usu_fecha_modificacion, usu_creado_por,usu_modificado_por) values (?,?,?,?,?,?,?,?,?,?,?);";
             p = conn.prepareStatement(sql);
             p.setString(1, usuario.getUsuNombre());
             p.setString(2, usuario.getUsuLoginConexion());
@@ -90,6 +90,7 @@ public class UsuarioDAO {
             p.setDate(8,getCurrentDate());
             p.setDate(9,getCurrentDate());
             p.setString(10, usuario.getUsuCreador());
+            p.setString(11, usuario.getUsuModificadoPor());
 
             int insertUsuario = p.executeUpdate();
 

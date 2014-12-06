@@ -41,6 +41,7 @@
                 }
             });
         });
+
     });
 
 </script>
@@ -125,8 +126,8 @@
                                 <label class="col-lg-2 control-label">Rol</label>
                                 <div class="col-lg-5">
                                     <s:select
-                                            name="rolId"
-                                            id="rolId"
+                                            name="rol.rolId"
+                                            id="rol"
                                             headerKey="-1"
                                             headerValue="-- seleccionar rol --"
                                             list="listarol"

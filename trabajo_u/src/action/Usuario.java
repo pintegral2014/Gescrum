@@ -40,6 +40,7 @@ public class Usuario extends ActionSupport implements ModelDriven {
         newUsuario.setUsuLoginConexion(usuarioModel.getUsuLoginConexion());
         //newUsuario.setRolId(usuarioModel.getIdRol());
         newUsuario.setUsuCreador(usuarioSession);
+        newUsuario.setUsuModificadoPor(usuarioSession);
         RolDTO rolDTO = new RolDTO();
         rolDTO.setRolId(usuarioModel.getRol().getRolId());
         newUsuario.setRol(rolDTO);

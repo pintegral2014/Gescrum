@@ -124,14 +124,14 @@ $( document ).ready(function() {
         var validado = $('#formUsuario').valid();
         if(validado){
             $.ajax({
-                url: "ingresaNewUsuario.action",
+                url: "crearNewUsuario.action",
                 data: $('#formUsuario').serializeArray(),
                 type:"post",
                 dataType:"json",
                 success: function (data) {
 
                     if(data.mensaje.tipo == "success"){
-                       
+
                         $.growlUI(data.mensaje.texto);
                         setTimeout(function(){
 
@@ -143,10 +143,10 @@ $( document ).ready(function() {
                                 }
                             });
 
-                          }, 2000);
+                        }, 2000);
                     }
                     else{
-                        
+
                         $.growlUI(data.mensaje.texto);
                     }
                 }

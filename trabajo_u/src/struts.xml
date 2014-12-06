@@ -44,7 +44,7 @@
             </result>
         </action>
 
-        <action name="ingresaNewUsuario" class="action.Usuario" method="crearUsuario">
+        <action name="crearNewUsuario" class="action.Usuario" method="crearUsuario">
             <result name="success" type="json">
                 <param name="includeProperties">mensaje.*</param>
             </result>

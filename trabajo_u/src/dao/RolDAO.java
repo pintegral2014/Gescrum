@@ -103,7 +103,7 @@ public class RolDAO {
         ConnectionDB interfaceConn = new ConnectionDB();
         try{
             Connection conn = interfaceConn.getConnectionDB();
-            String sql = "update tbl_rol_x_usuario  set tbl_rol_rol_id = ?, ro_fecha_mod = ?,  where tbl_usuario_usu_id = ?";
+            String sql = "update tbl_rol_x_usuario  set tbl_rol_rol_id = ?, ro_fecha_mod = ?  where tbl_usuario_usu_id = ?";
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, idRol);
             preparedStatement.setDate(2, getCurrentDate());
