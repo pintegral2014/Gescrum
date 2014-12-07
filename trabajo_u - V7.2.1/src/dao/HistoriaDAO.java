@@ -188,4 +188,39 @@ public class HistoriaDAO {
             return listhistory;
         }
     }
+    public static List<HistoriaDTO> proyectoHistoriaList2(int proyecto)throws Exception{
+        PreparedStatement p = null;
+        List<HistoriaDTO> listhistory = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select hdu_id,hdu_nombre,hdu_prioridad,hdu_eventum,hdu_descripcion," +
+                    "hdu_dependencia,hdu_criterios_aceptacion,hdu_fecha_creacion,hdu_usuario_creador from tbl_hdu where tbl_proyecto_pro_id = ?;";
+
+            p = conn.prepareStatement(sql);
+            p.setInt(1, proyecto);
+            ResultSet res = p.executeQuery();
+            listhistory = new ArrayList<HistoriaDTO>();
+            while (res.next()){
+                HistoriaDTO historia = new HistoriaDTO();
+                historia.setHisId(res.getInt("hdu_id"));
+                historia.setNombrehistoria(res.getString("hdu_nombre"));
+                historia.setPrioridad(res.getInt("hdu_prioridad"));
+                historia.setEventum(res.getInt("hdu_eventum"));
+                historia.setDescripcion(res.getString("hdu_descripcion"));
+                historia.setDependencia(res.getString("hdu_dependencia"));
+                historia.setCriAceptacion(res.getString("hdu_criterios_aceptacion"));
+                historia.setFechaCrea(res.getDate("hdu_fecha_creacion"));
+                historia.setUsuariocrea(res.getString("hdu_usuario_creador"));
+
+                listhistory.add(historia);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listhistory;
+        }
+    }
 }

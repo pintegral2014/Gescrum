@@ -220,7 +220,14 @@
             </result>
             <!--<result name="success">/ingresarHistoriaDef.jsp</result>-->
         </action>
-
+        <action name="backlog" class="action.Proyecto" method="listaProyectos">
+            <result name="success">/inicioBacklog.jsp</result>
+            <result name="error">/gestionarProyecto2.jsp</result>
+        </action>
+        <action name="buscarHistPro" class="action.Historia" method="buscarHduProyecto">
+            <result name="success">/backlogProyectoHdu.jsp</result>
+            <result name="error">/backlogProyectoHdu.jsp</result>
+        </action>
     </package>
 
 </struts>

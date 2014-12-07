@@ -144,5 +144,20 @@ public class Historia extends ActionSupport implements ModelDriven{
         return ERROR;
     }
 
+    public String buscarHduProyecto()throws Exception{
+        LogicaHistoria logicaHistoria = new LogicaHistoria();
+        int pro = historiaModel.getProyecto().getProId();
+        List<HistoriaDTO> historiaDTOList = logicaHistoria.listaHduProyecto(pro);
+
+        if(historiaDTOList != null){
+            this.historiaModel.setListHistorias(historiaDTOList);
+            return SUCCESS;
+        }
+        else {
+            return ERROR;
+        }
+
+    }
+
 
 }

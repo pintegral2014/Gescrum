@@ -53,4 +53,13 @@ public class LogicaHistoria {
 
     }
 
+    public List<HistoriaDTO> listaHduProyecto (int idPro)throws Exception{
+
+        List<HistoriaDTO> historiaDTOList = HistoriaDAO.proyectoHistoriaList2(idPro);
+        if (historiaDTOList != null){
+            return  historiaDTOList;
+        }else {
+            return null;
+        }
+    }
 }

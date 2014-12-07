@@ -84,10 +84,13 @@
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Reportes </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
-                   <!-- <li><a style="cursor:pointer;"  class="action" name="Reportes Generales" id="reporteGeneral">Reportes Generales</a></li>
-                    <li><a style="cursor:pointer;"  class="action" name="Reporte Sprint" id="reporteSprint">Reporte Sprint</a></li> -->
-                    <li><a style="cursor:pointer;"  class="jsp" name="Reporte Sprint" id="graficoesfuerzo">Gráfico de esfuerzo</a></li>
-
+                    <li><a style="cursor:pointer;"  class="jsp" name="Reporte Sprint" id="graficoesfuerzo"></a>Gráfico de esfuerzo</li>
+                </ul>
+            </li>
+            <li class="has_sub">
+                <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Backlog </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+                <ul>
+                    <li><a style="cursor:pointer;"  class="action" name="backlog proyecto" id="backlog">Backlog proyecto</a></li>
                 </ul>
             </li>
             <li class="has_sub">
