@@ -64,29 +64,25 @@ public class Proyecto extends ActionSupport implements ModelDriven {
     }
 
     public String modificarDataProyecto() throws Exception {
-        Map session = ActionContext.getContext().getSession();
-        String usuario = (String) session.get("loginConexion");
         ProyectoDTO proyectoDTO = new ProyectoDTO();
+        proyectoDTO.setProId(proyectoModel.getProId());
         proyectoDTO.setProNombre(proyectoModel.getProNombre());
         proyectoDTO.setEstado(proyectoModel.getEstado());
         proyectoDTO.setProDescripcion(proyectoModel.getProDescripcion());
-        proyectoDTO.setUsuCrea(usuario);
 
-        LogicaProyecto logicaProyecto = new LogicaProyecto();
-        boolean insert = logicaProyecto.crearProyecto(proyectoDTO);
-        if (insert) {
+        boolean exito = LogicaProyecto.modDataProyecto(proyectoDTO);
+
+        if(exito == true){
+
             proyectoModel.setMensajeDTO(new MensajeDTO("success", "<span class='glyphicon glyphicon-ok' " +
-                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
-                    "Historia " + proyectoModel.getProNombre() + " creado con exito</span>"));
-            //se crea el registro de usuario en la bd
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> Proyecto " +
+                    proyectoModel.getProNombre() + " modificado con exito</span>"));
             return SUCCESS;
-        } else {
-
-            proyectoModel.setMensajeDTO(new MensajeDTO("error", "<span class='glyphicon glyphicon-remove' " +
-                    "style='color:red; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
-                    "Historia " + proyectoModel.getProNombre() + " existente en registros</span>"));
-            return ERROR;
         }
+        proyectoModel.setMensajeDTO(new MensajeDTO("error", "<span class='glyphicon glyphicon-remove' style='color:red; text-align: left; font-size: 40px;'></span> &nbsp; " +
+                "<span style='font-size: 18px; text-align: center;'> Proyecto " +
+                proyectoModel.getProNombre() + " no se ha podido modificar</span>"));
+        return ERROR;
     }
 
     public String crearProyecto() throws Exception {
