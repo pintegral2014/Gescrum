@@ -52,40 +52,28 @@
                     }
                 });
             });
-            $('#guardarModPro').click(function(){
-                $.ajax({
-                    url: "modDataPro.action",
-                    data: $('#formModPro').serializeArray(),
-                    type:"post",
-                    dataType:"json",
-                    success: function (data) {
-
-                        if(data.mensajeDTO.tipo == "success"){
-
-                            $('#myModal').modal('hide');
-                            $.growlUI(data.mensajeDTO.texto);
-                            setTimeout(function(){
-
-                                $.ajax({
-                                    url: 'listarProyectos.action',
-                                    success: function(data){
-                                        $('#contenidoPagina').html("");
-                                        $('#contenidoPagina').html(data);
-                                    }
-                                });
-
-                            }, 2000);
-                        }
-                        else{
-                            $('#myModal').modal('hide');
-                            $.growlUI(data.mensajeDTO.texto);
-                        }
-                    }
-                });
-            });
 
 
         }); // fin document ready
+
+        function obtenerDataHdu(id) {
+            alert("La historia que seleccionaste es la :"+id);
+
+            $.ajax({
+                type : 'POST',
+                url : 'buscarData.action',
+                data : {'idHis': id},
+                success : function(data) {
+                    $('#nombrehistoria').val(data.historiaDTO.nombrehistoria);
+                    $('#myModal').modal('show');
+                },
+                error : function(erro) {
+                    alert("error servidor");
+                }
+            });
+
+
+        }
     </script>
 </head>
 <body>
@@ -121,23 +109,21 @@
                                     <table class="table table-collase table-condensed table-responsive" cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
                                         <thead class="btn-default">
                                         <tr >
-                                            <th>hisId</th>
-                                            <th>nombrehistoria</th>
-                                            <th>Descripcion</th>
-                                            <th>prioridad</th>
-                                            <th>eventum</th>
-                                            <th>dependencia</th>
+                                            <th>Nombre Historia</th>
+                                            <th>Prioridad</th>
+                                            <th>Eventum</th>
+                                            <th>Dependencia</th>
+                                            <th>Visualizar</th>
                                         </thead>
                                         <tbody>
                                         <s:iterator value="listHistorias" >
 
                                             <tr>
-                                                <td><s:property value="hisId"/></td>
                                                 <td><s:property value="nombrehistoria"/></td>
                                                 <td><s:property value="prioridad"/></td>
                                                 <td><s:property value="eventum"/></td>
                                                 <td><s:property value="dependencia"/></td>
-                                                <td><button class="btn btn-xs btn-warning mod btnChico"> <span class="glyphicon glyphicon-edit" ></span></button></td>
+                                                <td><button class="btn btn-xs btn-primary btnChico" onclick="obtenerDataHdu(<s:property value="hisId"/>)"> <span class="glyphicon glyphicon-eye-open" ></span></button></td>
                                             </tr>
                                         </s:iterator>
                                         </tbody>
