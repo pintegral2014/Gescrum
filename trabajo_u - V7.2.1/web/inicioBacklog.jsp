@@ -12,7 +12,7 @@
 <script>
 
     $(document).ready(function(){
-       $('#cargarBacklog').click(function(){
+     /*  $('#cargarBacklog').click(function(){
 
            $.ajax({
                url: 'buscarHistPro.action',
@@ -23,6 +23,32 @@
                }
            });
        });
+*/
+        $('#cargarBacklog').click(function(){
+            var posicion=document.getElementById('proyecto').options.selectedIndex; //posicion
+            var id = document.getElementById('proyecto').options[posicion].value;
+            var nombre = document.getElementById('proyecto').options[posicion].text;
+            if(id >= 0){
+
+
+                $.ajax({
+                    url: 'buscarHistPro.action',
+                    data: $('#formBack').serializeArray(),
+                    type: "post",
+                    success: function(data){
+                        $('#contenidoPagina').html(data);
+                    }
+                });
+
+
+            }
+
+        });
+
+
+
+
+
     });
 
 
@@ -66,8 +92,7 @@
                             </div>
                             <!-- buttons -->
                             <div class="col-lg-9 col-lg-offset-3">
-
-                                <button type="button" id="cargarBacklog" name="Cargar"  class="btn btn-warning btn-smt ">Cargar</button>
+                                <button type="button" id="cargarBacklog"  name="Cargar"  class="btn btn-warning btn-smt ">Cargar</button>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-9 col-md-offset-3">
