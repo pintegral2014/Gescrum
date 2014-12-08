@@ -29,8 +29,6 @@
             var id = document.getElementById('proyecto').options[posicion].value;
             var nombre = document.getElementById('proyecto').options[posicion].text;
             if(id >= 0){
-
-
                 $.ajax({
                     url: 'buscarHistPro.action',
                     data: $('#formBack').serializeArray(),
@@ -39,8 +37,6 @@
                         $('#contenidoPagina').html(data);
                     }
                 });
-
-
             }
 
         });
