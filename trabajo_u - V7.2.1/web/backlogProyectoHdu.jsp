@@ -57,7 +57,7 @@
         }); // fin document ready
 
         function obtenerDataHdu(id) {
-            alert("La historia que seleccionaste es la :"+id);
+            //alert("La historia que seleccionaste es la :"+id);
 
             $.ajax({
                 type : 'POST',
@@ -65,7 +65,13 @@
                 data : {'idHis': id},
                 success : function(data) {
                     $('#nombrehistoria').val(data.historiaDTO.nombrehistoria);
+                    $('#prioridad').val(data.historiaDTO.prioridad);
+                    $('#eventum').val(data.historiaDTO.eventum);
+                    $('#dependencia').val(data.historiaDTO.dependencia);
+                    $('#descripcion').val(data.historiaDTO.descripcion);
+                    $('#criAceptacion').val(data.historiaDTO.criAceptacion);
                     $('#myModal').modal('show');
+
                 },
                 error : function(erro) {
                     alert("error servidor");
@@ -149,23 +155,58 @@
     <!-- Mainbar ends -->
     <!-- Scroll to top -->
     <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
+    <!-- modal 2 -->
+    <div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Modificar Proyecto</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="formModPro">
 
+                        <div class="form-group">
+                            <label class="control-label">Historia:</label>
+                            <input type="text" class="form-control" name="nombrehistoria" id="nombrehistoria" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Prioridad:</label>
+                            <input type="text" class="form-control" name="prioridad" id="prioridad" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Eventum:</label>
+                            <input type="text" class="form-control" name="eventum" id="eventum" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">dependencia:</label>
+                            <input type="text" class="form-control" name="dependencia" id="dependencia" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">descripcion:</label>
+                            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" style="resize: none; overflow-y: scroll;" readonly></textarea >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">criAceptacion:</label>
+                            <textarea class="form-control" name="criAceptacion" id="criAceptacion" rows="3" style="resize: none; overflow-y: scroll;" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
 
 
 <!-- Mainbar ends -->
 <div class="clearfix"></div>
-
-
-
-
 <!-- Scroll to top -->
 <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
 
 <br>
 <!-- Matter ends -->
-
 </div>
-
 <!-- Mainbar ends -->
 <div class="clearfix"></div>
 

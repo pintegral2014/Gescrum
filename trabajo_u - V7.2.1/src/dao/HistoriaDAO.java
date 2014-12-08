@@ -30,6 +30,12 @@ public class HistoriaDAO {
             if(resultSet.next()){
                 historiaDTO = new HistoriaDTO();
                 historiaDTO.setNombrehistoria(resultSet.getString("hdu_nombre"));
+                historiaDTO.setPrioridad(resultSet.getInt("hdu_prioridad"));
+                historiaDTO.setEventum(resultSet.getInt("hdu_eventum"));
+                historiaDTO.setDependencia(resultSet.getString("hdu_dependencia"));
+                historiaDTO.setDescripcion(resultSet.getString("hdu_descripcion"));
+                historiaDTO.setCriAceptacion(resultSet.getString("hdu_criterios_aceptacion"));
+
             }
         }
         catch (Exception e){
@@ -195,7 +201,7 @@ public class HistoriaDAO {
         try {
             Connection conn = interfaceConn.getConnectionDB();
             String sql = "select hdu_id,hdu_nombre,hdu_prioridad,hdu_eventum,hdu_descripcion," +
-                    "hdu_dependencia,hdu_criterios_aceptacion,hdu_fecha_creacion,hdu_usuario_creador from tbl_hdu where tbl_proyecto_pro_id = ?;";
+                    "hdu_dependencia,hdu_criterios_aceptacion,hdu_fecha_creacion,hdu_usuario_creador from tbl_hdu where tbl_proyecto_pro_id = ? order by hdu_prioridad desc";
 
             p = conn.prepareStatement(sql);
             p.setInt(1, proyecto);
