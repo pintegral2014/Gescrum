@@ -58,26 +58,13 @@
 
 </script>
 <script src="framework/macAdminStyle/js/jquery.js"></script>
-<script  src="framework/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
-<script  src="framework/jquery/jquery-ui.min.js" type="text/javascript"></script>
 
 <script src="framework/bootstrap-3.2.0/dist/js/bootstrap.js"></script> <!-- Bootstrap -->
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="framework/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
-
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="framework/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
 
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 <script src="framework/macAdminStyle/js/respond.min.js"></script>
-<!--[if lt IE 9]>
-<script src="framework/macAdminStyle/js/html5shiv.js"></script>
-<!-- fin  Librerías para el tema macadmin -->
+
 <% }
 else
 {%>

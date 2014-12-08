@@ -90,7 +90,7 @@
                 <ul>
                     <li ><a style="cursor:pointer;" href="listaUsuarios.action"> Gestionar Usuario</a></li>
                     <li ><a style="cursor:pointer;" href="gestionarHistoria2.jsp">Gestionar Historia</a></li>
-                    <li><a style="cursor:pointer;" href="gestionarTestCase2.jsp">Gestionar TestCase</a></li>
+                    <li><a style="cursor:pointer;" href="inicioTestCase.jsp">Gestionar TestCase</a></li>
                     <li><a style="cursor:pointer;" href="gestionarSprint2.jsp">Gestionar Sprint</a></li>
                     <li><a style="cursor:pointer;" href="gestionarProyecto2.jsp">Gestionar Proyecto</a></li>
                 </ul>

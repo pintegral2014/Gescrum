@@ -38,7 +38,7 @@
             <div class="widget wgreen">
 
                 <div class="widget-head">
-                    <div class="pull-left">Bakclog</div>
+                    <div class="pull-left">Backlog</div>
                     <div class="clearfix"></div>
                 </div>
 

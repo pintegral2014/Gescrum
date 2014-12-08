@@ -84,13 +84,13 @@
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Reportes </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
-                    <li><a style="cursor:pointer;"  class="jsp" name="Reporte Sprint" id="graficoesfuerzo"></a>Gráfico de esfuerzo</li>
+                    <li><a style="cursor:pointer;"  class="jsp" name="Reporte Sprint" id="graficoesfuerzo">Gráfico de esfuerzo</a></li>
                 </ul>
             </li>
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Backlog </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
-                    <li><a style="cursor:pointer;"  class="action" name="backlog proyecto" id="backlog">Backlog proyecto</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Backlog proyecto" id="backlog">Backlog proyecto</a></li>
                 </ul>
             </li>
             <li class="has_sub">
@@ -98,7 +98,7 @@
                 <ul>
                     <li ><a style="cursor:pointer;"  class="action" name="Gestionar Usuario" id="listaUsuarios">Gestionar Usuario</a></li>
                     <li ><a style="cursor:pointer;"  class="action" name="Gestionar Historia" id="listarHistorias">Gestionar Historia</a></li>
-                    <li><a style="cursor:pointer;"  class="action" name="Gestionar TestCase" id="gestionarTestCase2">Gestionar TestCase</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Gestionar TestCase" id="inicioTestCase">Gestionar TestCase</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Gestionar Sprint" id="gestionarSprint2">Gestionar Sprint</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Gestionar Proyecto" id="listarProyectos">Gestionar Proyecto</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Gestionar Grupo" id="listaGrupos2">Gestionar Grupos</a></li>
@@ -108,7 +108,7 @@
                 <a style="cursor:pointer;"><i class="fa fa-terminal"></i><span class="tituloMenu"> Ejecución</span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
                     <li><a style="cursor:pointer;"  class="action" name="Ejecutar TestCase" id="ejecutarTestCase2">Ejecutar TestCase</a></li>
-                    <li><a style="cursor:pointer;"  class="action" name="Asociar Tarea" id="listaGestionTarea">Asignar Tareas</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Asignar Tareas" id="listaGestionTarea">Asignar Tareas</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="prueba" id="listarHduSprint">Prueba</a></li>
                 </ul>
             </li>
@@ -162,9 +162,6 @@
         <script  src="framework/jquery/jquery-ui.min.js" type="text/javascript"></script>
 
         <script src="framework/bootstrap-3.2.0/dist/js/bootstrap.js"></script> <!-- Bootstrap -->
-        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <script src="framework/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="framework/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
@@ -175,9 +172,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script src="framework/macAdminStyle/js/respond.min.js"></script>
-        <!--[if lt IE 9]>
-        <script src="framework/macAdminStyle/js/html5shiv.js"></script>
-            <!-- fin  Librerías para el tema macadmin -->
+
         <script>
 
             $(document).ready(function(){
