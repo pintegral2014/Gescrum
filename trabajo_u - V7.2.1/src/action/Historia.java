@@ -159,5 +159,16 @@ public class Historia extends ActionSupport implements ModelDriven{
 
     }
 
+    public String modificarDataHistoria ()throws Exception{
+        HistoriaDTO historiaDTO = new HistoriaDTO();
+        historiaDTO.setCriAceptacion(historiaModel.getCriAceptacion());
+        historiaDTO.setEventum(historiaModel.getEventum());
+        historiaDTO.setDescripcion(historiaModel.getDescripcion());
+        historiaDTO.setPrioridad(historiaModel.getPrioridad());
+        historiaDTO.setDependencia(historiaModel.getDependencia());
+
+        return SUCCESS;
+    }
+
 
 }

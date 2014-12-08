@@ -9,7 +9,7 @@ public class HistoriaDTO {
     private int  hisId;
     private int prioridad;
     private String usuariocrea;
-    private int estado;
+    private String estado;
     private String descripcion;
     private String nombrehistoria;
     private String dependencia;
@@ -22,9 +22,8 @@ public class HistoriaDTO {
     public HistoriaDTO() {
     }
 
-    public HistoriaDTO(int hisId, int prioridad, String usuariocrea, int estado,
-                       String descripcion, String nombrehistoria, String dependencia,
-                       String criAceptacion, int eventum, Date fechaCrea,int idPro, ProyectoDTO proyectoDTO) {
+    public HistoriaDTO(int hisId, int prioridad, String usuariocrea, String estado, String descripcion,
+                       String nombrehistoria, String dependencia, String criAceptacion, int eventum, Date fechaCrea, int idPro, ProyectoDTO proyectoDTO) {
         this.hisId = hisId;
         this.prioridad = prioridad;
         this.usuariocrea = usuariocrea;
@@ -87,11 +86,11 @@ public class HistoriaDTO {
         this.usuariocrea = usuariocrea;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

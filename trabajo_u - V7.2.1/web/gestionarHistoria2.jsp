@@ -133,71 +133,49 @@
 
 
 <!-- MODAL MOD HISTORIA -->
-<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Historia</h4>
+        <div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Modificar Historia</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" id="formModHis">
+
+                            <div class="form-group">
+                                <label class="control-label">Historia:</label>
+                                <input type="text" class="form-control" name="nombrehistoria" id="nombrehistoria" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Prioridad:</label>
+                                <input type="text" class="form-control" name="prioridad" id="prioridad">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Eventum:</label>
+                                <input type="text" class="form-control" name="eventum" id="eventum" >
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">dependencia:</label>
+                                <input type="text" class="form-control" name="dependencia" id="dependencia">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">descripcion:</label>
+                                <textarea class="form-control" name="descripcion" id="descripcion" rows="3" style="resize: none; overflow-y: scroll;" ></textarea >
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">criAceptacion:</label>
+                                <textarea class="form-control" name="criAceptacion" id="criAceptacion" rows="3" style="resize: none; overflow-y: scroll;" ></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="guardarModhis">Guardar Cambios</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body" style="height: 500px; width: auto;">
-                <form method="post" action="#" name="formModificarUsu" class="form-horizontal" style="margin-left: 180px;">
-
-                    <div class="form-group  has-feedback">
-                        <label class="col-lg-2 control-label">Nombre HDU</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="nombrehistoria" id="nombrehistoria" class="form-control" placeholder="Input Box">
-                            <span class="glyphicon form-control-feedback" id="nombre1"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group  has-feedback">
-                        <label class="col-lg-2 control-label">Prioridad</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="prioridad" id="prioridad" class="form-control">
-                            <span class="glyphicon form-control-feedback" id="prioridad1"></span>
-                        </div>
-                    </div>
-                    <div class="form-group  has-feedback">
-                        <label class="col-lg-2 control-label">Eventum</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="eventum" id="eventum" class="form-control" placeholder="Ingrese n° eventum">
-                            <span class="glyphicon form-control-feedback" id="eventum1"></span>
-                        </div>
-                    </div>
-                    <div class="form-group  has-feedback">
-                        <label class="col-lg-2 control-label">Dependencia</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="dependencia" id="dependencia" class="form-control">
-                            <span class="glyphicon form-control-feedback" id="dependencia1"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group  has-feedback">
-                        <label class="col-lg-2 control-label">Descripcion</label>
-                        <div class="col-lg-5">
-                            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" placeholder="Ingrese descripcion de historia"></textarea>
-                            <span class="glyphicon form-control-feedback" id="descripcion1"></span>
-                        </div>
-                    </div>
-                    <div class="form-group  has-feedback">
-                        <label class="col-lg-2 control-label">Criterios de aceptacion</label>
-                        <div class="col-lg-5">
-                            <textarea class="form-control" name="criAceptacion" id="criAceptacion" rows="3" placeholder="Ingrese detalles"></textarea>
-                            <span class="glyphicon form-control-feedback" id="aceptacion1"></span>
-                        </div>
-                    </div>
-
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar Cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
+         </div>
 
         <div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -267,6 +245,38 @@ $(document).ready(function() {
             }
         })
     });
+    $('#guardarModhis').click(function(){
+        $.ajax({
+            url: "modDataHis.action",
+            data: $('#formModHis').serializeArray(),
+            type:"post",
+            dataType:"json",
+            success: function (data) {
+
+                if(data.mensajeDTO.tipo == "success"){
+
+                    $('#myModal').modal('hide');
+                    $.growlUI(data.mensajeDTO.texto);
+                    setTimeout(function(){
+
+                        $.ajax({
+                            url: 'listarProyectos.action',
+                            success: function(data){
+                                $('#contenidoPagina').html("");
+                                $('#contenidoPagina').html(data);
+                            }
+                        });
+
+                    }, 2000);
+                }
+                else{
+                    $('#myModal').modal('hide');
+                    $.growlUI(data.mensajeDTO.texto);
+                }
+            }
+        });
+    });
+
 }); // fin document ready
 
 function onClickEditarHistoria(id) {
@@ -278,6 +288,11 @@ function onClickEditarHistoria(id) {
         data : {'idHis': id},
         success : function(data) {
             $('#nombrehistoria').val(data.historiaDTO.nombrehistoria);
+            $('#prioridad').val(data.historiaDTO.prioridad);
+            $('#eventum').val(data.historiaDTO.eventum);
+            $('#dependencia').val(data.historiaDTO.dependencia);
+            $('#descripcion').val(data.historiaDTO.descripcion);
+            $('#criAceptacion').val(data.historiaDTO.criAceptacion);
             $('#myModal').modal('show');
         },
         error : function(erro) {
