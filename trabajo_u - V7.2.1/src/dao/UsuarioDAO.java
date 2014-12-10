@@ -19,7 +19,9 @@ public class UsuarioDAO {
         ConnectionDB interfaceConn = new ConnectionDB();
         try {
             Connection conn = interfaceConn.getConnectionDB();
-            String sql = "select usu_login_conexion , usu_clave, usu_estado from  tbl_usuario where usu_login_conexion = ? and usu_clave = ?  LIMIT 1";
+            String sql = "select u.usu_login_conexion , u.usu_clave, u.usu_estado, r.rol_descripcion from gescrum.tbl_usuario u, gescrum.tbl_rol r, gescrum.tbl_rol_x_usuario ru " +
+                         "where u.usu_id = ru.tbl_usuario_usu_id and ru.tbl_rol_rol_id = r.rol_id " +
+                         "and u.usu_login_conexion = ? and u.usu_clave = ? limit 1";
             p = conn.prepareStatement(sql);
             p.setString(1, login);
             p.setInt(2, clave);
@@ -29,6 +31,9 @@ public class UsuarioDAO {
                 usuario.setUsuLoginConexion(login);
                 usuario.setUsuClave(clave);
                 usuario.setUsuEstado(rs.getString("usu_estado"));
+                RolDTO rolDTO = new RolDTO();
+                rolDTO.setRol_descripcion(rs.getString("rol_descripcion"));
+                usuario.setRol(rolDTO);
 
             }
             p.close();

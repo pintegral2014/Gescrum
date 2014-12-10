@@ -58,7 +58,7 @@
             <!-- Links, si se quiere se pueden agregar para un menú -->
             <ul class="nav navbar-nav pull-right">
                 <li>
-                    <a><i class="fa fa-user"></i> <%=session.getAttribute("loginConexion")%></a><!-- impresión del usuario -->
+                    <a><i class="fa fa-user"></i> <%=session.getAttribute("loginConexion")%>, Rol <%=session.getAttribute("rol")%></a> </a><!-- impresión del usuario -->
                 </li>
                 <li class="pull-right"><a href="logout"><i class="fa fa-sign-out"></i> Logout</a></li> <!-- logout, quitar sesión al sistema -->
             </ul>
@@ -81,12 +81,14 @@
         <ul id="nav">
             <!-- Barra de menú con iconos (Estos no son los de bootstrap) -->
             <li class="open"><a style="cursor:pointer;"  class="jsp" name="Inicio" id="inicio"><i class="fa fa-home"></i><span class="tituloMenu"> Inicio</span></a></li> <!-- Al poner class='open' cuando se cargue esa página, quedará ese menú abierto -->
+            <% if(session.getAttribute("rol") == "desarrollador"){ %>
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Reportes </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
                     <li><a style="cursor:pointer;"  class="jsp" name="Reporte Sprint" id="graficoesfuerzo">Gráfico de esfuerzo</a></li>
                 </ul>
             </li>
+            <% } %>
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Backlog </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>

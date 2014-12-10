@@ -19,9 +19,10 @@ import java.util.List;
 /**
  * Created by jecarrasco on 20-05-2014.
  */
-public class Login extends ActionSupport implements ModelDriven{
+public class Login extends ActionSupport implements ModelDriven, SessionAware{
     UsuarioModel usuarioModel= new UsuarioModel();
     Integer idUsuario= null;
+
     private Map<String, Object> session;
 
     public Map<String, Object> getSession() {
@@ -31,11 +32,7 @@ public class Login extends ActionSupport implements ModelDriven{
     public void setSession(Map<String, Object> session) {
         this.session = session;
     }
-    public String logout()
-        {
-            ActionContext.getContext().getSession().clear();
-            return SUCCESS;
-        }
+
 
     @Override
     public Object getModel() {
@@ -47,7 +44,11 @@ public class Login extends ActionSupport implements ModelDriven{
 
         UsuarioDTO usuarioLogin = LogicaUsuario.validar_usuario(usuarioModel.getUsuLoginConexion(),usuarioModel.getUsuClave());
         if(usuarioLogin != null){
-            ActionContext.getContext().getSession().put("loginConexion", usuarioModel.getUsuLoginConexion());
+            //Map Session = ActionContext.getContext().getSession();
+            session.put("loginConexion", usuarioLogin.getUsuLoginConexion());
+            session.put("rol", usuarioLogin.getRol().getRol_descripcion());
+            //ActionContext.getContext().getSession().put("loginConexion", usuarioModel.getUsuLoginConexion());
+            //ActionContext.getContext().getSession().put("rol", usuarioModel.getRol().getRol_descripcion());
             // seteo el mensaje success al json para redireccionar al home
             usuarioModel.setMensaje(new MensajeDTO("success"));
             return SUCCESS;
@@ -58,5 +59,11 @@ public class Login extends ActionSupport implements ModelDriven{
                     "sin acceso al sistema, comuniquese con el administrador</span>" ));
             return ERROR;
         }
+        }
+
+        public String logout()
+        {
+            ActionContext.getContext().getSession().clear();
+            return SUCCESS;
         }
 }
