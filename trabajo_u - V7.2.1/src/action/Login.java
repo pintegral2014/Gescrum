@@ -63,7 +63,8 @@ public class Login extends ActionSupport implements ModelDriven, SessionAware{
 
         public String logout()
         {
-            ActionContext.getContext().getSession().clear();
+            //ActionContext.getContext().getSession().clear();
+            session.clear();
             return SUCCESS;
         }
 }
