@@ -44,11 +44,11 @@ public class Login extends ActionSupport implements ModelDriven, SessionAware{
 
         UsuarioDTO usuarioLogin = LogicaUsuario.validar_usuario(usuarioModel.getUsuLoginConexion(),usuarioModel.getUsuClave());
         if(usuarioLogin != null){
-            //Map Session = ActionContext.getContext().getSession();
+
             session.put("loginConexion", usuarioLogin.getUsuLoginConexion());
             session.put("rol", usuarioLogin.getRol().getRol_descripcion());
             //ActionContext.getContext().getSession().put("loginConexion", usuarioModel.getUsuLoginConexion());
-            //ActionContext.getContext().getSession().put("rol", usuarioModel.getRol().getRol_descripcion());
+
             // seteo el mensaje success al json para redireccionar al home
             usuarioModel.setMensaje(new MensajeDTO("success"));
             return SUCCESS;
