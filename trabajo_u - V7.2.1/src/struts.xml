@@ -236,6 +236,15 @@
                 <param name="includeProperties">mensaje.*</param>
             </result>
         </action>
+        <action name="borrarHistoria" class="action.Historia" method="borrarHdu">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <!--<result name="success">/ingresarHistoriaDef.jsp</result>-->
+        </action>
     </package>
 
 </struts>

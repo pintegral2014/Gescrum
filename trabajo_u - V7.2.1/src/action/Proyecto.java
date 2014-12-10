@@ -79,10 +79,11 @@ public class Proyecto extends ActionSupport implements ModelDriven {
                     proyectoModel.getProNombre() + " modificado con exito</span>"));
             return SUCCESS;
         }
+        else{
         proyectoModel.setMensajeDTO(new MensajeDTO("error", "<span class='glyphicon glyphicon-remove' style='color:red; text-align: left; font-size: 40px;'></span> &nbsp; " +
                 "<span style='font-size: 18px; text-align: center;'> Proyecto " +
                 proyectoModel.getProNombre() + " no se ha podido modificar</span>"));
-        return ERROR;
+        return ERROR;}
     }
 
     public String crearProyecto() throws Exception {

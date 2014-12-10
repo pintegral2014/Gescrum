@@ -81,7 +81,13 @@
                                           <td><s:property value="prioridad"/></td>
                                           <td><s:property value="descripcion"/></td>
                                           <td><s:property value="proyectoDTO.proNombre"/></td>
-                                          <td><button class="btn btn-xs btnChico btn-warning mod" onclick="onClickEditarHistoria('<s:property value="hisId"/>')"> <span class="glyphicon glyphicon-edit" ></span></button></td>
+                                          <td>
+                                              <button class="btn btn-xs btnChico btn-warning mod" onclick="onClickEditarHistoria('<s:property value="hisId"/>','<s:property value="nombrehistoria"/>')"> <span class="glyphicon glyphicon-edit" ></span></button>
+                                              <button class="btn btn-xs btnChico btn-danger mod" data-toggle="tooltip" data-placement="bottom" title="eliminar hdu"
+                                                      onclick="onClickBorrarHdu('<s:property value="hisId"/>')">
+                                                  <span class="glyphicon glyphicon-remove" ></span>
+                                              </button>
+                                          </td>
                                           <td style="display: none"><s:property value="proyectoDTO.proId" /></td>
                                           <td><button class="btn btn-xs btnChico btn-danger mod" onclick="javascript:prueba(<s:property value="hisId"/>);">
                                               <span class="glyphicon glyphicon-edit" ></span></button></td>
@@ -142,7 +148,10 @@
                     </div>
                     <div class="modal-body">
                         <form role="form" id="formModHis">
-
+                            <div class="form-group" style="display: none">
+                                <label class="control-label">id:</label>
+                                <input type="text" class="form-control" name="hisId" id="hisId" readonly>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label">Historia:</label>
                                 <input type="text" class="form-control" name="nombrehistoria" id="nombrehistoria" readonly>
@@ -253,14 +262,14 @@ $(document).ready(function() {
             dataType:"json",
             success: function (data) {
 
-                if(data.mensajeDTO.tipo == "success"){
+                if(data.mensaje.tipo == "success"){
 
                     $('#myModal').modal('hide');
-                    $.growlUI(data.mensajeDTO.texto);
+                    $.growlUI(data.mensaje.texto);
                     setTimeout(function(){
 
                         $.ajax({
-                            url: 'listarProyectos.action',
+                            url: 'listarHistorias.action',
                             success: function(data){
                                 $('#contenidoPagina').html("");
                                 $('#contenidoPagina').html(data);
@@ -271,7 +280,7 @@ $(document).ready(function() {
                 }
                 else{
                     $('#myModal').modal('hide');
-                    $.growlUI(data.mensajeDTO.texto);
+                    $.growlUI(data.mensaje.texto);
                 }
             }
         });
@@ -287,6 +296,7 @@ function onClickEditarHistoria(id) {
         url : 'buscarData.action',
         data : {'idHis': id},
         success : function(data) {
+            $('#hisId').val(data.historiaDTO.hisId);
             $('#nombrehistoria').val(data.historiaDTO.nombrehistoria);
             $('#prioridad').val(data.historiaDTO.prioridad);
             $('#eventum').val(data.historiaDTO.eventum);
@@ -299,8 +309,38 @@ function onClickEditarHistoria(id) {
             alert("error servidor");
         }
     });
+}
+function onClickBorrarHdu(idHis, nomHis){
+    var confirmar = confirm(String.fromCharCode(191)+"Esta seguro que desea eliminar la HDU?");
+    if(confirmar == true){
+        $.ajax({
+            type:'post',
+            url:'borrarHistoria.action',
+            data:{'hisId':idHis,
+                  'nombrehistoria': nomHis},
+            success: function(data){
+                if(data.mensaje.tipo == "success"){
 
+                    $.growlUI(data.mensaje.texto);
+                    setTimeout(function(){
 
+                        $.ajax({
+                            url: 'listarHistorias.action',
+                            success: function(data){
+                                $('#contenidoPagina').html("");
+                                $('#contenidoPagina').html(data);
+                            }
+                        });
+
+                    }, 4000);
+                }
+                else{
+
+                    $.growlUI(data.mensaje.texto);
+                }
+            }
+        });
+    }
 }
 function prueba(idHdu)
 {

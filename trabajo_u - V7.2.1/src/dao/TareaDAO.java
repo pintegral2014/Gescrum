@@ -88,4 +88,28 @@ public class TareaDAO {
             return listatareas;
         }
     }
+
+    public static boolean selectTareaXHdu (int hisId)throws Exception{
+        PreparedStatement preparedStatement = null;
+        boolean existe = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select * from tbl_tarea where tbl_hdu_hdu_id = ?";
+
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, hisId);
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()){
+                existe = true;
+            }
+            preparedStatement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return existe;
+        }
+
+    }
 }

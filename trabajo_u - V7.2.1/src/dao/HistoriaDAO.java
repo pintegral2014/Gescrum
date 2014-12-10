@@ -29,6 +29,7 @@ public class HistoriaDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 historiaDTO = new HistoriaDTO();
+                historiaDTO.setHisId(resultSet.getInt("hdu_id"));
                 historiaDTO.setNombrehistoria(resultSet.getString("hdu_nombre"));
                 historiaDTO.setPrioridad(resultSet.getInt("hdu_prioridad"));
                 historiaDTO.setEventum(resultSet.getInt("hdu_eventum"));
@@ -92,8 +93,9 @@ public class HistoriaDAO {
                          "hdu_criterios_aceptacion," +
                          "hdu_fecha_creacion," +
                          "hdu_usuario_creador," +
+                         "hdu_estado," +
                          "tbl_proyecto_pro_id) " +
-                         "VALUES(?,?,?,?,?,?,?,?,?)";
+                         "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, historiaDTO.getNombrehistoria());
@@ -104,7 +106,8 @@ public class HistoriaDAO {
             preparedStatement.setString(6, historiaDTO.getCriAceptacion());
             preparedStatement.setDate(7, getCurrentDate());
             preparedStatement.setString(8, historiaDTO.getUsuariocrea());
-            preparedStatement.setInt(9, historiaDTO.getProyectoDTO().getProId());
+            preparedStatement.setString(9, "ingresada");
+            preparedStatement.setInt(10, historiaDTO.getProyectoDTO().getProId());
 
 
             int insertHist = preparedStatement.executeUpdate();
@@ -228,5 +231,62 @@ public class HistoriaDAO {
             interfaceConn.cerrarConexion();
             return listhistory;
         }
+    }
+
+    public static boolean updateHistoria(HistoriaDTO historiaDTO)throws Exception{
+        PreparedStatement preparedStatement = null;
+        boolean query = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try{
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "update tbl_hdu  set hdu_prioridad = ?, hdu_eventum = ?, hdu_descripcion = ?, " +
+                         "hdu_dependencia = ?, hdu_criterios_aceptacion = ?  where hdu_id = ?";
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, historiaDTO.getPrioridad());
+            preparedStatement.setInt(2, historiaDTO.getEventum());
+            preparedStatement.setString(3, historiaDTO.getDescripcion());
+            preparedStatement.setString(4, historiaDTO.getDependencia());
+            preparedStatement.setString(5, historiaDTO.getCriAceptacion());
+            preparedStatement.setInt(6, historiaDTO.getHisId());
+            int update = preparedStatement.executeUpdate();
+
+            if(update != 0){
+                query = true;
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return query;
+        }
+
+    }
+    public static boolean deleteHdu (int hdu){
+        PreparedStatement preparedStatement = null;
+        int borrado = 0;
+        boolean exito = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "delete from tbl_hdu where hdu_id = ?";
+
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, hdu);
+            borrado = preparedStatement.executeUpdate();
+            if(borrado == 1){
+                exito = true;
+            }else
+            {
+                exito = false;
+            }
+            preparedStatement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+        }
+        return exito;
     }
 }

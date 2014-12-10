@@ -161,13 +161,45 @@ public class Historia extends ActionSupport implements ModelDriven{
 
     public String modificarDataHistoria ()throws Exception{
         HistoriaDTO historiaDTO = new HistoriaDTO();
+        historiaDTO.setHisId(historiaModel.getHisId());
         historiaDTO.setCriAceptacion(historiaModel.getCriAceptacion());
         historiaDTO.setEventum(historiaModel.getEventum());
         historiaDTO.setDescripcion(historiaModel.getDescripcion());
         historiaDTO.setPrioridad(historiaModel.getPrioridad());
         historiaDTO.setDependencia(historiaModel.getDependencia());
 
-        return SUCCESS;
+        boolean update = LogicaHistoria.modHistoria(historiaDTO);
+        if(update){
+            historiaModel.setMensaje(new MensajeDTO("success", "<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> Historia " +
+                    historiaModel.getNombrehistoria() + " modificada con exito</span>"));
+            return SUCCESS;
+        }else {
+            historiaModel.setMensaje(new MensajeDTO("error", "<span class='glyphicon glyphicon-remove' style='color:red; text-align: left; font-size: 40px;'></span> &nbsp; " +
+                    "<span style='font-size: 18px; text-align: center;'> Historia " +
+                    historiaModel.getNombrehistoria() + " no se ha podido modificar</span>"));
+            return ERROR;
+
+        }
+
+    }
+
+    public String borrarHdu()throws Exception{
+
+        boolean delete = LogicaHistoria.borrarHist(historiaModel.getHisId());
+
+        if(delete){
+            historiaModel.setMensaje(new MensajeDTO("success", "<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> Historia " +
+                    historiaModel.getNombrehistoria() + " borrada con exito</span>"));
+            return SUCCESS;
+        }else{
+            historiaModel.setMensaje(new MensajeDTO("error", "<span class='glyphicon glyphicon-remove' style='color:red; text-align: left; font-size: 40px;'></span> &nbsp; " +
+                    "<span style='font-size: 18px; text-align: center;'> Historia " +
+                    historiaModel.getNombrehistoria() + " no se puede borrar, tiene tareas asignadas</span>"));
+            return ERROR;
+        }
+
     }
 
 

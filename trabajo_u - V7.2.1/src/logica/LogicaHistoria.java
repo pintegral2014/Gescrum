@@ -1,6 +1,9 @@
 package logica;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import dao.HistoriaDAO;
+import dao.RepositorioDAO;
+import dao.TareaDAO;
 import dto.HistoriaDTO;
 
 import java.util.List;
@@ -61,5 +64,44 @@ public class LogicaHistoria {
         }else {
             return null;
         }
+    }
+
+    public static Boolean modHistoria (HistoriaDTO historiaDTO)throws Exception{
+
+        boolean exito = false;
+        boolean update = HistoriaDAO.updateHistoria(historiaDTO);
+        if(update){
+            exito = true;
+        }
+        else
+        { exito = false;}
+        return exito;
+    }
+
+    public static boolean borrarHist(int idhis) throws Exception {
+        boolean existe = false;
+        boolean buscarTareas = TareaDAO.selectTareaXHdu(idhis);
+
+        if(buscarTareas){
+            return existe;
+        }
+        else
+        {
+            boolean buscarRepo = RepositorioDAO.selectRepoHdu(idhis);
+            if(buscarRepo){
+                    // si es true borra el repositorio y luego la historia
+                    RepositorioDAO.deleteRepo(idhis);
+                    HistoriaDAO.deleteHdu(idhis);
+                    existe = true;
+            }
+            else
+            {
+                // buscarRepo = false, solo borra la historia ya que no contiene repositorio
+                HistoriaDAO.deleteHdu(idhis);
+                existe = true;
+            }
+        }
+
+        return existe;
     }
 }

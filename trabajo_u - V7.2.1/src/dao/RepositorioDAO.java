@@ -56,34 +56,86 @@ public class RepositorioDAO {
     }
 
     public static List<RepositorioDTO> listarRepositorio(RepositorioDTO hdu){
-    PreparedStatement p = null;
-    List<RepositorioDTO> listarepo = null;
-    ConnectionDB interfaceConn = new ConnectionDB();
+        PreparedStatement p = null;
+        List<RepositorioDTO> listarepo = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
 
-    try {
-        Connection conn = interfaceConn.getConnectionDB();
-        String sql = "select rep_nombre,rep_descripcion,rep_fecha_creacion from tbl_repositorio where tbl_hdu_hdu_id = ?; ";
-        p = conn.prepareStatement(sql);
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select rep_nombre,rep_descripcion,rep_fecha_creacion from tbl_repositorio where tbl_hdu_hdu_id = ?";
+            p = conn.prepareStatement(sql);
 
-        p.setInt(1,hdu.getIdHdu());
+            p.setInt(1,hdu.getIdHdu());
 
-        ResultSet res = p.executeQuery();
-        listarepo = new ArrayList<RepositorioDTO>();
-        while (res.next()){
-            RepositorioDTO repo = new RepositorioDTO();
-            repo.setArchivoFileName(res.getString("rep_nombre"));
-            repo.setDescripcionRepo(res.getString("rep_descripcion"));
-            repo.setFechaCreacion(res.getDate("rep_fecha_creacion"));
+            ResultSet res = p.executeQuery();
+            listarepo = new ArrayList<RepositorioDTO>();
+            while (res.next()){
+                RepositorioDTO repo = new RepositorioDTO();
+                repo.setArchivoFileName(res.getString("rep_nombre"));
+                repo.setDescripcionRepo(res.getString("rep_descripcion"));
+                repo.setFechaCreacion(res.getDate("rep_fecha_creacion"));
 
 
-            listarepo.add(repo);
+                listarepo.add(repo);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listarepo;
         }
-        p.close();
-    }catch (Exception e){
-        e.printStackTrace();
-    }finally {
-        interfaceConn.cerrarConexion();
-        return listarepo;
     }
-}
+
+    public static boolean selectRepoHdu(int idHdu){
+        PreparedStatement preparedStatement = null;
+        boolean existe = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select * from tbl_repositorio where tbl_hdu_hdu_id = ?";
+
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, idHdu);
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()){
+                existe = true;
+            }
+            preparedStatement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return existe;
+        }
+
+    }
+
+    public static boolean deleteRepo (int hdu){
+        PreparedStatement preparedStatement = null;
+        int borrado = 0;
+        boolean exito = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "delete * from tbl_repositorio where tbl_hdu_hdu_id = ?";
+
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, hdu);
+            borrado = preparedStatement.executeUpdate();
+            if(borrado == 1){
+                exito = true;
+            }else
+            {
+                exito = false;
+            }
+            preparedStatement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+        }
+        return exito;
+    }
+
 }
