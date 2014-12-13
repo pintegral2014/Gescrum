@@ -112,7 +112,7 @@
                 <ul>
                     <li><a style="cursor:pointer;"  class="action" name="Ejecutar TestCase" id="ejecutarTestCase2">Ejecutar TestCase</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Asignar Tareas" id="listaGestionTarea">Asignar Tareas</a></li>
-                    <li><a style="cursor:pointer;"  class="action" name="prueba" id="listarHduSprint">Prueba</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Prueba</a></li>
                 </ul>
             </li>
             <li class="has_sub">
