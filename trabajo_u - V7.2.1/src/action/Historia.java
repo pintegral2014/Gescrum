@@ -89,6 +89,7 @@ public class Historia extends ActionSupport implements ModelDriven{
         newHistoria.setDescripcion(historiaModel.getDescripcion());
         newHistoria.setCriAceptacion(historiaModel.getCriAceptacion());
         newHistoria.setUsuariocrea(historiaModel.getUsuarioCrea());
+        newHistoria.setSolicitadoPor(historiaModel.getSolicitadoPor());
 
         ProyectoDTO proyectoDTO = new ProyectoDTO();
         proyectoDTO.setProId(historiaModel.getProyecto().getProId());

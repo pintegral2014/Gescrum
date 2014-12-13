@@ -31,6 +31,7 @@ public class HistoriaDAO {
                 historiaDTO = new HistoriaDTO();
                 historiaDTO.setHisId(resultSet.getInt("hdu_id"));
                 historiaDTO.setNombrehistoria(resultSet.getString("hdu_nombre"));
+                historiaDTO.setSolicitadoPor(resultSet.getString("hdu_solicitado_por"));
                 historiaDTO.setPrioridad(resultSet.getInt("hdu_prioridad"));
                 historiaDTO.setEventum(resultSet.getInt("hdu_eventum"));
                 historiaDTO.setDependencia(resultSet.getString("hdu_dependencia"));
@@ -146,6 +147,7 @@ public class HistoriaDAO {
                 historia.setNombrehistoria(res.getString("hdu_nombre"));
                 historia.setPrioridad(res.getInt("hdu_prioridad"));
                 historia.setDescripcion(res.getString("hdu_descripcion"));
+                historia.setSolicitadoPor(res.getString("hdu_solicitado_por"));
                 ProyectoDTO proyecto = new ProyectoDTO();
                 proyecto.setProId(res.getInt("pro_id"));
                 proyecto.setProNombre(res.getString("pro_nombre"));

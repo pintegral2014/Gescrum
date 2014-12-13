@@ -63,6 +63,7 @@
                                       <th>ID</th>
                                       <th>Nombre</th>
                                       <th>Prioridad</th>
+                                      <th>Solicitado Por</th>
                                       <th>Descripcion</th>
                                       <th>Proyecto</th>
                                       <% if(!session.getAttribute("rol").equals("Desarrollador") && !session.getAttribute("rol").equals("Analista QA") ){ %>
@@ -81,6 +82,7 @@
                                           <td><s:property value="hisId"/></td>
                                           <td><s:property value="nombrehistoria"/></td>
                                           <td><s:property value="prioridad"/></td>
+                                          <td><s:property value="solicitadoPor"/></td>
                                           <td><s:property value="descripcion"/></td>
                                           <td><s:property value="proyectoDTO.proNombre"/></td>
                                           <% if(!session.getAttribute("rol").equals("Desarrollador") && !session.getAttribute("rol").equals("Analista QA")){ %>
@@ -164,6 +166,10 @@
                             <div class="form-group">
                                 <label class="control-label">Prioridad:</label>
                                 <input type="text" class="form-control" name="prioridad" id="prioridad">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Solicitado Por:</label>
+                                <input type="text" class="form-control" name="solicitadoPor" id="solicitadoPor" >
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Eventum:</label>
@@ -308,6 +314,7 @@ function onClickEditarHistoria(id) {
             $('#dependencia').val(data.historiaDTO.dependencia);
             $('#descripcion').val(data.historiaDTO.descripcion);
             $('#criAceptacion').val(data.historiaDTO.criAceptacion);
+            $('#solicitadoPor').val(data.historiaDTO.solicitadoPor)
             $('#myModal').modal('show');
         },
         error : function(erro) {
