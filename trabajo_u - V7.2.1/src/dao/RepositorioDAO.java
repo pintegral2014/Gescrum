@@ -45,8 +45,9 @@ public class RepositorioDAO {
                 query = false;
                 return query;
             }
-            else
-                query = true;
+            else{
+                query = true;}
+            p.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

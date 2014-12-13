@@ -33,7 +33,7 @@ public class CargaArchivo extends ActionSupport implements ModelDriven {
         newRepo.setArchivoFileName(repositorioModel.getArchivoFileName());
         newRepo.setIdHdu(repositorioModel.getIdHdu());
         newRepo.setDescripcionRepo(repositorioModel.getDescripcionRepo());
-        File nuevoArchivo = new File("c:/Users/Daniel Valdebenito/Documents/trabajo_u - V5.2/web/repositorio", newRepo.getArchivoFileName());
+        File nuevoArchivo = new File("C:/Users/Jordan/Documents/GESCRUM APP/trunk/trabajo_u - V7.2.1/web/repositorio", newRepo.getArchivoFileName());
         newRepo.getArchivo().renameTo(nuevoArchivo);
         if(nuevoArchivo != null)
         {
