@@ -60,6 +60,14 @@
                 }
             });
         });
+        $('#crearGrupo').click(function(){
+            $.ajax({
+                url: 'ingresarGrupo.jsp',
+                success: function(data){
+                    $('#contenidoPagina').html(data);
+                }
+            });
+        });
     });
 
     function onClickEditarGrupo(id) {
@@ -81,11 +89,12 @@
             }
         });
     }
+
 </script>
 
 <div class="matter">
     <div>
-        <a type="button" class="action btn btn-default" id="listaProyecto" style="margin-left: 20px;" >Crear</a>
+        <a type="button" class="action btn btn-default" id="crearGrupo" style="margin-left: 20px;" >Crear</a>
     </div>
     <div class="container">
         <div class="row">

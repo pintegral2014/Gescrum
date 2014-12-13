@@ -101,13 +101,6 @@
                             </div>
 
 
-                            <!--  <div class="form-group  has-feedback">
-                                  <div class="col-lg-offset-2 col-lg-6">
-                                      <button type="button" class="btn btn-sm btn-primary">Guardar</button>
-
-                                  </div>
-                              </div> -->
-
                         </form>
                     </div>
                 </div>
@@ -147,7 +140,7 @@
                         setTimeout(function () {
 
                             $.ajax({
-                                url: 'listarProyectos.action',
+                                url: 'listaGrupos2.action',
                                 success: function (data) {
                                     $('#contenidoPagina').html("");
                                     $('#contenidoPagina').html(data);

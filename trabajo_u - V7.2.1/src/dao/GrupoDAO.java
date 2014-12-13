@@ -13,6 +13,49 @@ import java.util.List;
  * Created by Ripcrow on 26-11-2014.
  */
 public class GrupoDAO {
+
+    private static Date getCurrentDate() {
+        java.util.Date today = new java.util.Date();
+        return new Date(today.getTime());
+    }
+    public static boolean insertGrupo(GrupoDTO grupoDTO)throws Exception{
+        PreparedStatement p = null;
+        boolean query = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try{
+            Connection conn = interfaceConn.getConnectionDB();
+
+            String sql = "INSERT INTO gescrum.tbl_grupo " +
+                        "(gru_nombre, " +
+                        "gru_descripcion, " +
+                        "gru_estado, " +
+                        "gru_usu_creador, " +
+                        "gru_fecha_creacion, " +
+                        "gru_fecha_modificacion) " +
+                        "VALUES (?,?,?,?,?,?)" ;
+            p = conn.prepareStatement(sql);
+            p.setString(1,grupoDTO.getGruNombre());
+            p.setString(2,grupoDTO.getGruDescripcion());
+            p.setString(3,"Vigente");
+            p.setString(4,grupoDTO.getGruUsuCreador());
+            p.setDate(5, getCurrentDate());
+            p.setDate(6, getCurrentDate());
+
+            int insertUsuario = p.executeUpdate();
+
+            if (insertUsuario == 0) {
+                query = false;
+                return query;
+            }
+            else
+                query = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            interfaceConn.cerrarConexion();
+            return query;
+        }
+    }
     public static List<GrupoDTO> listaGrupos()throws Exception{
         PreparedStatement p = null;
         List<GrupoDTO> listagrupo = null;

@@ -184,18 +184,15 @@
                 <param name="includeProperties">mensaje.*</param>
             </result>
         </action>
-
         <action name="listarHduSprint" class="action.HduSprint" method="listarHduSprint">
             <result name="success">/prueba.jsp</result>
         </action>
-
         <action name="buscarDataUsuario" class="action.Usuario" method="buscarDataUsuario">
             <result name="usuarioDataJSON" type="json">
                 <param name="includeProperties">usuarioDTO.*</param>
             </result>
             <result name="error">/gestionarUsuario2.jsp</result>
          </action>
-
         <action name="modDataUsu" class="action.Usuario" method="modifDataUsuario">
             <result name="success" type="json">
                 <param name="includeProperties">mensaje.*</param>
@@ -204,16 +201,16 @@
                 <param name="includeProperties">mensaje.*</param>
             </result>
         </action>
-
         <action name="bloqueaUsuario" class="action.Usuario" method="bloqUsuario">
+
             <result name="success" type="json">
                 <param name="includeProperties">mensaje.*</param>
             </result>
             <result name="error" type="json">
                 <param name="includeProperties">mensaje.*</param>
             </result>
-        </action>
 
+        </action>
         <action name="crearProyecto" class="action.Proyecto" method="crearProyecto">
             <result name="success" type="json">
                 <param name="includeProperties">mensajeDTO.*</param>
@@ -223,17 +220,14 @@
             </result>
             <!--<result name="success">/ingresarHistoriaDef.jsp</result>-->
         </action>
-
         <action name="backlog" class="action.Proyecto" method="listaProyectos">
             <result name="success">/inicioBacklog.jsp</result>
             <result name="error">/gestionarProyecto2.jsp</result>
         </action>
-
         <action name="buscarHistPro" class="action.Historia" method="buscarHduProyecto">
             <result name="success">/backlogProyectoHdu.jsp</result>
             <result name="error">/backlogProyectoHdu.jsp</result>
         </action>
-
         <action name="modDataHis" class="action.Historia" method="modificarDataHistoria">
             <result name="success" type="json">
                 <param name="includeProperties">mensaje.*</param>
@@ -242,7 +236,6 @@
                 <param name="includeProperties">mensaje.*</param>
             </result>
         </action>
-
         <action name="borrarHistoria" class="action.Historia" method="borrarHdu">
             <result name="success" type="json">
                 <param name="includeProperties">mensaje.*</param>
@@ -252,21 +245,16 @@
             </result>
             <!--<result name="success">/ingresarHistoriaDef.jsp</result>-->
         </action>
-
-        <action name="inicioTestCase" class="action.Proyecto" method="listaProyectos">
-            <result name="success">/inicioTestCase.jsp</result>
-            <result name="error">/gestionarProyecto2.jsp</result>
+        <action name="crearGrupo" class="action.Grupo" method="crearGrupo">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <!--<result name="success">/ingresarHistoriaDef.jsp</result>-->
         </action>
 
-        <action name="inicioTestCase2" class="action.Historia" method="buscarHduProyecto">
-            <result name="success">/inicioTestCase2.jsp</result>
-            <result name="error">/gestionarHistoria2.jsp</result>
-        </action>
-
-        <action name="listaTareaTestCase" class="action.Tarea" method="ListaTareaHdu">
-            <result name="success">/tablasTestCase2.jsp</result>
-            <result name="error">/inicioTestCase.jsp</result>
-        </action>
     </package>
 
 </struts>

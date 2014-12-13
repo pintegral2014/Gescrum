@@ -47,4 +47,13 @@ public class LogicaGrupo {
         }
         return exito;
     }
+
+    public static boolean creaGrupo (GrupoDTO grupo)throws Exception{
+        boolean exito = false;
+        boolean insert = GrupoDAO.insertGrupo(grupo);
+        if(insert){
+            exito = true;
+        }
+        return exito;
+    }
 }

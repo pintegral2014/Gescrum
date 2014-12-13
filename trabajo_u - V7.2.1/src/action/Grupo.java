@@ -6,16 +6,28 @@ import com.opensymphony.xwork2.ModelDriven;
 import dto.GrupoDTO;
 import dto.MensajeDTO;
 import logica.LogicaGrupo;
+import org.apache.struts2.interceptor.SessionAware;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Ripcrow on 26-11-2014.
  */
-public class Grupo extends ActionSupport implements ModelDriven {
+public class Grupo extends ActionSupport implements ModelDriven, SessionAware {
 
     GrupoModel grupoModel = new GrupoModel();
+
+    private Map<String, Object> session;
+
+    public Map<String, Object> getSession() {
+        return session;
+    }
+
+    public void setSession(Map<String, Object> session) {
+        this.session = session;
+    }
 
     private int idGru;
 
@@ -76,4 +88,19 @@ public class Grupo extends ActionSupport implements ModelDriven {
                 grupoModel.getGruNombre() + " no se ha podido modificar</span>"));
         return ERROR;
     }
+
+    public String crearGrupo ()throws Exception{
+        String usuarioSession = (String) session.get("loginConexion");
+        GrupoDTO grupoDTO = new GrupoDTO();
+        grupoDTO.setGruNombre(grupoModel.getGruNombre());
+        grupoDTO.setGruDescripcion(grupoModel.getGruDescripcion());
+        grupoDTO.setGruUsuCreador(usuarioSession);
+
+        boolean exito = LogicaGrupo.creaGrupo(grupoDTO);
+
+
+        return SUCCESS;
+    }
+
+
 }
