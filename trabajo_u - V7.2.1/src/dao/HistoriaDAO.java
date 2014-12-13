@@ -94,8 +94,9 @@ public class HistoriaDAO {
                          "hdu_fecha_creacion," +
                          "hdu_usuario_creador," +
                          "hdu_estado," +
+                         "hdu_solicitado_por," +
                          "tbl_proyecto_pro_id) " +
-                         "VALUES(?,?,?,?,?,?,?,?,?,?)";
+                         "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, historiaDTO.getNombrehistoria());
@@ -107,7 +108,8 @@ public class HistoriaDAO {
             preparedStatement.setDate(7, getCurrentDate());
             preparedStatement.setString(8, historiaDTO.getUsuariocrea());
             preparedStatement.setString(9, "ingresada");
-            preparedStatement.setInt(10, historiaDTO.getProyectoDTO().getProId());
+            preparedStatement.setString(10, historiaDTO.getSolicitadoPor());
+            preparedStatement.setInt(11, historiaDTO.getProyectoDTO().getProId());
 
 
             int insertHist = preparedStatement.executeUpdate();

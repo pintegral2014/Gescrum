@@ -87,10 +87,11 @@
 <!-- Matter -->
 <div class="matter" id="contenido">
 
-    <div>
+    <!--<div>
         <a type="button" class="action btn btn-default" id="crear" style="margin-left: 20px;" >Crear</a>
 
     </div>
+    -->
     <div class="container">
         <div class="row">
             <div class="col-md-12">

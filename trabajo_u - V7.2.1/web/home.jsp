@@ -80,15 +80,16 @@
         <!-- Si es necesaria una sub-navegación, agregar la class "has_sub" a "li" del la barra de navegación (ver diseño). -->
         <ul id="nav">
             <!-- Barra de menú con iconos (Estos no son los de bootstrap) -->
+
             <li class="open"><a style="cursor:pointer;"  class="jsp" name="Inicio" id="inicio"><i class="fa fa-home"></i><span class="tituloMenu"> Inicio</span></a></li> <!-- Al poner class='open' cuando se cargue esa página, quedará ese menú abierto -->
-            <% if(session.getAttribute("rol") == "desarrollador"){ %>
+            <% if(session.getAttribute("rol").equals("Scrum Master") ){ %>
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Reportes </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
                     <li><a style="cursor:pointer;"  class="jsp" name="Reporte Sprint" id="graficoesfuerzo">Gráfico de esfuerzo</a></li>
                 </ul>
             </li>
-            <% } %>
+
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Backlog </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
@@ -120,7 +121,39 @@
                     <li><a style="cursor:pointer;"  class="action" name="Asociar Usuario" id="listaGrupos">Asociar Usuario</a></li>
                 </ul>
             </li>
+            <% } %>
+            <% if(session.getAttribute("rol").equals("Desarrollador") ){ %>
+
+            <li class="has_sub">
+                <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Funcionalidades </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+                <ul>
+                    <li><a style="cursor:pointer;"  class="action" name="Backlog proyecto" id="backlog">Backlog proyecto</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="mis tareas" id="">Mis tareas</a></li>
+                </ul>
+            </li>
+
+            <% } %>
+            <% if(session.getAttribute("rol").equals("Analista QA") ){ %>
+
+            <li class="has_sub">
+                <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Funcionalidades </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+                <ul>
+                    <li><a style="cursor:pointer;"  class="action" name="Backlog proyecto" id="backlog">Backlog proyecto</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Gestionar TestCase" id="inicioTestCase">Gestionar TestCase</a></li>
+                </ul>
+            </li>
+
+            <% } %>
+            <% if(session.getAttribute("rol").equals("Product Owner") ){ %>
+            <li class="has_sub">
+                <a style="cursor:pointer;"><i class="fa fa-user"></i><span class="tituloMenu"> Funcionalidades </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+                <ul>
+                    <li ><a style="cursor:pointer;"  class="action" name="Gestionar Historia" id="listarHistorias">Gestionar Historia</a></li>
+                </ul>
+            </li>
+            <% } %>
         </ul>
+
     </div>
 
     <!-- Fin de barra lateral de menú -->

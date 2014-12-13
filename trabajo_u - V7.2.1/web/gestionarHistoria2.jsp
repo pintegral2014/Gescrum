@@ -30,12 +30,12 @@
 <body>
 
         <div class="matter" id="contenido">
-
+            <% if(!session.getAttribute("rol").equals("Desarrollador") && !session.getAttribute("rol").equals("Analista QA")){ %>
             <div class="">
             <a type="button" class="action btn btn-default" id="crear" name="listaProyecto" style="margin-left: 20px;" >Crear</a>
+            </div>
+            <% } %>
 
-
-        </div>
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -65,8 +65,10 @@
                                       <th>Prioridad</th>
                                       <th>Descripcion</th>
                                       <th>Proyecto</th>
+                                      <% if(!session.getAttribute("rol").equals("Desarrollador") && !session.getAttribute("rol").equals("Analista QA") ){ %>
                                       <th>accion</th>
                                       <th>Subir archivo</th>
+                                      <% } %>
                                       <th>Descargar archivo</th>
                                       <th style="display: none"></th>
 
@@ -81,6 +83,7 @@
                                           <td><s:property value="prioridad"/></td>
                                           <td><s:property value="descripcion"/></td>
                                           <td><s:property value="proyectoDTO.proNombre"/></td>
+                                          <% if(!session.getAttribute("rol").equals("Desarrollador") && !session.getAttribute("rol").equals("Analista QA")){ %>
                                           <td>
                                               <button class="btn btn-xs btnChico btn-warning mod" onclick="onClickEditarHistoria('<s:property value="hisId"/>','<s:property value="nombrehistoria"/>')"> <span class="glyphicon glyphicon-edit" ></span></button>
                                               <button class="btn btn-xs btnChico btn-danger mod" data-toggle="tooltip" data-placement="bottom" title="eliminar hdu"
@@ -88,9 +91,11 @@
                                                   <span class="glyphicon glyphicon-remove" ></span>
                                               </button>
                                           </td>
-                                          <td style="display: none"><s:property value="proyectoDTO.proId" /></td>
+
                                           <td><button class="btn btn-xs btnChico btn-danger mod" onclick="javascript:prueba(<s:property value="hisId"/>);">
                                               <span class="glyphicon glyphicon-edit" ></span></button></td>
+                                          <% } %>
+                                          <td style="display: none"><s:property value="proyectoDTO.proId" /></td>
                                           <td><form name="frmDescarga" method="POST" action="descarga.action">
                                               <input type="hidden" name="idHdu"value=<s:property value="hisId"/> >
                                               <input type="submit" class="btn btn-xs btn-success mod">

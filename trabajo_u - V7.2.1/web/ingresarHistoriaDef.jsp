@@ -104,7 +104,13 @@
                                     <span class="glyphicon form-control-feedback" id="dependencia1"></span>
                                 </div>
                             </div>
-
+                            <div class="form-group  has-feedback">
+                                <label class="col-lg-2 control-label">Solicitado por:</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="solicitadoPor" id="solicitadoPor" class="form-control">
+                                    <span class="glyphicon form-control-feedback" id="solicitadoPor1"></span>
+                                </div>
+                            </div>
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Descripcion</label>
                                 <div class="col-lg-5">

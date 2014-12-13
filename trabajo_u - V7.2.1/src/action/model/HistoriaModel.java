@@ -25,6 +25,15 @@ public class HistoriaModel {
     private List<HistoriaDTO> listHistorias;
     private ProyectoDTO proyecto;
     private HistoriaDTO historiaDTO;
+    private String solicitadoPor;
+
+    public String getSolicitadoPor() {
+        return solicitadoPor;
+    }
+
+    public void setSolicitadoPor(String solicitadoPor) {
+        this.solicitadoPor = solicitadoPor;
+    }
 
     public int getIdPro() {
         return idPro;
