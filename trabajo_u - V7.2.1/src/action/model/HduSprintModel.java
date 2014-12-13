@@ -15,6 +15,7 @@ public class HduSprintModel {
     private String estado;
     private Date fechaMod;
     private int tarId;
+    private int iteracion;
     private List<HduSprintDTO> listHdu;
 
     public int getSprId() {
@@ -63,6 +64,14 @@ public class HduSprintModel {
 
     public void setTarId(int tarId) {
         this.tarId = tarId;
+    }
+
+    public int getIteracion() {
+        return iteracion;
+    }
+
+    public void setIteracion(int iteracion) {
+        this.iteracion = iteracion;
     }
 
     public List<HduSprintDTO> getListHdu() {

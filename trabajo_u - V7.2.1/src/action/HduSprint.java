@@ -24,11 +24,15 @@ public class HduSprint extends ActionSupport implements ModelDriven {
         return SUCCESS;
     }
     public String listarHduSprint() throws Exception {
-        LogicaHduSprint logicaHdu = new LogicaHduSprint();
+        HduSprintDTO select = new HduSprintDTO();
+        select.setTbl_sprint_spr_id(this.hduModel.getSprId());
+
+        LogicaHduSprint logicaHdu = new LogicaHduSprint(select);
         List<HduSprintDTO> lista = logicaHdu.listaIteracionesHdu();
 
         if(lista.size()>=0){
             this.hduModel.setListHdu(lista);
+
             return SUCCESS;
         }
         else

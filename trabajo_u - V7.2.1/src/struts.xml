@@ -185,7 +185,9 @@
             </result>
         </action>
         <action name="listarHduSprint" class="action.HduSprint" method="listarHduSprint">
-            <result name="success">/prueba.jsp</result>
+            <result name="success" type="json">
+                <param name="includeProperties">listHdu.*</param>
+            </result>
         </action>
         <action name="buscarDataUsuario" class="action.Usuario" method="buscarDataUsuario">
             <result name="usuarioDataJSON" type="json">
@@ -255,6 +257,9 @@
             <!--<result name="success">/ingresarHistoriaDef.jsp</result>-->
         </action>
 
+        <action name="sprintGrafico" class="action.Sprint"  method="listarSprint">
+            <result name="success">/sprintGrafico.jsp</result>
+        </action>
     </package>
 
 </struts>

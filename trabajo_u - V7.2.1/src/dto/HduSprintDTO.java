@@ -13,17 +13,19 @@ public class HduSprintDTO {
     private String ts_estado;
     private Date ts_fecha_mod;
     private int tbl_tarea_tar_id;
+    private int ts_iteracion;
 
     public HduSprintDTO() {
     }
 
-    public HduSprintDTO(int tbl_sprint_spr_id, int ts_esfuerzo, String ts_usuario_asignado, String ts_estado, Date ts_fecha_mod, int tbl_tarea_tar_id) {
+    public HduSprintDTO(int tbl_sprint_spr_id, int ts_esfuerzo, String ts_usuario_asignado, String ts_estado, Date ts_fecha_mod, int tbl_tarea_tar_id, int ts_iteracion) {
         this.tbl_sprint_spr_id = tbl_sprint_spr_id;
         this.ts_esfuerzo = ts_esfuerzo;
         this.ts_usuario_asignado = ts_usuario_asignado;
         this.ts_estado = ts_estado;
         this.ts_fecha_mod = ts_fecha_mod;
         this.tbl_tarea_tar_id = tbl_tarea_tar_id;
+        this.ts_iteracion = ts_iteracion;
     }
 
     public int getTbl_sprint_spr_id() {
@@ -72,5 +74,13 @@ public class HduSprintDTO {
 
     public void setTbl_tarea_tar_id(int tbl_tarea_tar_id) {
         this.tbl_tarea_tar_id = tbl_tarea_tar_id;
+    }
+
+    public int getTs_iteracion() {
+        return ts_iteracion;
+    }
+
+    public void setTs_iteracion(int ts_iteracion) {
+        this.ts_iteracion = ts_iteracion;
     }
 }

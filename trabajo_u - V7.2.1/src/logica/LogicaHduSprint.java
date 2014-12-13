@@ -19,7 +19,7 @@ public class LogicaHduSprint {
     }  //Crea constructor del objeto DTO creado
 
     public List<HduSprintDTO> listaIteracionesHdu() throws Exception { //crea función de tipo lista con objeto DTO
-        List<HduSprintDTO> listaIteraciones = HduSprintDAO.daoIteraciones(hduSprint); //Crea una lista de tipo DTO de la función en DAO
+        List<HduSprintDTO> listaIteraciones = HduSprintDAO.daoIteraciones(hduSprint.getTbl_sprint_spr_id()); //Crea una lista de tipo DTO de la función en DAO
         if(listaIteraciones != null)
         {
             return listaIteraciones;
