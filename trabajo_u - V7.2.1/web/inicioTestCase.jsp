@@ -8,7 +8,7 @@
     $(document).ready(function(){
         $('#cargar').click(function(){
             $.ajax({
-                url: 'buscarHistPro.action',
+                url: 'inicioTestCase2.action',
                 data: $('#formBack').serializeArray(),
                 type: "post",
                 success: function(data){

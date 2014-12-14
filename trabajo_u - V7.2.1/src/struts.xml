@@ -260,6 +260,27 @@
         <action name="sprintGrafico" class="action.Sprint"  method="listarSprint">
             <result name="success">/sprintGrafico.jsp</result>
         </action>
+
+        <action name="inicioTestCase" class="action.Proyecto" method="listaProyectos">
+            <result name="success">/inicioTestCase.jsp</result>
+            <result name="error">/gestionarProyecto2.jsp</result>
+        </action>
+
+        <action name="inicioTestCase2" class="action.Historia" method="buscarHduProyecto">
+            <result name="success">/inicioTestCase2.jsp</result>
+            <result name="error">/gestionarHistoria2.jsp</result>
+        </action>
+
+        <action name="listaTareaTestCase" class="action.Tarea" method="ListaTareaHdu">
+            <result name="success">/tablasTestCase2.jsp</result>
+            <result name="error">/inicioTestCase.jsp</result>
+        </action>
+
+        <action name="crearTestCase" class="action.TestCase" method="crearTestCase">
+            <result name="success">/tablasTestCase2.jsp</result>
+            <result name="error">/tablasTestCase2.jsp</result>
+        </action>
+
     </package>
 
 </struts>

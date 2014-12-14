@@ -1,173 +1,181 @@
-<%-- 
-    Document   : tablasTestCase2
-    Created on : 17-11-2014, 13:44:54
-    Author     : Dvaldebenito
---%>
+<% if (session.getAttribute("loginConexion")!=null){%>
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link href="framework/estilos/estilos2.css" rel="stylesheet">
-    </head>
-    <body>
+<%@taglib uri="/struts-tags" prefix="s" %>
 
-        <div class="matter">
-        <div class="container">
-          <div class="row">
+<script src="framework/datatable/jquery.dataTables2.js"></script>
+<script src="framework/bootstrap-3.2.0/dist/js/bootstrap.js"></script> <!-- Bootstrap -->
+<script src="framework/macAdminStyle/js/bootstrap.min.js"></script> <!-- Bootstrap-->
+<script  src="framework/jquery/jquery.blockUI.js" type="text/javascript"></script>
+<style type="text/css">
+    div.growlUI{
+        background: black no-repeat 10px 10px;
+        position: absolute;
+    }
+    div.growlUI{
+        color: #ffffff;
+        padding: 10px;
+    }
+</style>
+
+<div class="matter" id="contenido">
+
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
 
-              <div class="widget ">
-                <div class="widget-head">
-                  <div class="pull-left ">Data Tables</div>
-                  <div class="widget-icons pull-right">
-                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
-                    <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
-                  </div>  
-                  <div class="clearfix"></div>
+                <div class="widget ">
+                    <div class="widget-head">
+                        <div class="pull-left ">Test Case</div>
+                        <div class="widget-icons pull-right">
+                            <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                            <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="padd">
+
+                            <!-- Table Page -->
+                            <div class="page-tables">
+                                <!-- Table -->
+                                <div class="table-responsive">
+                                    <table cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
+                                        <thead class="btn-default">
+                                        <tr style ="font-size: 12px">
+                                            <th >Id</th>
+                                            <th>Descripcion</th>
+                                            <th>Fecha de creacion</th>
+                                            <th>Usuario Creador</th>
+                                            <th>Crear TestCase</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <s:iterator value="listaTarea">
+                                            <tr style ="font-size: 12px">
+                                                <td><s:property value="idTarea"/></td>
+                                                <td><s:property value="descripcionTarea"/></td>
+                                                <td><s:property value="fechaCreacion"/></td>
+                                                <td><s:property value="usuCreador"/></td>
+                                                <td><button class="btn btn-xs btn-success btnChico" onclick="CrearTestCase(<s:property value="idTarea"/>)"> <span class="glyphicon glyphicon-pencil" ></span></button></td>
+                                            </tr>
+                                        </s:iterator>
+                                        </tbody>
+                                    </table>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="widget-content">
-                  <div class="padd">
-                    
-                <!-- Table Page -->
-                <div class="page-tables">
-                        <!-- Table -->
-                        <div class="table-responsive">
-                                <table cellpadding="0" cellspacing="0" border="0" id="data-table2" width="100%">
-            <thead class="btn-default">
-                <tr >
-                    <th>Enunciado</th>
-                    <th>Objetivo</th>
-                    <th>Dato Requerido</th>
-                    <th>Precondiciones</th>
-                    <th>Fecha de creacion</th>
-                    <th>Usuario Creador</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Prueba a eventums 1 al 10</td>
-                    <td>Obtener todos los puntos ok</td>
-                    <td>Success</td>
-                    <td>sin precondiciones</td>
-                    <td>2014-11-14</td>
-                    <td>elandskronc</td>
-                </tr>
-                <tr>
-                    <td>Prueba al sistema telefonico</td>
-                    <td>Obtener todos los puntos ok</td>
-                    <td>Success</td>
-                    <td>sin precondiciones</td>
-                    <td>2014-11-14</td>
-                    <td>elandskronc</td>
-                </tr>
-                <tr>
-                    <td>Prueba de sistema avanzado</td>
-                    <td>Obtener todos los puntos ok</td>
-                    <td>Success</td>
-                    <td>sin precondiciones</td>
-                    <td>2014-11-14</td>
-                    <td>elandskronc</td>
-                </tr>
-                <tr>
-                    <td>Pruebas al sistema de correo</td>
-                    <td>Obtener todos los puntos ok</td>
-                    <td>Success</td>
-                    <td>sin precondiciones</td>
-                    <td>2014-11-14</td>
-                    <td>elandskronc</td>
-                </tr>
-            </tbody>
-        </table>
-            <div class="clearfix"></div>
+                <div class="widget-foot">
+                    <!-- Footer goes here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Crear TestCase</h4>
+            </div>
+            <div class="modal-body" style="min-height: 300px;">
+                <form role="form" id="formCreaTestCase">
+                    <div class="form-group" style="display: none;">
+                        <label class="col-lg-4 control-label"></label>
+                        <div class="col-lg-5">
+                            <input type="text" name="idTarea" id="idTarea" class="form-control" placeholder="">
+                        </div><br>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Enunciado</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="testEnun" id="testEnun" class="form-control" placeholder="Ingrese Enunciado">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Objetivo</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="testObj" id="testObj" class="form-control" placeholder="Ingrese Objetivo">
+                        </div><br>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Dato Requerido</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="testDato" id="testDato" class="form-control" placeholder="Ingrese Dato Requerido">
+                        </div><br>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Precondiciones</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="testPrec" id="testPrec" class="form-control" placeholder="Ingrese Precondiciones">
+                        </div><br>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCrearTestCase" name="btnCrearTestCase" class="btn btn-warning btn-smt ">Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
-					
-                  </div>
-                  <div class="widget-foot">
-                    <!-- Footer goes here -->
-                  </div>
-                </div>
-              </div>  
-              <!-- -->
-            </div>
-        </div>
-        
-        <!-- Mainbar ends -->	    	
-   <div class="clearfix"></div>
-   
 
 
-
-
-<!-- Scroll to top -->
-<span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span> 
-        <!-- JS -->
-<script src="framework/macAdminStyle/js/jquery.js"></script> <!-- jQuery -->
-  <script src="framework/macAdminStyle/js/respond.min.js"></script>
-<script src="framework/macAdminStyle/js/bootstrap.min.js"></script> <!-- Bootstrap -->
-<script src="framework/macAdminStyle/js/jquery-ui.min.js"></script> <!-- jQuery UI -->
-<script src="framework/macAdminStyle/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
-<script src="framework/macAdminStyle/js/jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
-<script src="framework/macAdminStyle/js/jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
-<script src="framework/macAdminStyle/js/jquery.slimscroll.min.js"></script> <!-- jQuery Slim Scroll -->
-<script src="framework/datatable/jquery.dataTables2.js"></script> <!-- Data tables -->
-
-<!-- jQuery Flot -->
-<script src="framework/macAdminStyle/js/excanvas.min.js"></script>
-<script src="framework/macAdminStyle/js/jquery.flot.js"></script>
-<script src="framework/macAdminStyle/js/jquery.flot.resize.js"></script>
-<script src="framework/macAdminStyle/js/jquery.flot.pie.js"></script>
-<script src="framework/macAdminStyle/js/jquery.flot.stack.js"></script>
-
-<!-- jQuery Notification - Noty -->
-<script src="framework/macAdminStyle/js/jquery.noty.js"></script> <!-- jQuery Notify -->
-<script src="framework/macAdminStyle/js/themes/default.js"></script> <!-- jQuery Notify -->
-<script src="framework/macAdminStyle/js/layouts/bottom.js"></script> <!-- jQuery Notify -->
-<script src="framework/macAdminStyle/js/layouts/topRight.js"></script> <!-- jQuery Notify -->
-<script src="framework/macAdminStyle/js/layouts/top.js"></script> <!-- jQuery Notify -->
-<!-- jQuery Notification ends -->
-
-<script src="framework/macAdminStyle/js/sparklines.js"></script> <!-- Sparklines -->
-<script src="framework/macAdminStyle/js/jquery.cleditor.min.js"></script> <!-- CLEditor -->
-<script src="framework/macAdminStyle/js/bootstrap-datetimepicker.min.js"></script> <!-- Date picker -->
-<script src="framework/macAdminStyle/js/jquery.onoff.min.js"></script> <!-- Bootstrap Toggle -->
-<script src="framework/macAdminStyle/js/filter.js"></script> <!-- Filter for support page -->
-<!--<script src="framework/macAdminStyle/js/custom.js"></script>  Custom codes -->
-<script src="framework/macAdminStyle/js/charts.js"></script> <!-- Charts & Graphs -->
 <script>
-    /* Data tables */
+    $(document).ready(function(){
+        $('.modal').appendTo($('body'));
+        $('#data-table').dataTable({
+            destroy: true,
+            "sPaginationType": "full_numbers",
+            paging: true,
+            searching: true
+        });
+    });
+    function CrearTestCase(id) {
+        $('#idTarea').val(id);
+        $('#myModal').modal('show');
+    }
+    $('#btnCrearTestCase').click(function(){
+        $.ajax({
+            url: "crearTestCase.action",
+            data: $('#formCreaTestCase').serializeArray(),
+            type:"post",
+            dataType:"json",
+            success: function (data) {
 
-$(document).ready(function() {
-	$('#data-table2').dataTable({
-	   "sPaginationType": "full_numbers"
-	});
-});
+                if(data.mensaje.tipo == "success"){
+                    $.growlUI(data.mensaje.texto);
+                    setTimeout(function(){
 
-/* Widget minimize */
+                        $.ajax({
+                            url: 'listaTareaTestCase.action',
+                            success: function(data){
+                                $('#contenidoPagina').html("");
+                                $('#contenidoPagina').html(data);
+                            }
+                        });
+                    }, 2000);
+                }
+                else{
+                    $.growlUI(data.mensaje.texto);
+                }
+                $('#myModal').modal('hide');
+            }
+        });
+    });
 
-$('.wminimize').click(function(e){
-	e.preventDefault();
-	var $wcontent = $(this).parent().parent().next('.widget-content');
-	if($wcontent.is(':visible')) 
-	{
-	  $(this).children('i').removeClass('fa fa-chevron-up');
-	  $(this).children('i').addClass('fa fa-chevron-down');
-	}
-	else 
-	{
-	  $(this).children('i').removeClass('fa fa-chevron-down');
-	  $(this).children('i').addClass('fa fa-chevron-up');
-	}            
-	$wcontent.toggle(500);
-}); 
 </script>
 
-<div>
-    <button type="button" class="btn btn-default" onclick="javascript:alert('llamar archivo testCaseFrame.jsp');">Ejecutar TestCase</button>
-</div>
-    </body>
+<!-- Control de sesi�n - Poner al final del documento -->
+<% }
+else
+{%>
+<script>window.location = "login.jsp";</script>
+<%}%>
 
-        
-    

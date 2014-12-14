@@ -21,42 +21,26 @@
 
     <script>
         $(document).ready(function(){
-            $('.modal').appendTo($('body'));
             $('#data-table').dataTable({
                 destroy: true,
                 sPaginationType: "full_numbers",
                 paging: true,
                 searching: true
             });
-            $('#crear').click(function(){
-                $.ajax({
-                    url: 'ingresarProyecto2.jsp',
-                    success: function(data){
-                        $('#contenidoPagina').html(data);
-                    }
-                });
-            });
-
-
         }); // fin document ready
 
-        function obtenerDataHdu(id) {
-            alert("La historia que seleccionaste es la :"+id);
+        function obtenerTareas(id) {
 
             $.ajax({
                 type : 'POST',
-                url : 'buscarData.action',
-                data : {'idHis': id},
+                url : 'listaTareaTestCase.action?hduTarID='+id+'',
                 success : function(data) {
-                    $('#nombrehistoria').val(data.historiaDTO.nombrehistoria);
-                    $('#myModal').modal('show');
+                    $('#contenidoPagina').html(data);
                 },
                 error : function(erro) {
                     alert("error servidor");
                 }
             });
-
-
         }
     </script>
 </head>
@@ -65,10 +49,6 @@
 <!-- Matter -->
 <div class="matter" id="contenido">
 
-    <div>
-        <a type="button" class="action btn btn-default" id="crear" style="margin-left: 20px;" >Crear</a>
-
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -97,7 +77,7 @@
                                             <th>Prioridad</th>
                                             <th>Eventum</th>
                                             <th>Dependencia</th>
-                                            <th>Visualizar</th>
+                                            <th>Ver Tareas</th>
                                         </thead>
                                         <tbody>
                                         <s:iterator value="listHistorias" >
@@ -107,7 +87,7 @@
                                                 <td><s:property value="prioridad"/></td>
                                                 <td><s:property value="eventum"/></td>
                                                 <td><s:property value="dependencia"/></td>
-                                                <td><button class="btn btn-xs btn-primary btnChico" onclick="obtenerDataHdu(<s:property value="hisId"/>)"> <span class="glyphicon glyphicon-eye-open" ></span></button></td>
+                                                <td><button class="btn btn-xs btn-primary btnChico" onclick="obtenerTareas(<s:property value="hisId"/>)"> <span class="glyphicon glyphicon-eye-open" ></span></button></td>
                                             </tr>
                                         </s:iterator>
                                         </tbody>
