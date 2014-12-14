@@ -65,4 +65,14 @@ public class LogicaTestCase {
         { exito = false;}
         return exito;
     }
+
+    public static boolean eliminarTestCase (int idTest)throws Exception{
+        boolean borrar = TestCaseDAO.deleteTestCase(idTest);
+        if (borrar){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }

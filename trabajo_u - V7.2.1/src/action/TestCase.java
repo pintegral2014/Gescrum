@@ -121,5 +121,21 @@ public class TestCase extends ActionSupport implements ModelDriven, SessionAware
         }
 
     }
+    public String borrarTestcase()throws Exception{
+
+        boolean delete = LogicaTestCase.eliminarTestCase(testCaseModel.getTestId());
+        if(delete){
+            testCaseModel.setMensajeDTO(new MensajeDTO("success","<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "test case eliminado con exito</span>" ));
+            return SUCCESS;
+        }else {
+            testCaseModel.setMensajeDTO(new MensajeDTO("success","<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "No se ha podido eliminar el test case</span>" ));
+            return ERROR;
+        }
+
+    }
 
 }

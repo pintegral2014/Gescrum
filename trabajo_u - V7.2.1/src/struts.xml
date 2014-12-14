@@ -355,6 +355,15 @@
             </result>
 
         </action>
+        <action name="borrarTestCase" class="action.TestCase" method="borrarTestcase">
+            <result name="success" type="json">
+                <param name="includeProperties">mensajeDTO.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensajeDTO.*</param>
+            </result>
+
+        </action>
 
     </package>
 

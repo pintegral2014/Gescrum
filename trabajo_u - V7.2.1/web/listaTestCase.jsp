@@ -36,6 +36,7 @@
                     $('#testDato').val(data.testCaseDTO.testDato);
                     $('#testObj').val(data.testCaseDTO.testObj);
                     $('#testPrec').val(data.testCaseDTO.testPrec);
+
                     $('#myModal').modal('show');
 
 
@@ -46,9 +47,43 @@
         });
 
     }
-    function eliminarTestCase (id){
-        alert("el test case a eliminar es: " + id);
+    function eliminarTestCase (id, idTarea) {
+        //alert("el test case a eliminar es: " + id);
+        var confirmar = confirm(String.fromCharCode(191) + "Esta seguro que desea eliminar el test Case?");
+        if (confirmar == true) {
+
+            $.ajax({
+                type: 'post',
+                url: 'borrarTestCase.action',
+                data: {'testId': id },
+                success: function (data) {
+                    if (data.mensajeDTO.tipo == "success") {
+
+                        $.growlUI(data.mensajeDTO.texto);
+                        setTimeout(function () {
+                            //alert (idTarea);
+                            $.ajax({
+                                type: 'POST',
+                                url: 'buscarTestCasexTarea.action',
+                                data: {'tareaId': idTarea},
+                                success: function (data) {
+                                    $('#tablaTestCase').html("");
+                                    $('#tablaTestCase').html(data);
+                                }
+                            });
+
+                        }, 4000);
+                    }
+                    else {
+
+                        $.growlUI(data.mensajeDTO.texto);
+                    }
+                }
+            });
+        }
     }
+
+
     $('#btnModificarTestCase').click(function(){
         $.ajax({
             url: "modTestCase.action",
@@ -76,7 +111,7 @@
                 }
                 else{
                     $('#myModal').modal('hide');
-                    $.growlUI(data.mensaje.texto);
+                    $.growlUI(data.mensajeDTO.texto);
                 }
             }
         });
@@ -128,7 +163,7 @@
                                                 <td><s:property value="testUsuCre"/></td>
                                                 <td>
                                                     <button class="btn btn-xs btn-warning btnChico" onclick="modificarTestCase(<s:property value="testId"/>)"> <span class="glyphicon glyphicon-pencil" ></span></button>
-                                                    <button class="btn btn-xs btn-danger btnChico" onclick="eliminarTestCase(<s:property value="testId"/>)"> <span class="glyphicon glyphicon-trash" ></span></button>
+                                                    <button class="btn btn-xs btn-danger btnChico" onclick="eliminarTestCase(<s:property value="testId"/>,<s:property value="tareaId"/> )"> <span class="glyphicon glyphicon-trash" ></span></button>
                                                 </td>
                                             </tr>
                                         </s:iterator>
@@ -188,7 +223,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="modificar(<s:property value="tareaId"/>)" id="btnModificarTestCase">Modificar</button>
+                <button type="button" class="btn btn-primary" id="btnModificarTestCase">Modificar</button>
             </div>
         </div>
     </div>

@@ -90,7 +90,7 @@
             </div>
             <div class="modal-body">
                 <form role="form" id="formCreaTestCase">
-                    <div class="form-group" style="display: none">
+                    <div class="form-group">
                         <label class="control-label">id:</label>
                         <input type="text" class="form-control" name="tareaId" id="tareaId" readonly>
                     </div>
@@ -173,6 +173,7 @@
     }
 
     function modalCrearTestCase(id) {
+        //alert ("mi id es " + id);
         $('#tareaId').val(id);
 
         $('#myModal1').modal('show');

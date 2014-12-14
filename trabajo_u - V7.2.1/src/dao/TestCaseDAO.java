@@ -108,6 +108,7 @@ public class TestCaseDAO {
                 testCaseDTO.setTestPrec(res.getString("test_precondiciones"));
                 testCaseDTO.setTestEstado(res.getString("test_estado"));
                 testCaseDTO.setTestUsuCre(res.getString("test_usuario_creador"));
+                testCaseDTO.setTareaId(res.getInt("tbl_tarea_tar_id"));
 
                 listTestCase.add(testCaseDTO);
 
@@ -153,5 +154,31 @@ public class TestCaseDAO {
             return query;
         }
 
+    }
+    public static boolean deleteTestCase (int idTC){
+        PreparedStatement preparedStatement = null;
+        int borrado = 0;
+        boolean exito = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "delete from tbl_test_case where test_id = ?";
+
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, idTC);
+            borrado = preparedStatement.executeUpdate();
+            if(borrado == 1){
+                exito = true;
+            }else
+            {
+                exito = false;
+            }
+            preparedStatement.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+        }
+        return exito;
     }
 }
