@@ -25,8 +25,26 @@ public class TestCaseModel {
     private TestCaseDTO testCaseDTO;
     private MensajeDTO mensajeDTO;
     private TareaDTO tareaDTO;
+    private String testUsuMod;
+    private Date testFechaMod;
 
     public TestCaseModel() {
+    }
+
+    public String getTestUsuMod() {
+        return testUsuMod;
+    }
+
+    public void setTestUsuMod(String testUsuMod) {
+        this.testUsuMod = testUsuMod;
+    }
+
+    public Date getTestFechaMod() {
+        return testFechaMod;
+    }
+
+    public void setTestFechaMod(Date testFechaMod) {
+        this.testFechaMod = testFechaMod;
     }
 
     public int getTestId() {

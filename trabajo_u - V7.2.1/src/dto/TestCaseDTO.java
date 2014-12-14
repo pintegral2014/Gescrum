@@ -16,11 +16,14 @@ public class TestCaseDTO {
     private String testUsuCre;
     private int tareaId;
     private TareaDTO tareaDTO;
+    private String testUsuMod;
+    private Date testFechaMod;
 
     public TestCaseDTO() {
     }
 
-    public TestCaseDTO(int testId, String testEnun, String testObj, String testDato, String testPrec, String testEstado, Date testFechaCre, String testUsuCre, int tareaId, TareaDTO tareaDTO) {
+    public TestCaseDTO(int testId, String testEnun, String testObj, String testDato, String testPrec,
+                       String testEstado, Date testFechaCre, String testUsuCre, int tareaId, TareaDTO tareaDTO, String testUsuMod, Date testFechaMod) {
         this.testId = testId;
         this.testEnun = testEnun;
         this.testObj = testObj;
@@ -31,6 +34,24 @@ public class TestCaseDTO {
         this.testUsuCre = testUsuCre;
         this.tareaId = tareaId;
         this.tareaDTO = tareaDTO;
+        this.testUsuMod = testUsuMod;
+        this.testFechaMod = testFechaMod;
+    }
+
+    public String getTestUsuMod() {
+        return testUsuMod;
+    }
+
+    public void setTestUsuMod(String testUsuMod) {
+        this.testUsuMod = testUsuMod;
+    }
+
+    public Date getTestFechaMod() {
+        return testFechaMod;
+    }
+
+    public void setTestFechaMod(Date testFechaMod) {
+        this.testFechaMod = testFechaMod;
     }
 
     public int getTestId() {

@@ -97,9 +97,21 @@ public class Grupo extends ActionSupport implements ModelDriven, SessionAware {
         grupoDTO.setGruUsuCreador(usuarioSession);
 
         boolean exito = LogicaGrupo.creaGrupo(grupoDTO);
+        if (exito) {
+            grupoModel.setMensajeDTO(new MensajeDTO("success", "<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "Historia " + grupoModel.getGruNombre() + " creado con exito</span>"));
+            //se crea el registro de usuario en la bd
+            return SUCCESS;
+        } else {
+
+            grupoModel.setMensajeDTO(new MensajeDTO("error", "<span class='glyphicon glyphicon-remove' " +
+                    "style='color:red; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "Historia " + grupoModel.getGruNombre() + " existente en registros</span>"));
+            return ERROR;
+        }
 
 
-        return SUCCESS;
     }
     public String listargrupoValidos() throws Exception {
 

@@ -39,14 +39,14 @@
                             <div class="page-tables">
                                 <!-- Table -->
                                 <div class="table-responsive">
-                                    <table cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display table-collapse table-condensed table-responsive" width="100%">
                                         <thead class="btn-default">
                                         <tr style ="font-size: 12px">
                                             <th >Id</th>
                                             <th>Descripcion</th>
                                             <th>Fecha de creacion</th>
                                             <th>Usuario Creador</th>
-                                            <th>Crear TestCase</th>
+                                            <th>Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -56,7 +56,10 @@
                                                 <td><s:property value="descripcionTarea"/></td>
                                                 <td><s:property value="fechaCreacion"/></td>
                                                 <td><s:property value="usuCreador"/></td>
-                                                <td><button class="btn btn-xs btn-success btnChico" onclick="CrearTestCase(<s:property value="idTarea"/>)"> <span class="glyphicon glyphicon-pencil" ></span></button></td>
+                                                <td>
+                                                    <button class="btn btn-xs btn-success btnChico" onclick="modalCrearTestCase(<s:property value="idTarea"/>)"> <span class="glyphicon glyphicon-plus" ></span></button>
+                                                    <button class="btn btn-primary" onclick="listarTestCase(<s:property value="idTarea"/>)">Lista Testcase</button>
+                                                </td>
                                             </tr>
                                         </s:iterator>
                                         </tbody>
@@ -76,71 +79,68 @@
 
     </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<!--MODAL -->
+<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="myModal1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Crear TestCase</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Test Case</h4>
             </div>
-            <div class="modal-body" style="min-height: 300px;">
+            <div class="modal-body">
                 <form role="form" id="formCreaTestCase">
-                    <div class="form-group" style="display: none;">
-                        <label class="col-lg-4 control-label"></label>
-                        <div class="col-lg-5">
-                            <input type="text" name="idTarea" id="idTarea" class="form-control" placeholder="">
-                        </div><br>
+                    <div class="form-group" style="display: none">
+                        <label class="control-label">id:</label>
+                        <input type="text" class="form-control" name="tareaId" id="tareaId" readonly>
+                    </div>
+                    <div class="form-group" style="display: none">
+                        <label class="control-label">id:</label>
+                        <input type="text" class="form-control" name="testId" id="testId" readonly>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-4 control-label">Enunciado</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="testEnun" id="testEnun" class="form-control" placeholder="Ingrese Enunciado">
-                        </div>
+                        <label class="control-label">Enunciado:</label>
+                        <textarea class="form-control" name="testEnun" id="testEnun" rows="5" style="resize: none; overflow-y: scroll;" ></textarea >
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-4 control-label">Objetivo</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="testObj" id="testObj" class="form-control" placeholder="Ingrese Objetivo">
-                        </div><br>
+                        <label class="control-label">Dato Requerido:</label>
+                        <input type="text" class="form-control" name="testDato" id="testDato" >
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-4 control-label">Dato Requerido</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="testDato" id="testDato" class="form-control" placeholder="Ingrese Dato Requerido">
-                        </div><br>
+                        <label class="control-label">Objetivo:</label>
+                        <textarea class="form-control" name="testObj" id="testObj" rows="5" style="resize: none; overflow-y: scroll;" ></textarea >
                     </div>
+
                     <div class="form-group">
-                        <label class="col-lg-4 control-label">Precondiciones</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="testPrec" id="testPrec" class="form-control" placeholder="Ingrese Precondiciones">
-                        </div><br>
+                        <label class="control-label">Precondiciones:</label>
+                        <textarea class="form-control" name="testPrec" id="testPrec" rows="5" style="resize: none; overflow-y: scroll;" ></textarea >
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnCrearTestCase" name="btnCrearTestCase" class="btn btn-warning btn-smt ">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnCrearTestCase">Crear</button>
             </div>
         </div>
     </div>
 </div>
+<div id="tablaTestCase">
 
+</div>
 
 
 <script>
     $(document).ready(function(){
         $('.modal').appendTo($('body'));
-        $('#data-table').dataTable({
+        $('table.display').dataTable({
             destroy: true,
             "sPaginationType": "full_numbers",
             paging: true,
-            searching: true
+            searching: true,
+            "iDisplayLength": 5
         });
     });
-    function CrearTestCase(id) {
-        $('#idTarea').val(id);
-        $('#myModal').modal('show');
-    }
+
     $('#btnCrearTestCase').click(function(){
         $.ajax({
             url: "crearTestCase.action",
@@ -148,27 +148,36 @@
             type:"post",
             dataType:"json",
             success: function (data) {
+                if(data.mensajeDTO.tipo == "success"){
+                    $.growlUI(data.mensajeDTO.texto);
 
-                if(data.mensaje.tipo == "success"){
-                    $.growlUI(data.mensaje.texto);
-                    setTimeout(function(){
-
-                        $.ajax({
-                            url: 'listaTareaTestCase.action',
-                            success: function(data){
-                                $('#contenidoPagina').html("");
-                                $('#contenidoPagina').html(data);
-                            }
-                        });
-                    }, 2000);
                 }
                 else{
                     $.growlUI(data.mensaje.texto);
                 }
-                $('#myModal').modal('hide');
+                $('#myModal1').modal('hide');
             }
         });
     });
+
+    function listarTestCase(id){
+
+        $.ajax({
+            type : 'POST',
+            url : 'buscarTestCasexTarea.action',
+            data : {'tareaId': id},
+            success : function(data) {
+                $('#tablaTestCase').html(data)
+            }
+        });
+    }
+
+    function modalCrearTestCase(id) {
+        $('#tareaId').val(id);
+
+        $('#myModal1').modal('show');
+    }
+
 
 </script>
 

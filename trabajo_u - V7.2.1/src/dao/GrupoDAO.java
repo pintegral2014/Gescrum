@@ -41,9 +41,9 @@ public class GrupoDAO {
             p.setDate(5, getCurrentDate());
             p.setDate(6, getCurrentDate());
 
-            int insertUsuario = p.executeUpdate();
+            int insertGrupo = p.executeUpdate();
 
-            if (insertUsuario == 0) {
+            if (insertGrupo == 0) {
                 query = false;
                 return query;
             }

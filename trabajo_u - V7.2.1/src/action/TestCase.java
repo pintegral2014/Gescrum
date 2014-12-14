@@ -4,20 +4,33 @@ import action.model.TestCaseModel;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import dto.HistoriaDTO;
 import dto.MensajeDTO;
 import dto.TareaDTO;
 import dto.TestCaseDTO;
 import logica.LogicaTestCase;
+import org.apache.struts2.interceptor.SessionAware;
 
 
+import javax.servlet.annotation.ServletSecurity;
 import javax.swing.*;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Ripcrow on 08-12-2014.
  */
-public class TestCase extends ActionSupport implements ModelDriven {
+public class TestCase extends ActionSupport implements ModelDriven, SessionAware {
     TestCaseModel testCaseModel = new TestCaseModel();
+    private Map<String, Object> session;
+
+    public Map<String, Object> getSession() {
+        return session;
+    }
+
+    public void setSession(Map<String, Object> session) {
+        this.session = session;
+    }
 
     @Override
     public Object getModel() {
@@ -37,15 +50,13 @@ public class TestCase extends ActionSupport implements ModelDriven {
         testCase.setTestObj(testCaseModel.getTestObj());
         testCase.setTestDato(testCaseModel.getTestDato());
         testCase.setTestPrec(testCaseModel.getTestPrec());
-        testCase.setTareaId(testCaseModel.getTareaId());
         testCase.setTestUsuCre(usuario);
-
         TareaDTO tareaDTO = new TareaDTO();
-        tareaDTO.setHduTarID(testCaseModel.getTareaDTO().getHduTarID());
+        tareaDTO.setHduTarID(testCaseModel.getTareaId());
         testCase.setTareaDTO(tareaDTO);
-        JOptionPane.showMessageDialog(null, "action");
+
         LogicaTestCase logicaTestCase = new LogicaTestCase(testCase);
-        boolean insert = logicaTestCase.crearTestCase();
+        boolean insert = logicaTestCase.crearTestCase(testCase);
         if (insert) {
             testCaseModel.setMensajeDTO(new MensajeDTO("success", "<span class='glyphicon glyphicon-ok' " +
                     "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
@@ -60,4 +71,55 @@ public class TestCase extends ActionSupport implements ModelDriven {
             return ERROR;
         }
     }
+
+    public String obtenerDataTestCase()throws Exception{
+
+        TestCaseDTO testCaseDTO = LogicaTestCase.obtenerInfoTestCase(testCaseModel.getTestId());
+
+        if(testCaseDTO != null)
+        {
+            testCaseModel.setTestCaseDTO(testCaseDTO);
+            return "testcaseDataJSON";
+        }
+        return ERROR;
+    }
+
+    public String obtenerTestCasexTarea()throws Exception{
+        List<TestCaseDTO> testCaseDTOList = LogicaTestCase.testcasexTarea(testCaseModel.getTareaId());
+
+        if(testCaseDTOList.size() > 0){
+            testCaseModel.setListaTest(testCaseDTOList);
+            return SUCCESS;
+        }
+        else {
+            return ERROR;
+        }
+    }
+
+    public String modificarDataTestCase()throws Exception{
+        String usuarioSession = (String) session.get("loginConexion");
+        TestCaseDTO testCaseDTO = new TestCaseDTO();
+        testCaseDTO.setTestId(testCaseModel.getTestId());
+        testCaseDTO.setTestEnun(testCaseModel.getTestEnun());
+        testCaseDTO.setTestDato(testCaseModel.getTestDato());
+        testCaseDTO.setTestObj(testCaseModel.getTestObj());
+        testCaseDTO.setTestPrec(testCaseModel.getTestPrec());
+        testCaseDTO.setTestUsuMod(usuarioSession);
+
+        boolean update = LogicaTestCase.modifDataTestCase(testCaseDTO);
+        if(update){
+            testCaseModel.setMensajeDTO(new MensajeDTO("success","<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "test case modificado con exito</span>" ));
+            return SUCCESS;
+        }else
+        {
+            testCaseModel.setMensajeDTO(new MensajeDTO("error","<span class='glyphicon glyphicon-remove' " +
+                    "style='color:red; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "No se ha podido mopdificar test Case</span>"));
+            return ERROR;
+        }
+
+    }
+
 }
