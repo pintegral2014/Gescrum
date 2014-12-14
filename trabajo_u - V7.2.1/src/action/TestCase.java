@@ -95,6 +95,17 @@ public class TestCase extends ActionSupport implements ModelDriven, SessionAware
             return ERROR;
         }
     }
+    public String obtenerTestCasexTarea2()throws Exception{
+        List<TestCaseDTO> testCaseDTOList = LogicaTestCase.testcasexTarea(testCaseModel.getTareaId2());
+
+        if(testCaseDTOList.size() > 0){
+            testCaseModel.setListaTest(testCaseDTOList);
+            return SUCCESS;
+        }
+        else {
+            return ERROR;
+        }
+    }
 
     public String modificarDataTestCase()throws Exception{
         String usuarioSession = (String) session.get("loginConexion");

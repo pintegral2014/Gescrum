@@ -21,6 +21,7 @@ public class TestCaseModel {
     private Date testFechaCre;
     private String testUsuCre;
     private int tareaId;
+    private int tareaId2;
     private List<TestCaseDTO> listaTest;
     private TestCaseDTO testCaseDTO;
     private MensajeDTO mensajeDTO;
@@ -29,6 +30,14 @@ public class TestCaseModel {
     private Date testFechaMod;
 
     public TestCaseModel() {
+    }
+
+    public int getTareaId2() {
+        return tareaId2;
+    }
+
+    public void setTareaId2(int tareaId2) {
+        this.tareaId2 = tareaId2;
     }
 
     public String getTestUsuMod() {

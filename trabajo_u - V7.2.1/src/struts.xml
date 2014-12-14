@@ -346,6 +346,10 @@
             <result name="success">/listaTestCase.jsp</result>
             <result name="error">/listaTestCase.jsp</result>
         </action>
+        <action name="buscarTestCasexTarea2" class="action.TestCase" method="obtenerTestCasexTarea2">
+            <result name="success">/listaTestCase.jsp</result>
+            <result name="error">/listaTestCase.jsp</result>
+        </action>
         <action name="modTestCase" class="action.TestCase" method="modificarDataTestCase">
             <result name="success" type="json">
                 <param name="includeProperties">mensajeDTO.*</param>

@@ -160,12 +160,12 @@
         });
     });
 
-    function listarTestCase(id){
+    function listarTestCase(id2){
 
         $.ajax({
             type : 'POST',
             url : 'buscarTestCasexTarea.action',
-            data : {'tareaId': id},
+            data : {'tareaId': id2},
             success : function(data) {
                 $('#tablaTestCase').html(data)
             }
@@ -173,8 +173,10 @@
     }
 
     function modalCrearTestCase(id) {
-        //alert ("mi id es " + id);
+        alert ("mi id es " + id);
+        $('#tareaId').val();
         $('#tareaId').val(id);
+
 
         $('#myModal1').modal('show');
     }

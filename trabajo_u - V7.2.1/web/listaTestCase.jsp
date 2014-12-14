@@ -30,7 +30,7 @@
             url : 'buscarDataTestCase.action',
             data : {'testId': id},
             success : function(data) {
-                    $('#tareaId').val(data.testCaseDTO.tareaId);
+                    $('#tareaId2').val(data.testCaseDTO.tareaId);
                     $('#testId').val(data.testCaseDTO.testId);
                     $('#testEnun').val(data.testCaseDTO.testEnun);
                     $('#testDato').val(data.testCaseDTO.testDato);
@@ -99,7 +99,7 @@
 
                         $.ajax({
                             type: 'POST',
-                            url: 'buscarTestCasexTarea.action',
+                            url: 'buscarTestCasexTarea2.action',
                             data: $('#formModTestCase').serializeArray(),
                             success: function(data){
                                 $('#tablaTestCase').html("");
@@ -127,7 +127,7 @@
 
                 <div class="widget ">
                     <div class="widget-head">
-                        <div class="pull-left ">Test case tarea id <span style="color: #008000; font-weight: bold"><s:property value="tareaId"/></span></div>
+                        <div class="pull-left ">Test case tarea id <span style="color: #008000; font-weight: bold"><s:property value="tareaId2"/></span></div>
                         <div class="widget-icons pull-right">
                             <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                             <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
@@ -196,7 +196,7 @@
                 <form role="form" id="formModTestCase">
                     <div class="form-group">
                         <label class="control-label">id:</label>
-                        <input type="text" class="form-control" name="tareaId" id="tareaId" readonly>
+                        <input type="text" class="form-control" name="tareaId2" id="tareaId2" readonly>
                     </div>
                     <div class="form-group" >
                         <label class="control-label" >id:</label>
