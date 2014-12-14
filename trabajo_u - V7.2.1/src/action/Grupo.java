@@ -101,6 +101,23 @@ public class Grupo extends ActionSupport implements ModelDriven, SessionAware {
 
         return SUCCESS;
     }
+    public String listargrupoValidos() throws Exception {
 
+        LogicaGrupo logicaGrupo = new LogicaGrupo();
+        List<GrupoDTO> listaGrupo = logicaGrupo.listaGrupoValidos();
+        /*LogicaRol logicaRol = new LogicaRol();
+        List<RolDTO> listaRol = logicaRol.listRol();*/
+        if(listaGrupo.size() >= 0){
+            this.grupoModel.setListagrupo(listaGrupo);
+            return SUCCESS;
+        }
+        else {
+            return ERROR;
+        }
+    }
+
+    public String getJSON() throws Exception {
+        return listargrupo();
+    }
 
 }

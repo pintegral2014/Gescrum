@@ -104,4 +104,21 @@ public class LogicaHistoria {
 
         return existe;
     }
+    public List<HistoriaDTO> filtroHduConSprint() throws Exception{
+        List<HistoriaDTO> listahistoria = HistoriaDAO.filtroHduConSprint(historia);
+
+        return listahistoria;
+
+
+    }
+
+
+    public List<HistoriaDTO> filtroHduSinSprint() throws Exception{
+
+        List<HistoriaDTO> listahistoria = HistoriaDAO.filtroHduSinSprint();
+
+        return listahistoria;
+
+
+    }
 }

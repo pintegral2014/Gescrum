@@ -113,6 +113,8 @@
                     <li><a style="cursor:pointer;"  class="action" name="Ejecutar TestCase" id="ejecutarTestCase2">Ejecutar TestCase</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Asignar Tareas" id="listaGestionTarea">Asignar Tareas</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Prueba</a></li>
+                    <li><a style="cursor:pointer;"  class="action" id="listaGrupoSprint" name="Generar Sprint">Generar Sprint</a></li>
+                    <li><a style="cursor:pointer;"  class="action" id="listaSprint" name="Lista Sprint">Interar Sprint</a></li>
                 </ul>
             </li>
             <li class="has_sub">

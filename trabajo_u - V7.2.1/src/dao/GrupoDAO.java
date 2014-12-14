@@ -140,4 +140,30 @@ public class GrupoDAO {
             return query;
         }
     }
+    public static List<GrupoDTO> listaGruposValidos()throws Exception{
+        PreparedStatement p = null;
+        List<GrupoDTO> listagrupo = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select * from tbl_grupo where gru_id not in (select tbl_grupo_gru_id from tbl_sprint where spr_estado = 'En proceso');";
+
+            p = conn.prepareStatement(sql);
+            ResultSet res = p.executeQuery();
+            listagrupo = new ArrayList<GrupoDTO>();
+            while (res.next()){
+                GrupoDTO grupo = new GrupoDTO();
+                grupo.setGruId(res.getInt("gru_id"));
+                grupo.setGruNombre(res.getString("gru_nombre"));
+                grupo.setGruDescripcion(res.getString("gru_descripcion"));
+                listagrupo.add(grupo);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listagrupo;
+        }
+    }
 }

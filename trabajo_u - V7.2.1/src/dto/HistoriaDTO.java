@@ -15,17 +15,19 @@ public class HistoriaDTO {
     private String dependencia;
     private String criAceptacion;
     private int eventum;
+    private int sprint;
     private Date fechaCrea;
     private int idPro;
+    private String nombreProyecto;
     private ProyectoDTO proyectoDTO;
     private String solicitadoPor;
 
     public HistoriaDTO() {
     }
 
-    public HistoriaDTO(int hisId, int prioridad, String usuariocrea, String estado, String descripcion,
-                       String nombrehistoria, String dependencia, String criAceptacion, int eventum,
-                       Date fechaCrea, int idPro, ProyectoDTO proyectoDTO, String solicitadoPor) {
+    public HistoriaDTO(int hisId, int prioridad, String usuariocrea, String estado,
+                       String descripcion, String nombrehistoria, String dependencia,
+                       String criAceptacion, int eventum, int sprint, Date fechaCrea, int idPro, String nombreProyecto, ProyectoDTO proyectoDTO, String solicitadoPor) {
         this.hisId = hisId;
         this.prioridad = prioridad;
         this.usuariocrea = usuariocrea;
@@ -35,34 +37,12 @@ public class HistoriaDTO {
         this.dependencia = dependencia;
         this.criAceptacion = criAceptacion;
         this.eventum = eventum;
+        this.sprint = sprint;
         this.fechaCrea = fechaCrea;
         this.idPro = idPro;
+        this.nombreProyecto = nombreProyecto;
         this.proyectoDTO = proyectoDTO;
         this.solicitadoPor = solicitadoPor;
-    }
-
-    public String getSolicitadoPor() {
-        return solicitadoPor;
-    }
-
-    public void setSolicitadoPor(String solicitadoPor) {
-        this.solicitadoPor = solicitadoPor;
-    }
-
-    public int getIdPro() {
-        return idPro;
-    }
-
-    public void setIdPro(int idPro) {
-        this.idPro = idPro;
-    }
-
-    public Date getFechaCrea() {
-        return fechaCrea;
-    }
-
-    public void setFechaCrea(Date fechaCrea) {
-        this.fechaCrea = fechaCrea;
     }
 
     public int getHisId() {
@@ -71,14 +51,6 @@ public class HistoriaDTO {
 
     public void setHisId(int hisId) {
         this.hisId = hisId;
-    }
-
-    public ProyectoDTO getProyectoDTO() {
-        return proyectoDTO;
-    }
-
-    public void setProyectoDTO(ProyectoDTO proyectoDTO) {
-        this.proyectoDTO = proyectoDTO;
     }
 
     public int getPrioridad() {
@@ -145,5 +117,51 @@ public class HistoriaDTO {
         this.eventum = eventum;
     }
 
+    public int getSprint() {
+        return sprint;
+    }
 
+    public void setSprint(int sprint) {
+        this.sprint = sprint;
+    }
+
+    public Date getFechaCrea() {
+        return fechaCrea;
+    }
+
+    public void setFechaCrea(Date fechaCrea) {
+        this.fechaCrea = fechaCrea;
+    }
+
+    public int getIdPro() {
+        return idPro;
+    }
+
+    public void setIdPro(int idPro) {
+        this.idPro = idPro;
+    }
+
+    public String getNombreProyecto() {
+        return nombreProyecto;
+    }
+
+    public void setNombreProyecto(String nombreProyecto) {
+        this.nombreProyecto = nombreProyecto;
+    }
+
+    public ProyectoDTO getProyectoDTO() {
+        return proyectoDTO;
+    }
+
+    public void setProyectoDTO(ProyectoDTO proyectoDTO) {
+        this.proyectoDTO = proyectoDTO;
+    }
+
+    public String getSolicitadoPor() {
+        return solicitadoPor;
+    }
+
+    public void setSolicitadoPor(String solicitadoPor) {
+        this.solicitadoPor = solicitadoPor;
+    }
 }

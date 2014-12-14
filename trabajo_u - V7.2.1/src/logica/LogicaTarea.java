@@ -40,5 +40,15 @@ public class LogicaTarea {
            return false;
             }
     }
+    public List<TareaDTO> listaTareaFilSinIteraciones() throws Exception{
+        List<TareaDTO> listaTarea = TareaDAO.listaTareaHistoriaSinIteracion(tarea);
+
+        if(listaTarea.size() >= 0) {
+            return listaTarea;
+
+        }else{
+            return null;
+        }
+    }
 
 }

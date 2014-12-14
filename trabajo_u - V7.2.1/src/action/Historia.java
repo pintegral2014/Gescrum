@@ -202,6 +202,38 @@ public class Historia extends ActionSupport implements ModelDriven{
         }
 
     }
+    public String listarHduConSrint() throws Exception {
+        HistoriaDTO sprint = new HistoriaDTO();
+        sprint.setSprint(this.historiaModel.getSprint());
 
+        LogicaHistoria logicaHistoria = new LogicaHistoria(sprint);
+        List<HistoriaDTO> lista = logicaHistoria.filtroHduConSprint();
+
+        if(lista.size() >= 0 ){
+            this.historiaModel.setListHistorias(lista);
+            this.historiaModel.setSprint(sprint.getSprint());
+            return SUCCESS;
+        }
+        else {
+            return ERROR;
+        }
+    }
+
+    public String listarHduSinSrint() throws Exception {
+        HistoriaDTO sprint = new HistoriaDTO();
+        sprint.setSprint(this.historiaModel.getSprint());
+
+        LogicaHistoria logicaHistoria = new LogicaHistoria(sprint);
+        List<HistoriaDTO> lista = logicaHistoria.filtroHduSinSprint();
+
+        if(lista.size() >= 0 ){
+            this.historiaModel.setListHistorias(lista);
+            this.historiaModel.setSprint(sprint.getSprint());
+            return SUCCESS;
+        }
+        else {
+            return ERROR;
+        }
+    }
 
 }

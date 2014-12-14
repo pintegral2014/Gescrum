@@ -63,7 +63,45 @@ public class TareaDAO {
         ConnectionDB interfaceConn = new ConnectionDB();
         try {
             Connection conn = interfaceConn.getConnectionDB();
-            String sql = "select * from tbl_tarea where tbl_hdu_hdu_id = ?";
+            String sql = "select tar_id, tar_descripcion,tar_fecha_creacion,tar_usuario_creador, hdu_id,hdu_nombre \n" +
+                    "from tbl_tarea t \n" +
+                    "inner join tbl_hdu h on h.hdu_id = t.tbl_hdu_hdu_id\n" +
+                    "where tbl_hdu_hdu_id = ?";
+
+            p = conn.prepareStatement(sql);
+            p.setInt(1, idHistoria.getHduTarID());
+            ResultSet res = p.executeQuery();
+            listatareas = new ArrayList<TareaDTO>();
+            while (res.next()){
+                TareaDTO tarea = new TareaDTO();
+                tarea.setIdTarea(res.getInt("tar_id"));
+                tarea.setDescripcionTarea(res.getString("tar_descripcion"));
+                tarea.setFechaCreacion(res.getDate("tar_fecha_creacion"));
+                tarea.setUsuCreador(res.getString("tar_usuario_creador"));
+                tarea.setHduTarID(res.getInt("hdu_id"));
+                tarea.setNombreHistoria(res.getString("hdu_nombre"));
+
+
+                listatareas.add(tarea);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listatareas;
+        }
+    }
+    public static List<TareaDTO> listaTareaHistoriaSinIteracion (TareaDTO idHistoria)throws Exception{
+
+        PreparedStatement p = null;
+        List<TareaDTO> listatareas = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select tar_id,tar_fecha_creacion,tar_usuario_creador,tar_descripcion,tbl_hdu_hdu_id,hdu_nombre from tbl_tarea t\n" +
+                    "  inner join tbl_hdu h on t.tbl_hdu_hdu_id = h.hdu_id\n" +
+                    "where tar_id not in(select tbl_tarea_tar_id from tbl_hdu_x_sprint)and tbl_hdu_hdu_id = ?";
 
             p = conn.prepareStatement(sql);
             p.setInt(1, idHistoria.getHduTarID());
@@ -76,9 +114,10 @@ public class TareaDAO {
                 tarea.setFechaCreacion(res.getDate("tar_fecha_creacion"));
                 tarea.setUsuCreador(res.getString("tar_usuario_creador"));
                 tarea.setHduTarID(res.getInt("tbl_hdu_hdu_id"));
+                tarea.setNombreHistoria(res.getString("hdu_nombre"));
 
 
-               listatareas.add(tarea);
+                listatareas.add(tarea);
             }
             p.close();
         }catch (Exception e){
@@ -88,7 +127,6 @@ public class TareaDAO {
             return listatareas;
         }
     }
-
     public static boolean selectTareaXHdu (int hisId)throws Exception{
         PreparedStatement preparedStatement = null;
         boolean existe = false;

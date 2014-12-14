@@ -56,4 +56,14 @@ public class LogicaGrupo {
         }
         return exito;
     }
+    public List<GrupoDTO> listaGrupoValidos() throws Exception{
+        List<GrupoDTO> listaGrupos = GrupoDAO.listaGruposValidos();
+        if(listaGrupos != null)
+        {
+            //retorna la lista de grupos
+            return listaGrupos;
+        }else{
+            return null;
+        }
+    }
 }

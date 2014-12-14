@@ -202,6 +202,14 @@
                                     color: 'red'
                                 }]
                             },
+                            plotOptions: {
+                                line: {
+                                    dataLabels: {
+                                        enabled: true
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
                             // Doy formato al la "cajita" que sale al pasar el ratón por encima de la gráfica
                             tooltip: {
                                 valueSuffix: ''//texto explicativo

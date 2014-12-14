@@ -6,7 +6,9 @@ import com.opensymphony.xwork2.ModelDriven;
 import dto.MensajeDTO;
 import dto.RepositorioDTO;
 import dto.TareaDTO;
+import dto.UsuarioDTO;
 import logica.LogicaTarea;
+import logica.LogicaUsuario;
 
 import javax.swing.*;
 import java.util.List;
@@ -25,21 +27,30 @@ public class Tarea extends ActionSupport implements ModelDriven {
     public String execute()  {return SUCCESS;}
 
     public String ListaTareaHdu() throws Exception{
-
+        // creo variable
         TareaDTO tareaIdHis = new TareaDTO();
-
+        // Asigno Datos
         tareaIdHis.setHduTarID(this.modelTarea.getHduTarID());
-
+        //Logica tareas
         LogicaTarea logicatarea = new LogicaTarea(tareaIdHis);
-
-        List<TareaDTO> listaTarea = logicatarea.listaTareaFil();
+        //Logica usuarios
+        LogicaUsuario logicaUsuario = new LogicaUsuario();
 
         int idHistoria = this.modelTarea.getHduTarID();
+        int sprint = this.modelTarea.getSprint();
+
+
+        List<TareaDTO> listaTarea = logicatarea.listaTareaFil();
+        List<UsuarioDTO> listaUsuario = logicaUsuario.listaUsuarioGrupoSprint(sprint);
+
 
         if(tareaIdHis.getHduTarID() >= 0 ){
 
             this.modelTarea.setListaTarea(listaTarea);
             this.modelTarea.setHduTarID(idHistoria);
+            this.modelTarea.setSprint(sprint);
+            this.modelTarea.setListaUsuariosTarea(listaUsuario);
+
             return SUCCESS;
         }
         else {
@@ -47,6 +58,7 @@ public class Tarea extends ActionSupport implements ModelDriven {
             return ERROR;
         }
     }
+
     public String IngresarTarea() throws  Exception{
         TareaDTO tarea = new TareaDTO();
         tarea.setDescripcionTarea(this.modelTarea.getDescripcionTarea());
@@ -67,5 +79,34 @@ public class Tarea extends ActionSupport implements ModelDriven {
             return ERROR;
         }
     }
+    public String ListaTareaHduSinIteraciones() throws Exception{
+        // creo variable
+        TareaDTO tareaIdHis = new TareaDTO();
+        // Asigno Datos
+        tareaIdHis.setHduTarID(this.modelTarea.getHduTarID());
+        //Logica tareas
+        LogicaTarea logicatarea = new LogicaTarea(tareaIdHis);
+        //Logica usuarios
 
+        int idHistoria = this.modelTarea.getHduTarID();
+        int sprint = this.modelTarea.getSprint();
+
+
+        List<TareaDTO> listaTarea = logicatarea.listaTareaFilSinIteraciones();
+
+
+
+        if(tareaIdHis.getHduTarID() >= 0 ){
+
+            this.modelTarea.setListaTarea(listaTarea);
+            this.modelTarea.setHduTarID(idHistoria);
+            this.modelTarea.setSprint(sprint);
+
+            return SUCCESS;
+        }
+        else {
+
+            return ERROR;
+        }
+    }
 }

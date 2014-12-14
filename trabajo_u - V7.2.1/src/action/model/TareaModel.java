@@ -2,6 +2,7 @@ package action.model;
 
 import dto.MensajeDTO;
 import dto.TareaDTO;
+import dto.UsuarioDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -16,18 +17,12 @@ public class TareaModel {
     private Date fechaCreacion;
     private String usuCreador;
     private int hduTarID;
+    private int sprint;
     private List<TareaDTO> listaTarea;
+    private List<UsuarioDTO> listaUsuariosTarea;
     private MensajeDTO mensaje;
 
     public TareaModel() {
-    }
-
-    public MensajeDTO getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(MensajeDTO mensaje) {
-        this.mensaje = mensaje;
     }
 
     public int getIdTarea() {
@@ -70,11 +65,35 @@ public class TareaModel {
         this.hduTarID = hduTarID;
     }
 
+    public int getSprint() {
+        return sprint;
+    }
+
+    public void setSprint(int sprint) {
+        this.sprint = sprint;
+    }
+
     public List<TareaDTO> getListaTarea() {
         return listaTarea;
     }
 
     public void setListaTarea(List<TareaDTO> listaTarea) {
         this.listaTarea = listaTarea;
+    }
+
+    public List<UsuarioDTO> getListaUsuariosTarea() {
+        return listaUsuariosTarea;
+    }
+
+    public void setListaUsuariosTarea(List<UsuarioDTO> listaUsuariosTarea) {
+        this.listaUsuariosTarea = listaUsuariosTarea;
+    }
+
+    public MensajeDTO getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(MensajeDTO mensaje) {
+        this.mensaje = mensaje;
     }
 }

@@ -280,6 +280,56 @@
             <result name="success">/tablasTestCase2.jsp</result>
             <result name="error">/tablasTestCase2.jsp</result>
         </action>
+        <action name="listaGrupoSprint" class="action.Grupo"  method="listargrupoValidos">
+            <result name="success">/grupoSprint.jsp</result>
+        </action>
+
+        <action name="ingresaSprint" class="action.Sprint"  method="crearSprint">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+        </action>
+
+        <action name="listaSprint" class="action.Sprint"  method="listarSprint">
+            <result name="success">/iterarSprint.jsp</result>
+        </action>
+
+        <action name="listaHduFiltros" class="action.Historia"  method="listarHduConSrint">
+            <result name="success">/gestionarIteracion.jsp</result>
+        </action>
+
+        <action name="listaTareasIteracion" class="action.Tarea" method="ListaTareaHdu">
+            <result name="success">/tareaSprint.jsp</result>
+        </action>
+
+        <action name="iteracionPrincipal" class="action.Iteracion" method="ingresaIteracion">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+        </action>
+
+        <action name="listaHduSin" class="action.Historia"  method="listarHduSinSrint">
+            <result name="success">/historiasSinSprint.jsp</result>
+        </action>
+
+        <action name="listaTareasIteracion0" class="action.Tarea" method="ListaTareaHduSinIteraciones">
+            <result name="success">/IngresarIteracion0.jsp</result>
+        </action>
+
+        <action name="iteracionSecundaria" class="action.Iteracion" method="ingresaIteracion0">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+        </action>
 
     </package>
 

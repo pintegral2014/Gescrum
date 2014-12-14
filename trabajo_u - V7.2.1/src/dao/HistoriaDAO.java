@@ -201,6 +201,83 @@ public class HistoriaDAO {
             return listhistory;
         }
     }
+    public static List<HistoriaDTO> filtroHduConSprint(HistoriaDTO idSprint )throws Exception{
+
+        PreparedStatement p = null;
+        List<HistoriaDTO> listhistory = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select distinct hdu_id, hdu_nombre, hdu_prioridad,hdu_descripcion,hdu_dependencia,hdu_fecha_creacion,pro_nombre\n" +
+                    "                     from tbl_hdu h\n" +
+                    "                       inner join tbl_tarea t on t.tbl_hdu_hdu_id = h.hdu_id\n" +
+                    "                       inner join tbl_hdu_x_sprint hs on hs.tbl_tarea_tar_id = t.tar_id\n" +
+                    "                       inner join tbl_sprint s on s.spr_id = hs.tbl_sprint_spr_id\n" +
+                    "                       inner join tbl_proyecto p on p.pro_id = h.tbl_proyecto_pro_id\n" +
+                    "                     where s.spr_id = ?;";
+
+            p = conn.prepareStatement(sql);
+            p.setInt(1, idSprint.getSprint());
+            ResultSet res = p.executeQuery();
+            listhistory = new ArrayList<HistoriaDTO>();
+            while (res.next()){
+                HistoriaDTO historia = new HistoriaDTO();
+                historia.setHisId(res.getInt("hdu_id"));
+                historia.setNombrehistoria(res.getString("hdu_nombre"));
+                historia.setPrioridad(res.getInt("hdu_prioridad"));
+                historia.setDescripcion(res.getString("hdu_descripcion"));
+                historia.setDependencia(res.getString("hdu_dependencia"));
+                historia.setFechaCrea(res.getDate("hdu_fecha_creacion"));
+                historia.setNombreProyecto(res.getString("pro_nombre"));
+
+                listhistory.add(historia);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listhistory;
+        }
+    }
+
+
+    public static List<HistoriaDTO> filtroHduSinSprint( )throws Exception{
+
+        PreparedStatement p = null;
+        List<HistoriaDTO> listhistory = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select distinct hdu_id,hdu_nombre, hdu_prioridad,hdu_descripcion,hdu_dependencia,hdu_fecha_creacion,pro_nombre from tbl_hdu h\n" +
+                    "inner join tbl_tarea t on t.tbl_hdu_hdu_id = h.hdu_id \n" +
+                    "inner join tbl_proyecto p on p.pro_id = h.tbl_proyecto_pro_id   \n" +
+                    "where tar_id not in(select tbl_tarea_tar_id from tbl_hdu_x_sprint)";
+
+            p = conn.prepareStatement(sql);
+
+            ResultSet res = p.executeQuery();
+            listhistory = new ArrayList<HistoriaDTO>();
+            while (res.next()){
+                HistoriaDTO historia = new HistoriaDTO();
+                historia.setHisId(res.getInt("hdu_id"));
+                historia.setNombrehistoria(res.getString("hdu_nombre"));
+                historia.setPrioridad(res.getInt("hdu_prioridad"));
+                historia.setDescripcion(res.getString("hdu_descripcion"));
+                historia.setDependencia(res.getString("hdu_dependencia"));
+                historia.setFechaCrea(res.getDate("hdu_fecha_creacion"));
+                historia.setNombreProyecto(res.getString("pro_nombre"));
+
+                listhistory.add(historia);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listhistory;
+        }
+    }
     public static List<HistoriaDTO> proyectoHistoriaList2(int proyecto)throws Exception{
         PreparedStatement p = null;
         List<HistoriaDTO> listhistory = null;

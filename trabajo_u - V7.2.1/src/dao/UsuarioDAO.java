@@ -339,6 +339,44 @@ public class UsuarioDAO {
             return query;
         }
     }
+    // lista los usuarios de lso grupos asociados a un sprint determiando
+    public static List<UsuarioDTO> listaUsuariosGrupoSprint(int idSprint)throws Exception{
+        PreparedStatement p = null;
+        List<UsuarioDTO> listauser = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select * from tbl_usuario u\n" +
+                    "  inner join tbl_usuario_grupo g on u.usu_id = g.tbl_usuario_usu_id \n" +
+                    "  inner join tbl_sprint s on s.tbl_grupo_gru_id = g.tbl_grupo_gru_id \n" +
+                    "  where s.spr_id = ?";
 
+            p = conn.prepareStatement(sql);
+            p.setInt(1, idSprint);
+
+
+            ResultSet res = p.executeQuery();
+            listauser = new ArrayList<UsuarioDTO>();
+            while (res.next()){
+                UsuarioDTO usuario = new UsuarioDTO();
+                usuario.setUsuId(res.getInt("usu_id"));
+                usuario.setUsuNombre(res.getString("usu_nombre"));
+                usuario.setUsuApellidoPaterno(res.getString("usu_apellido_paterno"));
+                usuario.setUsuApellidoMaterno(res.getString("usu_apellido_materno"));
+                usuario.setUsuCorreo(res.getString("usu_correo"));
+                usuario.setUsuLoginConexion(res.getString("usu_login_conexion"));
+                usuario.setUsuEstado(res.getString("usu_estado"));
+                usuario.setUsuClave(res.getInt("usu_clave"));
+
+                listauser.add(usuario);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listauser;
+        }
+    }
 
 }

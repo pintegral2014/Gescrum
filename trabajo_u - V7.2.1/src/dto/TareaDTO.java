@@ -10,17 +10,19 @@ public class TareaDTO {
     private String descripcionTarea;
     private Date fechaCreacion;
     private String usuCreador;
+    private String nombreHistoria;
     private int hduTarID;
 
     public TareaDTO() {
     }
 
-    public TareaDTO(int idTarea, String descripcionTarea, Date fechaCreacion, String usuCreador, int hduTarID) {
+    public TareaDTO(int idTarea, String descripcionTarea, Date fechaCreacion,String nombreHistoria, String usuCreador, int hduTarID) {
         this.idTarea = idTarea;
         this.descripcionTarea = descripcionTarea;
         this.fechaCreacion = fechaCreacion;
         this.usuCreador = usuCreador;
         this.hduTarID = hduTarID;
+        this.nombreHistoria =nombreHistoria;
     }
 
     public int getIdTarea() {
@@ -53,6 +55,14 @@ public class TareaDTO {
 
     public void setUsuCreador(String usuCreador) {
         this.usuCreador = usuCreador;
+    }
+
+    public String getNombreHistoria() {
+        return nombreHistoria;
+    }
+
+    public void setNombreHistoria(String nombreHistoria) {
+        this.nombreHistoria = nombreHistoria;
     }
 
     public int getHduTarID() {

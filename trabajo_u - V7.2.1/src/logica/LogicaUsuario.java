@@ -25,7 +25,7 @@ public class LogicaUsuario {
         UsuarioDTO usuarioLogin = UsuarioDAO.loginusuario(login, clave);
         // retorna true si el usuario es valido con la base de datos, de lo contrario retorna false
         if (usuarioLogin != null && usuarioLogin.getUsuLoginConexion() != null && usuarioLogin.getUsuClave() != 0 && !usuarioLogin.getUsuLoginConexion().equals("")
-                && usuarioLogin.getUsuEstado().equals("vigente"))
+                && usuarioLogin.getUsuEstado().equals("Vigente"))
             return usuarioLogin;
 
         else {
@@ -99,6 +99,17 @@ public class LogicaUsuario {
     public boolean bloquearUsuario(int idUsu, String estado)throws Exception{
         return true;
     }
+
+    public List<UsuarioDTO> listaUsuarioGrupoSprint(int idSprint)throws Exception{
+        List<UsuarioDTO>listaUsuarios = UsuarioDAO.listaUsuariosGrupoSprint(idSprint);
+        if(listaUsuarios != null)
+        {
+            return listaUsuarios;
+        }else{
+            return null;
+        }
+    }
+
 }
 
 
