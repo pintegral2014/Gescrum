@@ -144,6 +144,7 @@
                     <li><a style="cursor:pointer;"  class="action" name="Backlog proyecto" id="backlog">Backlog proyecto</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Gestionar TestCase" id="inicioTestCase">Gestionar TestCase</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Gráfico</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Ejecutar TestCase" id="inicioEjecutarTestCase">Ejecutar TestCase</a></li>
                 </ul>
             </li>
 

@@ -35,8 +35,7 @@ public class LogicaIteracion {
         iteracion.setIteracionCantidad(iteracionMaxTarea);
         String fechaUltimaIteracion = String.valueOf(IteracionDAO.obtenerFecha(iteracion));
         String fechaActual = String.valueOf(getCurrentDate());
-        JOptionPane.showMessageDialog(null,fechaUltimaIteracion);
-        JOptionPane.showMessageDialog(null,fechaActual);
+
 
         if(fechaActual.equals(fechaUltimaIteracion)){
            iteracion.setMensajeAux("<span class='glyphicon glyphicon-remove' " +

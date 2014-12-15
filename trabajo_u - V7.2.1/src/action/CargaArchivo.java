@@ -40,11 +40,11 @@ public class CargaArchivo extends ActionSupport implements ModelDriven {
             LogicaRepositorio repositorio = new LogicaRepositorio(newRepo);
            boolean prueba = repositorio.ingresarRepositorio();
             if(prueba){
-                JOptionPane.showMessageDialog(null,"Archivo creado");
+
                 return SUCCESS;
             }
         }
-        JOptionPane.showMessageDialog(null,"Archivo no creado");
+
         return ERROR;
     }
 

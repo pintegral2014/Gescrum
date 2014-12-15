@@ -89,8 +89,7 @@ public class IteracionDAO {
     public static Date obtenerFecha(IteracionDTO iteracion) throws Exception{
         PreparedStatement p = null;
         Date fecha = null;
-        JOptionPane.showMessageDialog(null,iteracion.getIteracionIdSprint());
-        JOptionPane.showMessageDialog(null,iteracion.getIteracionIdTarea());
+
         ConnectionDB interfaceConn = new ConnectionDB();
         try{
             Connection conn = interfaceConn.getConnectionDB();

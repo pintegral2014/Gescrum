@@ -305,7 +305,7 @@
             <result name="success">/gestionarIteracion.jsp</result>
         </action>
 
-        <action name="listaTareasIteracion" class="action.Tarea" method="ListaTareaHdu">
+        <action name="listaTareasIteracion" class="action.Tarea" method="ListaTareaHdu2">
             <result name="success">/tareaSprint.jsp</result>
         </action>
 
