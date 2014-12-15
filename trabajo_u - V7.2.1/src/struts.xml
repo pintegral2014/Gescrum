@@ -186,7 +186,7 @@
         </action>
         <action name="listarHduSprint" class="action.HduSprint" method="listarHduSprint">
             <result name="success" type="json">
-                <param name="includeProperties">listHdu.*</param>
+                <param name="includeProperties">listHdu.*,numeroDias.*,listaEsfuerzoReal.*</param>
             </result>
         </action>
         <action name="buscarDataUsuario" class="action.Usuario" method="buscarDataUsuario">

@@ -17,6 +17,16 @@ public class HduSprintModel {
     private int tarId;
     private int iteracion;
     private List<HduSprintDTO> listHdu;
+    private int numeroDias;
+    private List<Integer> listaEsfuerzoReal;
+
+    public List<Integer> getListaEsfuerzoReal() {
+        return listaEsfuerzoReal;
+    }
+
+    public void setListaEsfuerzoReal(List<Integer> listaEsfuerzoReal) {
+        this.listaEsfuerzoReal = listaEsfuerzoReal;
+    }
 
     public int getSprId() {
         return sprId;
@@ -80,5 +90,13 @@ public class HduSprintModel {
 
     public void setListHdu(List<HduSprintDTO> listHdu) {
         this.listHdu = listHdu;
+    }
+
+    public int getNumeroDias() {
+        return numeroDias;
+    }
+
+    public void setNumeroDias(int numeroDias) {
+        this.numeroDias = numeroDias;
     }
 }

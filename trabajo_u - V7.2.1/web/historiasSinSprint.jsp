@@ -31,7 +31,7 @@
                             <div class="page-tables">
                                 <!-- Table -->
                                 <div class="table-responsive">
-                                    <table cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
                                         <thead class="btn-default">
                                         <tr style ="font-size: 12px">
                                             <th >Nombre</th>
@@ -95,11 +95,12 @@
 
 <script>
     $(document).ready(function(){
-        $('#data-table').dataTable({
+        $('table.display').dataTable({
             destroy: true,
             "sPaginationType": "full_numbers",
             paging: true,
-            searching: true
+            searching: true,
+            "iDisplayLength": 5
         });
 
     });

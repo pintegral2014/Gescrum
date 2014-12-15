@@ -15,33 +15,16 @@ public class SprintModel {
     private String nombreSprint;
     private String descripcionSprint;
     private String estadoSprint;
-    private Date fechaCreacion;
+    private String fechaCreacion;
+    private String fechaFin;
     private String usuCreadorSprint;
     private int gruSprintId;
     private String nombreGrupo;
     private List<SprintDTO> listaSprint;
     private MensajeDTO mensaje;
+    private int numeroDias;
 
 
-
-    public SprintModel() {
-    }
-
-
-    public String getNombreGrupo() {
-        return nombreGrupo;
-    }
-
-    public void setNombreGrupo(String nombreGrupo) {
-        this.nombreGrupo = nombreGrupo;
-    }
-    public MensajeDTO getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(MensajeDTO mensaje) {
-        this.mensaje = mensaje;
-    }
 
     public int getSprintId() {
         return sprintId;
@@ -75,12 +58,20 @@ public class SprintModel {
         this.estadoSprint = estadoSprint;
     }
 
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public String getUsuCreadorSprint() {
@@ -99,11 +90,35 @@ public class SprintModel {
         this.gruSprintId = gruSprintId;
     }
 
+    public String getNombreGrupo() {
+        return nombreGrupo;
+    }
+
+    public void setNombreGrupo(String nombreGrupo) {
+        this.nombreGrupo = nombreGrupo;
+    }
+
     public List<SprintDTO> getListaSprint() {
         return listaSprint;
     }
 
     public void setListaSprint(List<SprintDTO> listaSprint) {
         this.listaSprint = listaSprint;
+    }
+
+    public MensajeDTO getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(MensajeDTO mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public int getNumeroDias() {
+        return numeroDias;
+    }
+
+    public void setNumeroDias(int numeroDias) {
+        this.numeroDias = numeroDias;
     }
 }

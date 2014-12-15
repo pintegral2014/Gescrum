@@ -47,17 +47,13 @@ public class Iteracion extends ActionSupport implements ModelDriven {
 
         if (insert){
 
-            iteracionModel.setMensaje(new MensajeDTO("success","<span class='glyphicon glyphicon-ok' " +
-                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
-                    "Iteracion Ingresada con exito</span>" ));
+            iteracionModel.setMensaje(new MensajeDTO("success",newIteracion.getMensajeAux()));
             //se crea el registro de usuario en la bd
             return SUCCESS;
         } else {
             // no se crea registro de usuario
 
-            iteracionModel.setMensaje(new MensajeDTO("error","<span class='glyphicon glyphicon-remove' " +
-                    "style='color:red; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
-                    "Iteracion no ingresada</span>"));
+            iteracionModel.setMensaje(new MensajeDTO("error",newIteracion.getMensajeAux()));
             return ERROR;
         }
 

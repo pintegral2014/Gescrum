@@ -1,6 +1,7 @@
 package logica;
 
 import dao.HduSprintDAO;
+import dao.HistoriaDAO;
 import dto.HduSprintDTO;
 
 import java.util.List;
@@ -29,6 +30,17 @@ public class LogicaHduSprint {
             return null;
         }
     }
+    public int traerDifDias(int idSprint) throws Exception { //crea función de tipo lista con objeto DTO
+        int difDias = HduSprintDAO.obtenerDifDias(idSprint);
 
+        if(difDias != -1)
+        {
+            return difDias;
+        }
+        else
+        {
+            return -1;
+        }
+    }
 
 }

@@ -3,6 +3,7 @@ package dao;
 import connection.ConnectionDB;
 import dto.SprintDTO;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -33,7 +34,7 @@ public class SprintDAO {
             p = conn.prepareStatement(sql);
             p.setString(1, sprint.getNombreSprint());
             p.setString(2, sprint.getDescripcionSprint());
-            p.setDate(3, getCurrentDate());
+            p.setDate(3, Date.valueOf(sprint.getFechaFin()));
             p.setDate(4, getCurrentDate());
             p.setString(5, sprint.getUsuCreadorSprint());
             p.setInt(6, sprint.getGruSprintId());
@@ -58,7 +59,7 @@ public class SprintDAO {
         ConnectionDB interfaceConn = new ConnectionDB();
         try {
             Connection conn = interfaceConn.getConnectionDB();
-            String sql = "select spr_id,spr_nombre,spr_descripcion,spr_estado,spr_fecha_creacion,spr_usuario_creador,gru_nombre,gru_id from tbl_sprint,tbl_grupo where tbl_grupo_gru_id=gru_id and spr_estado not in('Finalizado')";
+            String sql = "select spr_id,spr_nombre,spr_descripcion,spr_estado,spr_fecha_creacion, spr_fecha_fin, spr_usuario_creador,gru_nombre,gru_id from tbl_sprint,tbl_grupo where tbl_grupo_gru_id=gru_id and spr_estado not in('Finalizado')";
 
             p = conn.prepareStatement(sql);
 
@@ -70,7 +71,8 @@ public class SprintDAO {
                 sprint.setNombreSprint(res.getString("spr_nombre"));
                 sprint.setDescripcionSprint(res.getString("spr_descripcion"));
                 sprint.setEstadoSprint(res.getString("spr_estado"));
-                sprint.setFechaCreacion(res.getDate("spr_fecha_creacion"));
+                sprint.setFechaCreacion(res.getString("spr_fecha_creacion"));
+                sprint.setFechaFin(res.getString("spr_fecha_fin"));
                 sprint.setUsuCreadorSprint(res.getString("spr_usuario_creador"));
                 sprint.setNombreGrupo(res.getString("gru_nombre"));
                 sprint.setGruSprintId(res.getInt("gru_id"));
@@ -82,6 +84,33 @@ public class SprintDAO {
         }finally {
             interfaceConn.cerrarConexion();
             return listaSprint;
+        }
+    }
+
+
+    public static int obtenerDias(int numeroDiass)throws Exception{
+        PreparedStatement p = null;
+        int numeroDias = -1;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select  datediff(spr_fecha_fin,spr_fecha_creacion) from tbl_sprint where spr_id = ?;";
+
+            p = conn.prepareStatement(sql);
+            p.setInt(1, numeroDiass);
+
+            ResultSet res = p.executeQuery();
+
+            while (res.next()){
+                    numeroDias = res.getInt("datediff(spr_fecha_fin,spr_fecha_creacion)");
+            }
+
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return numeroDias;
         }
     }
 }

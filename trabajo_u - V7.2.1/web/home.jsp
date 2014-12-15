@@ -112,7 +112,7 @@
                 <ul>
                     <li><a style="cursor:pointer;"  class="action" name="Ejecutar TestCase" id="ejecutarTestCase">Ejecutar TestCase</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Asignar Tareas" id="listaGestionTarea">Asignar Tareas</a></li>
-                    <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Prueba</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Gráfico</a></li>
                     <li><a style="cursor:pointer;"  class="action" id="listaGrupoSprint" name="Generar Sprint">Generar Sprint</a></li>
                     <li><a style="cursor:pointer;"  class="action" id="listaSprint" name="Lista Sprint">Interar Sprint</a></li>
                 </ul>
@@ -131,6 +131,7 @@
                 <ul>
                     <li><a style="cursor:pointer;"  class="action" name="Backlog proyecto" id="backlog">Backlog proyecto</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="mis tareas" id="">Mis tareas</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Gráfico</a></li>
                 </ul>
             </li>
 
@@ -142,6 +143,7 @@
                 <ul>
                     <li><a style="cursor:pointer;"  class="action" name="Backlog proyecto" id="backlog">Backlog proyecto</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Gestionar TestCase" id="inicioTestCase">Gestionar TestCase</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Gráfico</a></li>
                 </ul>
             </li>
 
@@ -151,6 +153,7 @@
                 <a style="cursor:pointer;"><i class="fa fa-user"></i><span class="tituloMenu"> Funcionalidades </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
                     <li ><a style="cursor:pointer;"  class="action" name="Gestionar Historia" id="listarHistorias">Gestionar Historia</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Gráfico</a></li>
                 </ul>
             </li>
             <% } %>

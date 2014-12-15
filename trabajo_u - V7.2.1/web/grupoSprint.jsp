@@ -34,7 +34,7 @@
                                 <!-- Table -->
                                 <div class="table-responsive">
                                     <!-- aqui comienza el data table-->
-                                    <table class="table table-collase table-condensed table-responsive" cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
+                                    <table class="display" cellpadding="0" cellspacing="0" border="0" width="100%">
                                         <thead class="btn-default">
                                         <tr >
                                             <th>ID</th>
@@ -88,15 +88,19 @@
                 <form role="form" id="formIngSprint">
                     <div class="form-group">
                         <label class="control-label">Sprint Nombre:</label>
-                        <input type="text" class="form-control" name="nombreSprint" id="nombreSprint">
+                        <input type="text" class="form-control" name="nombreSprint" id="nombreSprint"><!-- -->
                     </div>
                     <div class="form-group">
                         <label class="control-label">Sprint Descripcion:</label>
-                        <input type="text" class="form-control" name="descripcionSprint" id="descripcionSprint">
+                        <input type="text" class="form-control" name="descripcionSprint" id="descripcionSprint"><!-- -->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Fecha:</label>
+                        <input name="fechaFin" id="datepicker" type="text" value="" required /><!-- -->
                     </div>
 
-                        <input type="hidden" name="usuCreadorSprint" id="usuCreadorSprint" value="<%=session.getAttribute("loginConexion")%>">
-                        <input type="hidden" name="gruSprintId" id="gruSprintId">
+                        <input type="hidden" name="usuCreadorSprint" id="usuCreadorSprint" value="<%=session.getAttribute("loginConexion")%>"><!-- -->
+                        <input type="hidden" name="gruSprintId" id="gruSprintId"><!-- -->
                 </form>
             </div>
             <div class="modal-footer">
@@ -117,24 +121,31 @@
 <!-- fin Contenido de la p�gina -->
 <!-- Librerías JS para el tema macadmin -->
 <script src="framework/datatable/jquery.dataTables2.js"></script>
-<script src="framework/bootstrap-3.2.0/dist/js/bootstrap.js"></script> <!-- Bootstrap -->
-<script src="framework/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
-<script src="framework/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-<script src="framework/macAdminStyle/js/respond.min.js"></script>
-<script src="framework/macAdminStyle/js/bootstrap.min.js"></script> <!-- Bootstrap-->
+
+<script src="framework/jquery/jquery.blockUI.js" type="text/javascript"></script>
+<style type="text/css">
+    div.growlUI{
+        background: black;
+        position: absolute;
+    }
+    div.growlUI{
+        color: #ffffff;
+        padding: 10px;
+    }
+</style>
 <!-- fin  Librerías para el tema macadmin -->
 <script>
     $(document).ready(function(){
+
+
+
         $('.modal').appendTo($('body'));
-        $('#data-table').dataTable({
+        $('table.display').dataTable({
             destroy: true,
-            sPaginationType: "full_numbers",
+            "sPaginationType": "full_numbers",
             paging: true,
-            searching: true
+            searching: true,
+            "iDisplayLength": 5
         });
         $('#guardarSpint').click(function(){
             $.ajax({
@@ -144,10 +155,10 @@
                 dataType:"json",
                 success: function (data) {
 
-                    if(data.mensajeDTO.tipo == "success"){
+                    if(data.mensaje.tipo == "success"){
 
                         $('#myModal').modal('hide');
-                       // $.growlUI(data.mensajeDTO.texto);
+                       $.growlUI(data.mensaje.texto);
                         setTimeout(function(){
 
                             $.ajax({
@@ -162,7 +173,7 @@
                     }
                     else{
                         $('#myModal').modal('hide');
-                        //$.growlUI(data.mensajeDTO.texto);
+                        $.growlUI(data.mensaje.texto);
                     }
                 }
             });
@@ -172,6 +183,22 @@
     }); // fin document ready
 
     function onClickGenerarSprint(id) {
+        $.datepicker.regional['es'] =
+        {
+            closeText: "Cerrar",
+            prevText: "Previo",
+            nextText: "Próximo",
+            monthNames: ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+            monthNamesShort: ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+            monthStatus: "Ver otro mes", yearStatus: "Ver otro año",
+            dayNames: ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"],
+            dayNamesShort: ["Dom","Lun","Mar","Mie","Jue","Vie","Sáb"],
+            dayNamesMin: ["Do","Lu","Ma","Mi","Ju","Vi","Sa"],
+            dateFormat: "yy-mm-dd", firstDay: 0,
+            initStatus: "Selecciona la fecha", isRTL: false};
+
+        $( "#datepicker" ).datepicker($.datepicker.regional["es"]);
+
        $('#gruSprintId').val(id);
        $('#myModal').modal('show');
 }

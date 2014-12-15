@@ -11,38 +11,34 @@ public class SprintDTO {
     private String nombreSprint;
     private String descripcionSprint;
     private String estadoSprint;
-    private Date fechaCreacion;
+    private String fechaCreacion;
+    private String fechaFin;
     private String usuCreadorSprint;
     private int gruSprintId;
     private String nombreGrupo;
     private GrupoDTO grupoSprint;
+    private int numeroDias;
 
 
     public SprintDTO() {
     }
 
-    public SprintDTO(int sprintId, String nombreSprint, String descripcionSprint, String estadoSprint, Date fechaCreacion, String usuCreadorSprint, int gruSprintId, GrupoDTO grupoSprint,String nombreGrupo) {
+    public SprintDTO(int sprintId, String nombreSprint, String descripcionSprint, String estadoSprint, String fechaCreacion, String fechaFin, String usuCreadorSprint, int gruSprintId, String nombreGrupo, GrupoDTO grupoSprint, int numeroDias) {
         this.sprintId = sprintId;
         this.nombreSprint = nombreSprint;
         this.descripcionSprint = descripcionSprint;
         this.estadoSprint = estadoSprint;
         this.fechaCreacion = fechaCreacion;
+        this.fechaFin = fechaFin;
         this.usuCreadorSprint = usuCreadorSprint;
         this.gruSprintId = gruSprintId;
-        this.grupoSprint = grupoSprint;
         this.nombreGrupo = nombreGrupo;
+        this.grupoSprint = grupoSprint;
+        this.numeroDias = numeroDias;
     }
 
     public int getSprintId() {
         return sprintId;
-    }
-
-    public String getNombreGrupo() {
-        return nombreGrupo;
-    }
-
-    public void setNombreGrupo(String nombreGrupo) {
-        this.nombreGrupo = nombreGrupo;
     }
 
     public void setSprintId(int sprintId) {
@@ -73,12 +69,20 @@ public class SprintDTO {
         this.estadoSprint = estadoSprint;
     }
 
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public String getUsuCreadorSprint() {
@@ -97,11 +101,27 @@ public class SprintDTO {
         this.gruSprintId = gruSprintId;
     }
 
+    public String getNombreGrupo() {
+        return nombreGrupo;
+    }
+
+    public void setNombreGrupo(String nombreGrupo) {
+        this.nombreGrupo = nombreGrupo;
+    }
+
     public GrupoDTO getGrupoSprint() {
         return grupoSprint;
     }
 
     public void setGrupoSprint(GrupoDTO grupoSprint) {
         this.grupoSprint = grupoSprint;
+    }
+
+    public int getNumeroDias() {
+        return numeroDias;
+    }
+
+    public void setNumeroDias(int numeroDias) {
+        this.numeroDias = numeroDias;
     }
 }

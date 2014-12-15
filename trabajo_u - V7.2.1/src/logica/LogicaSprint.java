@@ -34,12 +34,24 @@ public class LogicaSprint {
     public List<SprintDTO> listarSprint() throws  Exception{
         List<SprintDTO> listaSprint = SprintDAO.listaSprintGrupo();
 
+
         if(listaSprint != null)
         {
             //retorna la lista de grupos
             return listaSprint;
         }else{
             return null;
+        }
+    }
+
+    public int obtenerDias(int numeroDiass) throws  Exception{
+       int numeroDias = SprintDAO.obtenerDias(numeroDiass);
+
+        if(numeroDias != -1)
+        {
+            return numeroDias;
+        }else{
+            return -1;
         }
     }
 

@@ -17,11 +17,12 @@ public class IteracionDTO {
     private Date iteracionFechaMod;
     private List<String> listaEsfuerzo;
     private List<String> listaIdTar;
+    private String mensajeAux;
 
     public IteracionDTO() {
     }
 
-    public IteracionDTO(int iteracionIdSprint, int iteracionIdTarea, int iteracionEsfuerzo, String iteracionUsuarioAsignado, int iteracionCantidad, String iteracionEstado, Date iteracionFechaMod,List<String> listaEsfuerzo,List<String> listaIdTar) {
+    public IteracionDTO(int iteracionIdSprint, int iteracionIdTarea, int iteracionEsfuerzo, String iteracionUsuarioAsignado, int iteracionCantidad, String iteracionEstado, Date iteracionFechaMod, List<String> listaEsfuerzo, List<String> listaIdTar, String mensajeAux) {
         this.iteracionIdSprint = iteracionIdSprint;
         this.iteracionIdTarea = iteracionIdTarea;
         this.iteracionEsfuerzo = iteracionEsfuerzo;
@@ -29,24 +30,9 @@ public class IteracionDTO {
         this.iteracionCantidad = iteracionCantidad;
         this.iteracionEstado = iteracionEstado;
         this.iteracionFechaMod = iteracionFechaMod;
-        this.listaEsfuerzo=listaEsfuerzo;
-        this.listaIdTar=listaIdTar;
-    }
-
-    public List<String> getListaEsfuerzo() {
-        return listaEsfuerzo;
-    }
-
-    public void setListaEsfuerzo(List<String> listaEsfuerzo) {
         this.listaEsfuerzo = listaEsfuerzo;
-    }
-
-    public List<String> getListaIdTar() {
-        return listaIdTar;
-    }
-
-    public void setListaIdTar(List<String> listaIdTar) {
         this.listaIdTar = listaIdTar;
+        this.mensajeAux = mensajeAux;
     }
 
     public int getIteracionIdSprint() {
@@ -103,5 +89,29 @@ public class IteracionDTO {
 
     public void setIteracionFechaMod(Date iteracionFechaMod) {
         this.iteracionFechaMod = iteracionFechaMod;
+    }
+
+    public List<String> getListaEsfuerzo() {
+        return listaEsfuerzo;
+    }
+
+    public void setListaEsfuerzo(List<String> listaEsfuerzo) {
+        this.listaEsfuerzo = listaEsfuerzo;
+    }
+
+    public List<String> getListaIdTar() {
+        return listaIdTar;
+    }
+
+    public void setListaIdTar(List<String> listaIdTar) {
+        this.listaIdTar = listaIdTar;
+    }
+
+    public String getMensajeAux() {
+        return mensajeAux;
+    }
+
+    public void setMensajeAux(String mensajeAux) {
+        this.mensajeAux = mensajeAux;
     }
 }

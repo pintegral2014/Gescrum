@@ -30,7 +30,7 @@
                         <div class="page-tables">
                             <!-- Table -->
                             <div class="table-responsive">
-                                <table cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
+                                <table cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
                                     <thead class="btn-default">
                                     <tr style ="font-size: 12px">
                                         <th>Codigo Tarea</th>
@@ -113,9 +113,19 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script src="framework/macAdminStyle/js/respond.min.js"></script>
-<script src="framework/macAdminStyle/js/bootstrap.min.js"></script>
 
+<script src="framework/macAdminStyle/js/bootstrap.min.js"></script>
+<script src="framework/jquery/jquery.blockUI.js" type="text/javascript"></script>
+<style type="text/css">
+    div.growlUI{
+        background: black;
+        position: absolute;
+    }
+    div.growlUI{
+        color: #ffffff;
+        padding: 10px;
+    }
+</style>
 <script>
     function generarIteracion0(idtarea,idSprint){
 
@@ -126,12 +136,14 @@
     }
 
     $(document).ready(function(){
+
         $('.modal').appendTo($('body'));
-        $('#data-table').dataTable({
+        $('table.display').dataTable({
             destroy: true,
-            sPaginationType: "full_numbers",
+            "sPaginationType": "full_numbers",
             paging: true,
-            searching: true
+            searching: true,
+            "iDisplayLength": 5
         });
         $('#guardarIteracion').click(function(){
             $.ajax({
@@ -141,14 +153,14 @@
                 dataType:"json",
                 success: function (data) {
 
-                    if(data.mensajeDTO.tipo == "success"){
+                    if(data.mensaje.tipo == "success"){
 
                         $('#myModal').modal('hide');
-                        // $.growlUI(data.mensajeDTO.texto);
+                        $.growlUI(data.mensaje.texto);
                         setTimeout(function(){
 
                             $.ajax({
-                                url: '.action',
+                                url: 'listaTareasIteracion0.action?hduTarID=<%=request.getParameter("hduTarID")%>&sprint=<%=request.getParameter("sprint")%>',
                                 success: function(data){
                                     $('#contenidoPagina').html("");
                                     $('#contenidoPagina').html(data);
@@ -159,7 +171,7 @@
                     }
                     else{
                         $('#myModal').modal('hide');
-                        //$.growlUI(data.mensajeDTO.texto);
+                        $.growlUI(data.mensaje.texto);
                     }
                 }
             });

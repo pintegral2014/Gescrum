@@ -7,6 +7,7 @@ import dto.MensajeDTO;
 import dto.SprintDTO;
 import logica.LogicaSprint;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -35,7 +36,9 @@ public class Sprint extends ActionSupport implements ModelDriven {
         newSprint.setDescripcionSprint(modelSprint.getDescripcionSprint());
         newSprint.setUsuCreadorSprint(modelSprint.getUsuCreadorSprint());
         newSprint.setGruSprintId(modelSprint.getGruSprintId());
+        newSprint.setFechaFin(modelSprint.getFechaFin());
 
+        //JOptionPane.showMessageDialog(null,modelSprint.getFechaFin());
 
         LogicaSprint logicaSprint = new LogicaSprint(newSprint);
         boolean insert = logicaSprint.crearSprint();

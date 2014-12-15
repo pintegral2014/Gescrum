@@ -34,12 +34,13 @@
                                 <!-- Table -->
                                 <div class="table-responsive">
                                     <!-- aqui comienza el data table-->
-                                    <table class="table table-collase table-condensed table-responsive" cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
+                                    <table class="display" cellpadding="0" cellspacing="0" border="0"  width="100%">
                                         <thead class="btn-default">
                                         <tr >
                                             <th>Sprint</th>
                                             <th>Descripcion</th>
                                             <th>Fecha de Creacion</th>
+                                            <th>Fecha de Fin</th>
                                             <th>Estado</th>
                                             <th>Creador</th>
                                             <th>Grupo Asociado</th>
@@ -53,6 +54,7 @@
                                                 <td><s:property value="nombreSprint"/></td>
                                                 <td><s:property value="descripcionSprint"/></td>
                                                 <td><s:property value="fechaCreacion"/></td>
+                                                <td><s:property value="fechaFin"/></td>
                                                 <td><s:property value="estadoSprint"/></td>
                                                 <td><s:property value="usuCreadorSprint"/></td>
                                                 <td><s:property value="nombreGrupo"/></td>
@@ -92,25 +94,19 @@
 
 <!-- fin Contenido de la p�gina -->
 <!-- Librerías JS para el tema macadmin -->
+<script src="framework/jquery/jquery-1.11.1.min.js"></script>
 <script src="framework/datatable/jquery.dataTables2.js"></script>
-<script src="framework/bootstrap-3.2.0/dist/js/bootstrap.js"></script> <!-- Bootstrap -->
-<script src="framework/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
-<script src="framework/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-<script src="framework/macAdminStyle/js/respond.min.js"></script>
-<script src="framework/macAdminStyle/js/bootstrap.min.js"></script> <!-- Bootstrap-->
+
 <!-- fin  Librerías para el tema macadmin -->
 <script>
     $(document).ready(function(){
         $('.modal').appendTo($('body'));
-        $('#data-table').dataTable({
+        $('table.display').dataTable({
             destroy: true,
-            sPaginationType: "full_numbers",
+            "sPaginationType": "full_numbers",
             paging: true,
-            searching: true
+            searching: true,
+            "iDisplayLength": 5
         });
 
     }); // fin document ready

@@ -27,17 +27,17 @@ public class IteracionDAO {
         try{
             Connection conn = interfaceConn.getConnectionDB();
 
-            String sql = "insert into tbl_hdu_x_sprint\n" +
-                    "(tbl_sprint_spr_id, ts_esfuerzo, ts_usuario_asignado, ts_iteracion, ts_estado, ts_fecha_mod, tbl_tarea_tar_id)\n" +
-                    "select ?,?,?,(select max(ts_iteracion)+1 from tbl_hdu_x_sprint),?,?,?";
+            String sql = "insert into tbl_hdu_x_sprint (tbl_sprint_spr_id, ts_esfuerzo, ts_usuario_asignado, ts_iteracion, ts_estado, ts_fecha_mod, tbl_tarea_tar_id) \n" +
+                    "values (?,?,?,?,?,?,?)";
 
             p = conn.prepareStatement(sql);
             p.setInt(1, iteracion.getIteracionIdSprint());
             p.setInt(2, iteracion.getIteracionEsfuerzo());
             p.setString(3, iteracion.getIteracionUsuarioAsignado());
-            p.setString(4, iteracion.getIteracionEstado());
-            p.setDate(5, getCurrentDate());
-            p.setInt(6, iteracion.getIteracionIdTarea());
+            p.setInt(4, iteracion.getIteracionCantidad());
+            p.setString(5, iteracion.getIteracionEstado());
+            p.setDate(6, getCurrentDate());
+            p.setInt(7, iteracion.getIteracionIdTarea());
             int insertIt = p.executeUpdate();
 
             if (insertIt == 0) {
@@ -63,13 +63,15 @@ public class IteracionDAO {
         ConnectionDB interfaceConn = new ConnectionDB();
         try{
             Connection conn = interfaceConn.getConnectionDB();
-            String sql = "select ts_esfuerzo from tbl_hdu_x_sprint where tbl_sprint_spr_id = ? and ts_iteracion = (select max(ts_iteracion) from tbl_hdu_x_sprint) and  tbl_tarea_tar_id = ?";
+            String sql = "select sp.ts_esfuerzo from tbl_hdu_x_sprint sp where sp.tbl_sprint_spr_id = ? and sp.ts_iteracion = (select max(ts_iteracion) from tbl_hdu_x_sprint where tbl_sprint_spr_id=? and tbl_tarea_tar_id = ?) and  sp.tbl_tarea_tar_id = ?";
             p = conn.prepareStatement(sql);
             p.setInt(1, iteracion.getIteracionIdSprint());
-            p.setInt(2, iteracion.getIteracionIdTarea());
+            p.setInt(2, iteracion.getIteracionIdSprint());
+            p.setInt(3, iteracion.getIteracionIdTarea());
+            p.setInt(4, iteracion.getIteracionIdTarea());
             ResultSet resultSet = p.executeQuery();
             if(resultSet.next()){
-               esfuerzo = resultSet.getInt("ts_esfuerzo");
+                esfuerzo = resultSet.getInt("ts_esfuerzo");
                 return esfuerzo;
             }
         }
@@ -89,7 +91,7 @@ public class IteracionDAO {
         ConnectionDB interfaceConn = new ConnectionDB();
         try{
             Connection conn = interfaceConn.getConnectionDB();
-            String sql = "select ts_fecha_mod from tbl_hdu_x_sprint where tbl_sprint_spr_id = ? and ts_iteracion = (select max(ts_iteracion) from tbl_hdu_x_sprint) and  tbl_tarea_tar_id = ?";
+            String sql = "select sp.ts_fecha_mod from tbl_hdu_x_sprint sp where sp.tbl_sprint_spr_id = ? and sp.ts_iteracion = (select max(ts_iteracion) from tbl_hdu_x_sprint where sp.tbl_sprint_spr_id = tbl_sprint_spr_id) and  sp.tbl_tarea_tar_id = ?";
             p = conn.prepareStatement(sql);
             p.setInt(1, iteracion.getIteracionIdSprint());
             p.setInt(2, iteracion.getIteracionIdTarea());
@@ -143,6 +145,30 @@ public class IteracionDAO {
     }
 
 
+    public static int obtenerIteracion(IteracionDTO iteracion) throws Exception{
+        PreparedStatement p = null;
+        int iteracionmax = -1;
 
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try{
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select count(ts_iteracion) from tbl_hdu_x_sprint where tbl_sprint_spr_id= ? and tbl_tarea_tar_id = ?";
+            p = conn.prepareStatement(sql);
+            p.setInt(1, iteracion.getIteracionIdSprint());
+            p.setInt(2 ,iteracion.getIteracionIdTarea());
+            ResultSet resultSet = p.executeQuery();
+            if(resultSet.next()){
+                iteracionmax = resultSet.getInt("count(ts_iteracion)");
+                return iteracionmax;
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return iteracionmax;
+        }
+
+    }
 
 }

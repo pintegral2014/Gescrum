@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@taglib prefix="s" uri="/struts-tags"%>
-<script src="framework/macAdminStyle/js/jquery.js"></script> <!-- jQuery -->
+
 <script src="framework/graficos/js/highcharts.js"></script>
 <script src="framework/graficos/js/modules/exporting.js"></script>
+
 <style>
     .mostrarGrafico
     {
@@ -88,15 +89,19 @@
                 <div class="widget-content">
                     <div class="padd">
 
-                        <div id="grafico" style="min-width: 310px; height: 400px; margin: 0px 50px 0px 50px;"></div>
+                        <div id="grafico" style="min-width: 310px; height: 400px; margin: 0px 50px 0px 50px;">
+                           <center> <img src="imagenes/cargando.gif" style="width: 300px; height: 300px; margin-top: 40px;"/> </center></div>
 
 </div></div></div></div></div></div>
 
 
 
 <script>
-    function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
+    function redondeo(numero, decimales)
+    {
+        var flotante = parseFloat(numero);
+        var resultado = Math.round(flotante*Math.pow(10,decimales))/Math.pow(10,decimales);
+        return resultado;
     }
 
     $(document).ready(function(){
@@ -134,39 +139,45 @@
             var posicion=document.getElementById('sprint').options.selectedIndex; //posicion
             var id = document.getElementById('sprint').options[posicion].value;
             var nombre = document.getElementById('sprint').options[posicion].text;
-            if(id >= 0){
+            if (id < 0) {
+            } else {
 
                 $('.mostrarGrafico').show();
                 $('.nombreSprint').html(nombre);
 
                 $.ajax({
-                    url: "listarHduSprint.action?sprId="+id,
+                    url: "listarHduSprint.action?sprId=" + id,
                     type: "post",
                     dataType: "json",
                     success: function (data) {
 
-                    var i;
-                    var diasSprint = 15;
-                    var sumaEsperado = 0;
-                    var esfuerzo = new Array();
-                    var divSumaEsperado = 0;
 
-                    for(i=0;i<data.listHdu.length;i++) /* Suma los esfuerzos de la iteración 0 */
-                    {
-                        if(data.listHdu[i].ts_iteracion == 0)
+                        var i;
+                        var diasSprint = data.numeroDias;
+                        var sumaEsperado = 0;
+                        var esfuerzo = new Array();
+                        var divSumaEsperado = 0;
+
+
+
+                        for (i = 0; i < data.listHdu.length; i++) /* Suma los esfuerzos de la iteración 0 */
                         {
-                            sumaEsperado += data.listHdu[i].ts_esfuerzo;
+                            if (data.listHdu[i].ts_iteracion == 0) {
+                                sumaEsperado += data.listHdu[i].ts_esfuerzo;
+                            }
                         }
-                    }
                         divSumaEsperado = sumaEsperado / diasSprint;
+
                         i = 0;
-                        while(sumaEsperado >= 0) /* crea los valores de la linea esfuerzo esperado */
+                        while (sumaEsperado > 0) /* crea los valores de la linea esfuerzo esperado */
                         {
-                                esfuerzo[i] = sumaEsperado;
-                                sumaEsperado = sumaEsperado - divSumaEsperado;
+
+                            esfuerzo[i] = redondeo(sumaEsperado,0);
+
+                            sumaEsperado = sumaEsperado - divSumaEsperado;
+                            if(sumaEsperado<=0){esfuerzo[i+1]=0}
                             i++;
                         }
-
 
 
                         var chart;
@@ -183,7 +194,7 @@
                             },
                             // Pongo los datos en el eje de las 'X'
                             xAxis: {
-                                min:'0',
+                                min: '0',
                                 title: {
                                     text: 'Días'
                                 }
@@ -195,12 +206,14 @@
                                 title: {
                                     text: 'Esfuerzo'
                                 },
-                                plotLines: [{
-                                    value: 0,
-                                    width: 1,
+                                plotLines: [
+                                    {
+                                        value: 0,
+                                        width: 1,
 
-                                    color: 'red'
-                                }]
+                                        color: 'red'
+                                    }
+                                ]
                             },
                             plotOptions: {
                                 line: {
@@ -212,7 +225,7 @@
                             },
                             // Doy formato al la "cajita" que sale al pasar el ratón por encima de la gráfica
                             tooltip: {
-                                valueSuffix: ''//texto explicativo
+                                valueSuffix: ' '//texto explicativo
                             },
                             legend: {
                                 layout: 'vertical',
@@ -220,45 +233,21 @@
                                 verticalAlign: 'middle',
                                 borderWidth: 1
                             },
-                            series: [{
-                                name: 'Esfuerzo esperado',
-
-                                data: esfuerzo
-
-                            }, {
-                                name: 'Esfuerzo real',
-                                data: [0]
-                            }]
+                            series: [
+                                {
+                                    name: 'Esfuerzo esperado',
+                                    data: esfuerzo
+                                },
+                                {
+                                    name: 'Esfuerzo real',
+                                    data: data.listaEsfuerzoReal
+                                }
+                            ]
                         });
-
-
-
-
-
                     }
                 });
-                return false;
-
-
-              /* $.ajax({
-                    url: 'graficoesfuerzo.jsp',
-                    success: function(data){
-
-                        $('.contenidoGrafico').html(data)
-                    }
-                });
-                */
-
-
-
-
-
-
             }
-
         });
-
-
     });
 
 </script>

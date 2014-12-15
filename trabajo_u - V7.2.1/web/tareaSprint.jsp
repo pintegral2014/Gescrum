@@ -148,8 +148,19 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script src="framework/macAdminStyle/js/respond.min.js"></script>
+
 <script src="framework/macAdminStyle/js/bootstrap.min.js"></script> <!-- Bootstrap-->
+<script src="framework/jquery/jquery.blockUI.js" type="text/javascript"></script>
+<style type="text/css">
+    div.growlUI{
+        background: black;
+        position: absolute;
+    }
+    div.growlUI{
+        color: #ffffff;
+        padding: 10px;
+    }
+</style>
 <!-- fin  Librer�as para el tema macadmin -->
 <script>
 
@@ -162,28 +173,31 @@
     }
     $(document).ready(function(){
         $('.modal').appendTo($('body'));
-        $('#data-table').dataTable({
+        $('table.display').dataTable({
             destroy: true,
-            sPaginationType: "full_numbers",
+            "sPaginationType": "full_numbers",
             paging: true,
-            searching: true
+            searching: true,
+            "iDisplayLength": 5
         });
+
         $('#guardarIteracion').click(function(){
+
             $.ajax({
-                url: "iteracionPrincipal",
+                url: "iteracionPrincipal.action",
                 data: $('#formIngIteracion').serializeArray(),
                 type:"post",
                 dataType:"json",
                 success: function (data) {
 
-                    if(data.mensajeDTO.tipo == "success"){
+                    if(data.mensaje.tipo == "success"){
 
                         $('#myModal').modal('hide');
-                        // $.growlUI(data.mensajeDTO.texto);
+                         $.growlUI(data.mensaje.texto);
                         setTimeout(function(){
 
                             $.ajax({
-                                url: '.action',
+                                url: 'listaTareasIteracion.action?hduTarID=<%=request.getParameter("hduTarID")%>&sprint=<%=request.getParameter("sprint")%>',
                                 success: function(data){
                                     $('#contenidoPagina').html("");
                                     $('#contenidoPagina').html(data);
@@ -193,8 +207,9 @@
                         }, 2000);
                     }
                     else{
+
                         $('#myModal').modal('hide');
-                        //$.growlUI(data.mensajeDTO.texto);
+                        $.growlUI(data.mensaje.texto);
                     }
                 }
             });
