@@ -41,6 +41,7 @@
                                             <th>Fecha de creacion</th>
                                             <th>Proyecto</th>
                                             <th>Iterar Historia</th>
+                                            <th>Dropear Historia</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -55,6 +56,7 @@
                                                 <td>
                                                     <button type="button" class="btn btn-xs btn-info" onclick="javascript:listarTareasXHdu(<s:property value="hisId" />,<%=request.getParameter("sprint")%>)">Listar Tareas</button>
                                                 </td>
+                                                <td><button type="button" class="btn btn-xs btn-info" onclick="javascript:dropear(<s:property value="hisId" />,<%=request.getParameter("sprint")%>)">Dropear Historia</button></td>
                                             </tr>
                                         </s:iterator>
                                         </tbody>
@@ -117,7 +119,17 @@
             }
         });
     }
+function dropear(hisId,idSprint)
+    {
 
+        $.ajax({
+
+            url: 'dropearHistoria.action?idHistoriaIteracion='+hisId+'&iteracionIdSprint='+idSprint,
+            success: function(data){
+                $('#contenidoPagina').html(data)
+            }
+        });
+    }
 
     $(document).ready(function(){
 

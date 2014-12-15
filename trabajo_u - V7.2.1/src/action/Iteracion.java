@@ -1,6 +1,7 @@
 package action;
 
 import action.model.IteracionModel;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.sun.net.httpserver.Authenticator;
@@ -11,6 +12,7 @@ import logica.LogicaIteracion;
 import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by EmilioCesar on 08-12-2014.
@@ -92,5 +94,43 @@ public class Iteracion extends ActionSupport implements ModelDriven {
 
     } // fin metodo ingresarIteraciontodo ingresarIteracion
 
+public String misTareas() throws Exception{
+        // creo variable
 
+        // Asigno Datos
+        Map session = ActionContext.getContext().getSession();
+        String usuarioSession = (String) session.get("loginConexion");
+        //Logica tareas
+        LogicaIteracion logicatarea = new LogicaIteracion();
+        //Logica usuarios
+
+        List<IteracionDTO> listaIteracion = logicatarea.listaTareaDeUsuario(usuarioSession);
+
+
+
+        if(listaIteracion.size() >= 0 ){
+
+            this.iteracionModel.setListaiteracion(listaIteracion);
+            return SUCCESS;
+        }
+        else {
+
+            return ERROR;
+        }
+    }
+
+    public String dropearHistorias() throws Exception{
+        IteracionDTO modificaIteracion = new IteracionDTO();
+        modificaIteracion.setIdHistoria(this.iteracionModel.getIdHistoriaIteracion());
+        modificaIteracion.setIteracionIdSprint(this.iteracionModel.getIteracionIdSprint());
+        LogicaIteracion dropearHistoria = new LogicaIteracion(modificaIteracion);
+        boolean exito = dropearHistoria.dropearHistoria();
+        if(exito){
+            return SUCCESS;
+        }
+        else{
+            return ERROR;
+        }
+
+    }
 }

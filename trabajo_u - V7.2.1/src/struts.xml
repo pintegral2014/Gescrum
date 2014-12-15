@@ -305,7 +305,7 @@
             <result name="success">/gestionarIteracion.jsp</result>
         </action>
 
-        <action name="listaTareasIteracion" class="action.Tarea" method="ListaTareaHdu">
+        <action name="listaTareasIteracion" class="action.Tarea" method="ListaTareaHdu2">
             <result name="success">/tareaSprint.jsp</result>
         </action>
 
@@ -392,6 +392,14 @@
             <result name="success">/listaEjecTestCase.jsp</result>
             <result name="error">/listaTestCase.jsp</result>
         </action>
+		
+		<action name="misTareas" class="action.Iteracion" method="misTareas">
+            <result name="success">/misTareas.jsp</result>
+        </action>
+        <action name="dropearHistoria" class="action.Iteracion"  method="dropearHistorias">
+            <result name="success">/Refrescar</result>
+        </action>
+		
     </package>
 
 </struts>

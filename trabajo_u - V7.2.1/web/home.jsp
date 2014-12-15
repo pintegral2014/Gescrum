@@ -130,7 +130,7 @@
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Funcionalidades </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
                     <li><a style="cursor:pointer;"  class="action" name="Backlog proyecto" id="backlog">Backlog proyecto</a></li>
-                    <li><a style="cursor:pointer;"  class="action" name="mis tareas" id="">Mis tareas</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="mis tareas" id="misTareas">Mis tareas</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Gráfico</a></li>
                 </ul>
             </li>

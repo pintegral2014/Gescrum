@@ -40,6 +40,8 @@
                                             <th>Fecha de creacion</th>
                                             <th>Usuario Creador</th>
                                             <th>Historia de usuario origen</th>
+                                            <th>Esfuerzo Restante</th>
+                                            <th>Ultima fecha de Modificacion</th>
                                             <th>Iterar Tarea</th>
                                         </tr>
                                         </thead>
@@ -51,8 +53,10 @@
                                                 <td><s:property value="fechaCreacion"/></td>
                                                 <td><s:property value="usuCreador"/></td>
                                                 <td><s:property value ="nombreHistoria" /></td>
+                                                <td><s:property value="esfuerzo" /></td>
+                                                <td><s:property value="ultimaFechaMod" /></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-xs btn-info" onclick="javascript:generarIteracion(<s:property value="idTarea"/>,<%=request.getParameter("sprint")%>)">Iterar</button>
+                                                    <button type="button" class="btn btn-xs btn-info" onclick="javascript:generarIteracion(<s:property value="idTarea"/>,<%=request.getParameter("sprint")%>,<s:property value="esfuerzo" />)">Iterar</button>
                                                 </td>
                                             </tr>
                                         </s:iterator>

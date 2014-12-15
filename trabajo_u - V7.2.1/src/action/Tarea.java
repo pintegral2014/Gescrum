@@ -59,6 +59,40 @@ public class Tarea extends ActionSupport implements ModelDriven {
         }
     }
 
+
+    public String ListaTareaHdu2() throws Exception{
+        // creo variable
+        TareaDTO tareaIdHis = new TareaDTO();
+        // Asigno Datos
+        tareaIdHis.setHduTarID(this.modelTarea.getHduTarID());
+        //Logica tareas
+        LogicaTarea logicatarea = new LogicaTarea(tareaIdHis);
+        //Logica usuarios
+        LogicaUsuario logicaUsuario = new LogicaUsuario();
+
+        int idHistoria = this.modelTarea.getHduTarID();
+        int sprint = this.modelTarea.getSprint();
+
+
+        List<TareaDTO> listaTarea = logicatarea.listaTareaFil2();
+        List<UsuarioDTO> listaUsuario = logicaUsuario.listaUsuarioGrupoSprint(sprint);
+
+
+        if(tareaIdHis.getHduTarID() >= 0 ){
+
+            this.modelTarea.setListaTarea(listaTarea);
+            this.modelTarea.setHduTarID(idHistoria);
+            this.modelTarea.setSprint(sprint);
+            this.modelTarea.setListaUsuariosTarea(listaUsuario);
+
+            return SUCCESS;
+        }
+        else {
+
+            return ERROR;
+        }
+    }
+
     public String IngresarTarea() throws  Exception{
         TareaDTO tarea = new TareaDTO();
         tarea.setDescripcionTarea(this.modelTarea.getDescripcionTarea());

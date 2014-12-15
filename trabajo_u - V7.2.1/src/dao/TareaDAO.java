@@ -92,6 +92,45 @@ public class TareaDAO {
             return listatareas;
         }
     }
+
+
+    public static List<TareaDTO> listaTareaHistoria2 (TareaDTO idHistoria)throws Exception{
+        PreparedStatement p = null;
+        List<TareaDTO> listatareas = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select tar_id, tar_descripcion,tar_fecha_creacion,tar_usuario_creador, hdu_id,hdu_nombre,ts_esfuerzo,ts_fecha_mod from tbl_hdu_x_sprint sp\n" +
+                    "inner join tbl_tarea t on sp.tbl_tarea_tar_id = t.tar_id \n" +
+                    "inner join tbl_hdu h on t.tbl_hdu_hdu_id = h.hdu_id \n" +
+                    "inner join tbl_sprint s on s.spr_id = sp.tbl_sprint_spr_id \n" +
+                    "where hdu_id = ? and (select max(ts_fecha_mod) from tbl_hdu_x_sprint where sp.tbl_tarea_tar_id = tbl_tarea_tar_id) = ts_fecha_mod  order by sp.tbl_tarea_tar_id";
+
+            p = conn.prepareStatement(sql);
+            p.setInt(1, idHistoria.getHduTarID());
+            ResultSet res = p.executeQuery();
+            listatareas = new ArrayList<TareaDTO>();
+            while (res.next()){
+                TareaDTO tarea = new TareaDTO();
+                tarea.setIdTarea(res.getInt("tar_id"));
+                tarea.setDescripcionTarea(res.getString("tar_descripcion"));
+                tarea.setFechaCreacion(res.getDate("tar_fecha_creacion"));
+                tarea.setUsuCreador(res.getString("tar_usuario_creador"));
+                tarea.setHduTarID(res.getInt("hdu_id"));
+                tarea.setNombreHistoria(res.getString("hdu_nombre"));
+                tarea.setEsfuerzo(res.getInt("ts_esfuerzo"));
+                tarea.setUltimaFechaMod((res.getDate("ts_fecha_mod")));
+
+                listatareas.add(tarea);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listatareas;
+        }
+    }
     public static List<TareaDTO> listaTareaHistoriaSinIteracion (TareaDTO idHistoria)throws Exception{
 
         PreparedStatement p = null;

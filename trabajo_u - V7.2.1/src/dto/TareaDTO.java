@@ -10,19 +10,23 @@ public class TareaDTO {
     private String descripcionTarea;
     private Date fechaCreacion;
     private String usuCreador;
+    private int esfuerzo;
+    private Date ultimaFechaMod;
     private String nombreHistoria;
     private int hduTarID;
 
     public TareaDTO() {
     }
 
-    public TareaDTO(int idTarea, String descripcionTarea, Date fechaCreacion,String nombreHistoria, String usuCreador, int hduTarID) {
+    public TareaDTO(int idTarea, String descripcionTarea, Date fechaCreacion, String usuCreador, int esfuerzo, Date ultimaFechaMod, String nombreHistoria, int hduTarID) {
         this.idTarea = idTarea;
         this.descripcionTarea = descripcionTarea;
         this.fechaCreacion = fechaCreacion;
         this.usuCreador = usuCreador;
+        this.esfuerzo = esfuerzo;
+        this.ultimaFechaMod = ultimaFechaMod;
+        this.nombreHistoria = nombreHistoria;
         this.hduTarID = hduTarID;
-        this.nombreHistoria =nombreHistoria;
     }
 
     public int getIdTarea() {
@@ -55,6 +59,22 @@ public class TareaDTO {
 
     public void setUsuCreador(String usuCreador) {
         this.usuCreador = usuCreador;
+    }
+
+    public int getEsfuerzo() {
+        return esfuerzo;
+    }
+
+    public void setEsfuerzo(int esfuerzo) {
+        this.esfuerzo = esfuerzo;
+    }
+
+    public Date getUltimaFechaMod() {
+        return ultimaFechaMod;
+    }
+
+    public void setUltimaFechaMod(Date ultimaFechaMod) {
+        this.ultimaFechaMod = ultimaFechaMod;
     }
 
     public String getNombreHistoria() {

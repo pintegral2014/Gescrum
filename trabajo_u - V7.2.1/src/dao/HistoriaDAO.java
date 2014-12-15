@@ -213,7 +213,7 @@ public class HistoriaDAO {
                     "                       inner join tbl_hdu_x_sprint hs on hs.tbl_tarea_tar_id = t.tar_id\n" +
                     "                       inner join tbl_sprint s on s.spr_id = hs.tbl_sprint_spr_id\n" +
                     "                       inner join tbl_proyecto p on p.pro_id = h.tbl_proyecto_pro_id\n" +
-                    "                     where s.spr_id = ?;";
+                    "                     where s.spr_id = ? and hs.ts_estado ='En Proceso';";
 
             p = conn.prepareStatement(sql);
             p.setInt(1, idSprint.getSprint());

@@ -13,26 +13,32 @@ public class IteracionDTO {
     private int iteracionEsfuerzo;
     private String iteracionUsuarioAsignado;
     private int iteracionCantidad;
+    private String iteracionNombreSprint;
+    private String iteracionNombreHistoria;
     private String iteracionEstado;
+    private String mensajeAux;
     private Date iteracionFechaMod;
+    private int idHistoria;
     private List<String> listaEsfuerzo;
     private List<String> listaIdTar;
-    private String mensajeAux;
 
     public IteracionDTO() {
     }
 
-    public IteracionDTO(int iteracionIdSprint, int iteracionIdTarea, int iteracionEsfuerzo, String iteracionUsuarioAsignado, int iteracionCantidad, String iteracionEstado, Date iteracionFechaMod, List<String> listaEsfuerzo, List<String> listaIdTar, String mensajeAux) {
+    public IteracionDTO(int iteracionIdSprint, int iteracionIdTarea, int iteracionEsfuerzo, String iteracionUsuarioAsignado, int iteracionCantidad, String iteracionNombreSprint, String iteracionNombreHistoria, String iteracionEstado, String mensajeAux, Date iteracionFechaMod, int idHistoria, List<String> listaEsfuerzo, List<String> listaIdTar) {
         this.iteracionIdSprint = iteracionIdSprint;
         this.iteracionIdTarea = iteracionIdTarea;
         this.iteracionEsfuerzo = iteracionEsfuerzo;
         this.iteracionUsuarioAsignado = iteracionUsuarioAsignado;
         this.iteracionCantidad = iteracionCantidad;
+        this.iteracionNombreSprint = iteracionNombreSprint;
+        this.iteracionNombreHistoria = iteracionNombreHistoria;
         this.iteracionEstado = iteracionEstado;
+        this.mensajeAux = mensajeAux;
         this.iteracionFechaMod = iteracionFechaMod;
+        this.idHistoria = idHistoria;
         this.listaEsfuerzo = listaEsfuerzo;
         this.listaIdTar = listaIdTar;
-        this.mensajeAux = mensajeAux;
     }
 
     public int getIteracionIdSprint() {
@@ -75,6 +81,22 @@ public class IteracionDTO {
         this.iteracionCantidad = iteracionCantidad;
     }
 
+    public String getIteracionNombreSprint() {
+        return iteracionNombreSprint;
+    }
+
+    public void setIteracionNombreSprint(String iteracionNombreSprint) {
+        this.iteracionNombreSprint = iteracionNombreSprint;
+    }
+
+    public String getIteracionNombreHistoria() {
+        return iteracionNombreHistoria;
+    }
+
+    public void setIteracionNombreHistoria(String iteracionNombreHistoria) {
+        this.iteracionNombreHistoria = iteracionNombreHistoria;
+    }
+
     public String getIteracionEstado() {
         return iteracionEstado;
     }
@@ -83,12 +105,28 @@ public class IteracionDTO {
         this.iteracionEstado = iteracionEstado;
     }
 
+    public String getMensajeAux() {
+        return mensajeAux;
+    }
+
+    public void setMensajeAux(String mensajeAux) {
+        this.mensajeAux = mensajeAux;
+    }
+
     public Date getIteracionFechaMod() {
         return iteracionFechaMod;
     }
 
     public void setIteracionFechaMod(Date iteracionFechaMod) {
         this.iteracionFechaMod = iteracionFechaMod;
+    }
+
+    public int getIdHistoria() {
+        return idHistoria;
+    }
+
+    public void setIdHistoria(int idHistoria) {
+        this.idHistoria = idHistoria;
     }
 
     public List<String> getListaEsfuerzo() {
@@ -105,13 +143,5 @@ public class IteracionDTO {
 
     public void setListaIdTar(List<String> listaIdTar) {
         this.listaIdTar = listaIdTar;
-    }
-
-    public String getMensajeAux() {
-        return mensajeAux;
-    }
-
-    public void setMensajeAux(String mensajeAux) {
-        this.mensajeAux = mensajeAux;
     }
 }

@@ -6,6 +6,7 @@ import dto.IteracionDTO;
 
 import javax.swing.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by EmilioCesar on 08-12-2014.
@@ -34,8 +35,8 @@ public class LogicaIteracion {
         iteracion.setIteracionCantidad(iteracionMaxTarea);
         String fechaUltimaIteracion = String.valueOf(IteracionDAO.obtenerFecha(iteracion));
         String fechaActual = String.valueOf(getCurrentDate());
-        // JOptionPane.showMessageDialog(null,esfuerzoAcumulado);
-        // JOptionPane.showMessageDialog(null,iteracion.getIteracionEsfuerzo());
+        JOptionPane.showMessageDialog(null,fechaUltimaIteracion);
+        JOptionPane.showMessageDialog(null,fechaActual);
 
         if(fechaActual.equals(fechaUltimaIteracion)){
            iteracion.setMensajeAux("<span class='glyphicon glyphicon-remove' " +
@@ -83,6 +84,27 @@ public class LogicaIteracion {
         boolean insertIteracion = IteracionDAO.insertIteracion0(iteracion);
 
         return insertIteracion;
+
+    }
+	
+	  public List<IteracionDTO> listaTareaDeUsuario(String usuario) throws Exception{
+        List<IteracionDTO> listaIteracion = IteracionDAO.misTareas(usuario);
+
+        if(listaIteracion.size() >= 0) {
+            return listaIteracion;
+
+        }else{
+            return null;
+        }
+    }
+
+    public boolean dropearHistoria()throws Exception {
+
+        boolean dropHistoria = IteracionDAO.dropearHistoria(iteracion);
+        if(dropHistoria){
+            return true;
+        }
+        return false;
 
     }
 }

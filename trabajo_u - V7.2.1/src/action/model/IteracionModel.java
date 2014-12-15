@@ -1,5 +1,6 @@
 package action.model;
 
+import dto.IteracionDTO;
 import dto.MensajeDTO;
 import dto.UsuarioDTO;
 
@@ -16,43 +17,33 @@ public class IteracionModel {
     private int iteracionEsfuerzo;
     private UsuarioDTO iteracionUsuarioAsignado;
     private int iteracionCantidad;
+    private int idHistoriaIteracion;
     private List<UsuarioDTO> listaUsuarios;
     private String iteracionEstado;
+    private List<IteracionDTO> listaiteracion;
     private List<String> listaEsfuerzo;
+    private String mensajeAux;
     private List<String> listaIdTar;
     private Date iteracionFechaMod;
     private MensajeDTO mensaje;
 
-    public List<UsuarioDTO> getListaUsuarios() {
-        return listaUsuarios;
+    public IteracionModel() {
     }
 
-    public void setListaUsuarios(List<UsuarioDTO> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
+    public int getIdHistoriaIteracion() {
+        return idHistoriaIteracion;
     }
 
-    public List<String> getListaEsfuerzo() {
-        return listaEsfuerzo;
+    public void setIdHistoriaIteracion(int idHistoriaIteracion) {
+        this.idHistoriaIteracion = idHistoriaIteracion;
     }
 
-    public void setListaEsfuerzo(List<String> listaEsfuerzo) {
-        this.listaEsfuerzo = listaEsfuerzo;
+    public List<IteracionDTO> getListaiteracion() {
+        return listaiteracion;
     }
 
-    public List<String> getListaIdTar() {
-        return listaIdTar;
-    }
-
-    public void setListaIdTar(List<String> listaIdTar) {
-        this.listaIdTar = listaIdTar;
-    }
-
-    public MensajeDTO getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(MensajeDTO mensaje) {
-        this.mensaje = mensaje;
+    public void setListaiteracion(List<IteracionDTO> listaiteracion) {
+        this.listaiteracion = listaiteracion;
     }
 
     public int getIteracionIdSprint() {
@@ -95,6 +86,14 @@ public class IteracionModel {
         this.iteracionCantidad = iteracionCantidad;
     }
 
+    public List<UsuarioDTO> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<UsuarioDTO> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
     public String getIteracionEstado() {
         return iteracionEstado;
     }
@@ -103,11 +102,43 @@ public class IteracionModel {
         this.iteracionEstado = iteracionEstado;
     }
 
+    public List<String> getListaEsfuerzo() {
+        return listaEsfuerzo;
+    }
+
+    public void setListaEsfuerzo(List<String> listaEsfuerzo) {
+        this.listaEsfuerzo = listaEsfuerzo;
+    }
+
+    public String getMensajeAux() {
+        return mensajeAux;
+    }
+
+    public void setMensajeAux(String mensajeAux) {
+        this.mensajeAux = mensajeAux;
+    }
+
+    public List<String> getListaIdTar() {
+        return listaIdTar;
+    }
+
+    public void setListaIdTar(List<String> listaIdTar) {
+        this.listaIdTar = listaIdTar;
+    }
+
     public Date getIteracionFechaMod() {
         return iteracionFechaMod;
     }
 
     public void setIteracionFechaMod(Date iteracionFechaMod) {
         this.iteracionFechaMod = iteracionFechaMod;
+    }
+
+    public MensajeDTO getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(MensajeDTO mensaje) {
+        this.mensaje = mensaje;
     }
 }

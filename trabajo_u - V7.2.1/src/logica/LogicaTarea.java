@@ -30,6 +30,18 @@ public class LogicaTarea {
         }
     }
 
+    public List<TareaDTO> listaTareaFil2() throws Exception{
+        List<TareaDTO> listaTarea = TareaDAO.listaTareaHistoria2(tarea);
+
+        if(listaTarea.size() >= 0) {
+            return listaTarea;
+
+        }else{
+            return null;
+        }
+    }
+
+
     public boolean crearTarea() throws Exception{
 
         boolean exito = TareaDAO.ingresarTarea(tarea);
