@@ -23,8 +23,15 @@ public class SprintModel {
     private List<SprintDTO> listaSprint;
     private MensajeDTO mensaje;
     private int numeroDias;
+    private GrupoDTO grupoSprint;
 
+    public GrupoDTO getGrupoSprint() {
+        return grupoSprint;
+    }
 
+    public void setGrupoSprint(GrupoDTO grupoSprint) {
+        this.grupoSprint = grupoSprint;
+    }
 
     public int getSprintId() {
         return sprintId;
