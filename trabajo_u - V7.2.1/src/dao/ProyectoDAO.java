@@ -111,7 +111,7 @@ public class ProyectoDAO {
         ConnectionDB interfaceConn = new ConnectionDB();
         try{
             Connection conn = interfaceConn.getConnectionDB();
-            String sql = "update tbl_proyecto  set pro_nombre = ?, pro_estado = ?, pro_descripcion = ? where pro_id = ?";
+            String sql = "update tbl_proyecto  set pro_nombre = ?, pro_estado = ?, pro_descripcion = ?  where pro_id = ?";
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, proyectoDTO.getProNombre());
             preparedStatement.setString(2, proyectoDTO.getEstado());

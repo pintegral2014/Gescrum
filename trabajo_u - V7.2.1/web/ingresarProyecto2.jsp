@@ -140,7 +140,7 @@
                         setTimeout(function () {
 
                             $.ajax({
-                                url: 'listaGrupos2.action',
+                                url: 'listarProyectos.action',
                                 success: function (data) {
                                     $('#contenidoPagina').html("");
                                     $('#contenidoPagina').html(data);
