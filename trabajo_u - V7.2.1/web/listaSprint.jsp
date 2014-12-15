@@ -45,6 +45,7 @@
                                         <th>Fecha Inicio</th>
                                         <th>Estado</th>
                                         <th>grupo</th>
+                                        <th>ación</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -56,6 +57,7 @@
                                                 <td><s:property value="fechaCreacion"/> </td>
                                                 <td><s:property value="estadoSprint"/> </td>
                                                 <td><s:property value="gruSprintId"/> </td>
+                                                <td><button type="button" class="btn btn-warning btn-xs btnChico"><span class="glyphicon glyphicon-eye-open" ></span></button> </td>
                                             </tr>
                                         </s:iterator>
                                     </tbody>
