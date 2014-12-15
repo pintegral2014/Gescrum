@@ -78,7 +78,7 @@
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Nombre HDU</label>
                                 <div class="col-lg-5">
-                                    <input type="text" name="nombrehistoria" id="nombrehistoria" class="form-control" placeholder="Input Box">
+                                    <input type="text" name="nombrehistoria" id="nombrehistoria" class="form-control" >
                                     <span class="glyphicon form-control-feedback" id="nombre1"></span>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                             <div class="form-group  has-feedback">
                                 <label class="col-lg-2 control-label">Eventum</label>
                                 <div class="col-lg-5">
-                                    <input type="text" name="eventum" id="eventum" class="form-control" placeholder="Ingrese n° eventum">
+                                    <input type="text" name="eventum" id="eventum" class="form-control" >
                                     <span class="glyphicon form-control-feedback" id="eventum1"></span>
                                 </div>
                             </div>
