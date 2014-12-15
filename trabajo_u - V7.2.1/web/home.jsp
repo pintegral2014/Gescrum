@@ -102,7 +102,7 @@
                     <li ><a style="cursor:pointer;"  class="action" name="Gestionar Usuario" id="listaUsuarios">Gestionar Usuario</a></li>
                     <li ><a style="cursor:pointer;"  class="action" name="Gestionar Historia" id="listarHistorias">Gestionar Historia</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Gestionar TestCase" id="inicioTestCase">Gestionar TestCase</a></li>
-                    <li><a style="cursor:pointer;"  class="action" name="Gestionar Sprint" id="gestionarSprint2">Gestionar Sprint</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Gestionar Sprint" id="gestionarSprint">Gestionar Sprint</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Gestionar Proyecto" id="listarProyectos">Gestionar Proyecto</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Gestionar Grupo" id="listaGrupos2">Gestionar Grupos</a></li>
                 </ul>

@@ -1,138 +1,79 @@
-<%-- 
-    Document   : gestionarSprint2
-    Created on : 17-11-2014, 13:25:26
-    Author     : Dvaldebenito
---%>
-<!-- Control de sesión - Poner al inicio del documento -->
-<% if (session.getAttribute("loginConexion")!=null){%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%@taglib uri="/struts-tags" prefix="s" %>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Gestionar sprint</title>
-</head>
-<body>
-        <!-- Matter -->
-        <div class="matter" id="contenido">
-        <span class="titulos">Gestionar sprint</span>
-        <div  class="limiteSuperior">
-            <a type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" style="margin-left: 20px;">Crear</a>
-        </div>
-        <div class="matter">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
+<script>
 
-              <div class="widget ">
+    $(document).ready(function(){
+
+
+        $('#cargar').click(function(){
+            var posicion=document.getElementById('grupo').options.selectedIndex; //posicion
+            var id = document.getElementById('grupo').options[posicion].value;
+            var nombre = document.getElementById('grupo').options[posicion].text;
+
+            if (id < 0) {
+            } else {
+
+
+            $.ajax({
+                url: 'listarSprintxGrupo.action',
+                data: $('#formBack').serializeArray(),
+                type: "post",
+                success: function(data){
+                    $('#contenidoPagina').html(data);
+                }
+            });
+            }
+
+        });
+    });
+
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget wgreen">
                 <div class="widget-head">
-                  <div class="pull-left ">Data Tables</div>
-                  <div class="widget-icons pull-right">
-                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
-                    <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
-                  </div>  
-                  <div class="clearfix"></div>
+                    <div class="pull-left">Seleccionar Grupo</div>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="widget-content">
-                  <div class="padd">
-                    
-                <!-- Table Page -->
-                <div class="page-tables">
-                        <!-- Table -->
-                        <div class="table-responsive">
-                                <table cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
-            <thead class="btn-default">
-                <tr >
-                    <th>Nombre Sprint</th>
-                    <th>Descripcion</th>
-                    <th>Fecha de creacion</th>
-                    <th>Usuario</th>
-                    <th>Grupo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Modulo de asociacion</td>
-                    <td>Iteracion numero 4 del proyecto gescrum</td>
-                    <td>2014-11-14</td>
-                    <td>elandskronc</td>
-                    <td>Grupo de Analistas B</td>
-                </tr>
-                <tr>
-                    <td>Modulo de asociacion de grupo</td>
-                    <td>Iteracion numero 7 del proyecto gescrum</td>
-                    <td>2014-11-14</td>
-                    <td>elandskronc</td>
-                    <td>Grupo de Analistas D</td>
-                </tr>
-                <tr>
-                    <td>Modulo de base de datos</td>
-                    <td>Iteracion numero 2 del proyecto gescrum</td>
-                    <td>2014-11-14</td>
-                    <td>elandskronc</td>
-                    <td>Grupo de ingenieria A</td>
-                </tr>
-                <tr>
-                    <td>Modulo de ejecucion</td>
-                    <td>Iteracion numero 1 del proyecto gescrum</td>
-                    <td>2014-11-14</td>
-                    <td>elandskronc</td>
-                    <td>Grupo de ingenieria c</td>
-                </tr>
-            </tbody>
-        </table>
-            <div class="clearfix"></div>
+                    <div class="padd">
+                        <br />
+                        <!-- Form starts.  -->
+                        <form class="form-horizontal" role="form" method="post"  name="formBack" id="formBack">
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Grupo</label>
+                                <div class="col-lg-5">
+                                    <s:select
+                                            name="grupo.gruId"
+                                            id="grupo"
+                                            headerKey="-1"
+                                            headerValue="-- Seleccionar Grupo --"
+                                            list="listagrupo"
+                                            listKey="gruId"
+                                            listValue="gruNombre"
+                                            cssClass="form-control"
+                                            />
+                                </div>
+                            </div>
+                            <!-- buttons -->
+                            <div class="col-lg-9 col-lg-offset-3">
+                                <button type="button" id="cargar" name="Cargar" class="btn btn-warning btn-smt ">Cargar</button>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9 col-md-offset-3">
+                                    <div id="messages"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="widget-foot">
+                    <!-- Footer goes here -->
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-					
-                  </div>
-                  <div class="widget-foot">
-                    <!-- Footer goes here -->
-                  </div>
-                </div>
-              </div>  
-              <!-- -->
-            </div>
-        </div>
-        
-        <!-- Mainbar ends -->	    	
-   <div class="clearfix"></div>
-   
-
-
-
-
-<!-- Scroll to top -->
-<span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
-<br>
-<!-- Matter ends -->
-
-</div>
-
-<!-- Mainbar ends -->
-<div class="clearfix"></div>
-
-</div>
-<!-- Content ends -->
-        <!-- Librerías JS para el tema macadmin -->
-        <script src="framework/datatable/jquery.dataTables2.js"></script>
-        <script src="framework/bootstrap-3.2.0/dist/js/bootstrap.js"></script> <!-- Bootstrap -->
-        <script src="framework/bootstrap-3.2.0/docs/assets/js/ie-emulation-modes-warning.js"></script>
-        <script src="framework/bootstrap-3.2.0/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <script src="framework/macAdminStyle/js/respond.min.js"></script>
-        <script src="framework/macAdminStyle/js/bootstrap.min.js"></script> <!-- Bootstrap-->
-        <!-- fin  Librerías para el tema macadmin -->
-</body>
-</html>
-<!-- Control de sesión - Poner al final del documento -->
-<% }
-else
-{%>
-<script>window.location = "login.jsp";</script>
-<%}%>

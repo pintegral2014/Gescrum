@@ -55,4 +55,17 @@ public class LogicaSprint {
         }
     }
 
+    public List<SprintDTO> listarSprintxGrupo(int idGrupo) throws  Exception{
+        List<SprintDTO> listaSprint = SprintDAO.listaSprintXGrupo(idGrupo);
+
+
+        if(listaSprint != null)
+        {
+            //retorna la lista de grupos
+            return listaSprint;
+        }else{
+            return null;
+        }
+    }
+
 }

@@ -3,6 +3,7 @@ package action;
 import action.model.SprintModel;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import dto.GrupoDTO;
 import dto.MensajeDTO;
 import dto.SprintDTO;
 import logica.LogicaSprint;
@@ -77,6 +78,23 @@ public class Sprint extends ActionSupport implements ModelDriven {
         }
     }
 
+    public String listarSprintxGrupo() throws Exception {
+        int idGrupo = -1;
+        idGrupo = modelSprint.getGrupo().getGruId();
+
+        LogicaSprint logicaSprint = new LogicaSprint();
+        List<SprintDTO> listaSprint = logicaSprint.listarSprintxGrupo(idGrupo);
+
+        /*LogicaRol logicaRol = new LogicaRol();
+        List<RolDTO> listaRol = logicaRol.listRol();*/
+        if(listaSprint.size() >= 0){
+            this.modelSprint.setListaSprint(listaSprint);
+            return SUCCESS;
+        }
+        else {
+            return ERROR;
+        }
+    }
 
 
 }

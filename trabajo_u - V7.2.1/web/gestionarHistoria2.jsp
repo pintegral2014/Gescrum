@@ -205,34 +205,8 @@
                         <h4 class="modal-title" id="myModalLabel">Subir Archivo</h4>
                     </div>
                     <div class="modal-body" style="width: 500px; height: 200px;">
-                        <!-- Modificado -->
 
-                        <form action="cargaArchivo.action"   name="frmCarga" id="frmCarga" class="form-horizontal" method="POST" enctype="multipart/form-data">
-
-                                    <input type="hidden" name ="idHdu" id="idHdu" />
-
-                                    <div class="form-group has-feedback" style="margin-left: 100px;">
-                                        <label class="col-lg-2 control-label">Archivo</label>
-                                        <div class="col-lg-5" style="margin-left: 30px;">
-                                            <div class='custom-input-file' >
-                                                <input type="file" name="archivo" id="archivo" label="Archivo" class="file">
-                                                Agregar archivos
-                                            </div>
-                                            <span class="glyphicon form-control-feedback" id="archivo1"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group has-feedback" style="margin-left: 100px;">
-                                    <label class="col-lg-2 control-label">Descripci&oacute;n</label>
-                                        <div class="col-lg-9" style="margin-left: 30px;">
-                                            <input type="text" class="form-control" name="descripcionRepo" id="descripcionRepo" label="Descripcion Archivo" rows="3" placeholder="Ingrese descripcionRepo archivo">
-                                            <span class="glyphicon form-control-feedback" id="descripcionRepo1"></span>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary" id="btnSubirArchivo">Subir</button>
-                                    </div>
-                        </form>
+                        <iframe src="http://www.virtualnauta.com"  frameborder="0"></iframe>
 
                     </div>
 

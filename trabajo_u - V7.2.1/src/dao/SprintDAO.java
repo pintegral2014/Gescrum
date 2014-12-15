@@ -113,4 +113,38 @@ public class SprintDAO {
             return numeroDias;
         }
     }
+
+    public static List<SprintDTO> listaSprintXGrupo(int idGrupo)throws Exception{
+        PreparedStatement p = null;
+        List<SprintDTO> listaSprint2 = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select spr_id,spr_nombre,spr_descripcion,spr_estado,spr_fecha_creacion, spr_fecha_fin, spr_usuario_creador,gru_nombre,gru_id from tbl_sprint,tbl_grupo where tbl_grupo_gru_id=gru_id and tbl_grupo_gru_id = ? ";
+
+            p = conn.prepareStatement(sql);
+            p.setInt(1,idGrupo);
+            ResultSet res = p.executeQuery();
+            listaSprint2 = new ArrayList<SprintDTO>();
+            while (res.next()){
+                SprintDTO sprint = new SprintDTO();
+                sprint.setSprintId(res.getInt("spr_id"));
+                sprint.setNombreSprint(res.getString("spr_nombre"));
+                sprint.setDescripcionSprint(res.getString("spr_descripcion"));
+                sprint.setEstadoSprint(res.getString("spr_estado"));
+                sprint.setFechaCreacion(res.getString("spr_fecha_creacion"));
+                sprint.setFechaFin(res.getString("spr_fecha_fin"));
+                sprint.setUsuCreadorSprint(res.getString("spr_usuario_creador"));
+                sprint.setNombreGrupo(res.getString("gru_nombre"));
+                sprint.setGruSprintId(res.getInt("gru_id"));
+                listaSprint2.add(sprint);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listaSprint2;
+        }
+    }
 }
