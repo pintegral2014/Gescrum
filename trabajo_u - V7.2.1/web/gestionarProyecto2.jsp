@@ -128,7 +128,7 @@
 
                 <div class="widget ">
                     <div class="widget-head">
-                        <div class="pull-left ">Data Tables</div>
+                        <div class="pull-left ">Proyectos</div>
                         <div class="widget-icons pull-right">
                             <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                             <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
@@ -151,7 +151,7 @@
                                             <th>Descripcion</th>
                                             <th>Estado</th>
                                             <th>Usuario Creador</th>
-                                            <th>accion</th>
+                                            <th>Modificar Proyecto</th>
 
                                         </tr>
                                         </thead>

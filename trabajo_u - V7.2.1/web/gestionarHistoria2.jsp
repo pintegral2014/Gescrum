@@ -42,7 +42,7 @@
 
               <div class="widget ">
                 <div class="widget-head">
-                  <div class="pull-left ">Data Tables</div>
+                  <div class="pull-left ">Historias</div>
                   <div class="widget-icons pull-right">
                     <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
                     <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
@@ -67,7 +67,7 @@
                                       <th>Descripcion</th>
                                       <th>Proyecto</th>
                                       <% if(!session.getAttribute("rol").equals("Desarrollador") && !session.getAttribute("rol").equals("Analista QA") ){ %>
-                                      <th>accion</th>
+                                      <th>Modificar/Eliminar</th>
                                       <th>Subir archivo</th>
                                       <% } %>
                                       <th>Descargar archivo</th>
@@ -176,15 +176,15 @@
                                 <input type="text" class="form-control" name="eventum" id="eventum" >
                             </div>
                             <div class="form-group">
-                                <label class="control-label">dependencia:</label>
+                                <label class="control-label">Dependencia:</label>
                                 <input type="text" class="form-control" name="dependencia" id="dependencia">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">descripcion:</label>
+                                <label class="control-label">Descripcion:</label>
                                 <textarea class="form-control" name="descripcion" id="descripcion" rows="3" style="resize: none; overflow-y: scroll;" ></textarea >
                             </div>
                             <div class="form-group">
-                                <label class="control-label">criAceptacion:</label>
+                                <label class="control-label">Criterios de Aceptacion:</label>
                                 <textarea class="form-control" name="criAceptacion" id="criAceptacion" rows="3" style="resize: none; overflow-y: scroll;" ></textarea>
                             </div>
                         </form>

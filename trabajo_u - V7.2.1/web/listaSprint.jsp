@@ -21,7 +21,7 @@
 
             <div class="widget ">
                 <div class="widget-head">
-                    <div class="pull-left ">Datos Grupo: <span style="color: #008000; font-weight: bold;"><%=request.getParameter("nombre")%></span></div>
+                    <div class="pull-left ">Sprint Grupo: <span style="color: #008000; font-weight: bold;"><%=request.getParameter("nombre")%></span></div>
                     <div class="widget-icons pull-right">
                         <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                         <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
@@ -40,12 +40,12 @@
                                     <thead class="btn-default">
                                     <tr >
                                         <th>Nombre</th>
-                                        <th>descripción</th>
+                                        <th>Descripción</th>
                                         <th>Fecha Fin</th>
                                         <th>Fecha Inicio</th>
                                         <th>Estado</th>
-                                        <th>grupo</th>
-                                        <th>ación</th>
+                                        <th>Grupo</th>
+                                        <th>Modificar Sprint</th>
                                     </tr>
                                     </thead>
                                     <tbody>

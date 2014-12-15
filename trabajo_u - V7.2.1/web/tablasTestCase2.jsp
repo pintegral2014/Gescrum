@@ -25,7 +25,7 @@
 
                 <div class="widget ">
                     <div class="widget-head">
-                        <div class="pull-left ">Test Case</div>
+                        <div class="pull-left ">Tareas</div>
                         <div class="widget-icons pull-right">
                             <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                             <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
@@ -42,11 +42,11 @@
                                     <table cellpadding="0" cellspacing="0" border="0" class="display table-collapse table-condensed table-responsive" width="100%">
                                         <thead class="btn-default">
                                         <tr style ="font-size: 12px">
-                                            <th >Id</th>
+                                            <th>ID</th>
                                             <th>Descripcion</th>
-                                            <th>Fecha de creacion</th>
+                                            <th>Fecha de Creacion</th>
                                             <th>Usuario Creador</th>
-                                            <th>Acciones</th>
+                                            <th>Agregar/Listar</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -90,7 +90,7 @@
             </div>
             <div class="modal-body">
                 <form role="form" id="formCreaTestCase">
-                    <div class="form-group">
+                    <div class="form-group" style="display: none">
                         <label class="control-label">id:</label>
                         <input type="text" class="form-control" name="tareaId" id="tareaId" readonly>
                     </div>
@@ -173,7 +173,7 @@
     }
 
     function modalCrearTestCase(id) {
-        alert ("mi id es " + id);
+        //alert ("mi id es " + id);
         $('#tareaId').val();
         $('#tareaId').val(id);
 

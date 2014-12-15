@@ -40,7 +40,7 @@
                                             name="proyecto.proId"
                                             id="proyecto"
                                             headerKey="-1"
-                                            headerValue="-- seleccionar proyecto --"
+                                            headerValue="-- Seleccionar Proyecto --"
                                             list="listPro"
                                             listKey="proId"
                                             listValue="proNombre"

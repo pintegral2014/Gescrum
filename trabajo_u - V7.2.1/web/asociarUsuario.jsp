@@ -15,7 +15,7 @@
 
               <div class="widget ">
                 <div class="widget-head">
-                  <div class="pull-left ">Data Tables</div>
+                  <div class="pull-left ">Grupos</div>
                   <div class="widget-icons pull-right">
                     <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                     <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->

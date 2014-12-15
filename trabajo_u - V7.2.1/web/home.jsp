@@ -83,12 +83,12 @@
 
             <li class="open"><a style="cursor:pointer;"  class="jsp" name="Inicio" id="inicio"><i class="fa fa-home"></i><span class="tituloMenu"> Inicio</span></a></li> <!-- Al poner class='open' cuando se cargue esa página, quedará ese menú abierto -->
             <% if(session.getAttribute("rol").equals("Scrum Master") ){ %>
-            <li class="has_sub">
+            <!--<li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Reportes </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
                     <li><a style="cursor:pointer;"  class="jsp" name="Reporte Sprint" id="graficoesfuerzo">Gráfico de esfuerzo</a></li>
                 </ul>
-            </li>
+            </li>-->
 
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-list-alt" class="tituloMenu"></i><span class="tituloMenu"> Backlog </span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
@@ -114,7 +114,7 @@
                     <li><a style="cursor:pointer;"  class="action" name="Asignar Tareas" id="listaGestionTarea">Asignar Tareas</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Gráfico</a></li>
                     <li><a style="cursor:pointer;"  class="action" id="listaGrupoSprint" name="Generar Sprint">Generar Sprint</a></li>
-                    <li><a style="cursor:pointer;"  class="action" id="listaSprint" name="Lista Sprint">Interar Sprint</a></li>
+                    <li><a style="cursor:pointer;"  class="action" id="listaSprint" name="Lista Sprint">Iterar Sprint</a></li>
                 </ul>
             </li>
             <li class="has_sub">

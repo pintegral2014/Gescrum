@@ -25,7 +25,7 @@
 
               <div class="widget ">
                 <div class="widget-head">
-                  <div class="pull-left ">Data Tables</div>
+                  <div class="pull-left ">Usuarios</div>
                   <div class="widget-icons pull-right">
                     <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                     <!--<a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
@@ -47,10 +47,10 @@
                                             <th>Ap. Paterno</th>
                                             <th>Ap. Materno</th>
                                             <th>Correo</th>
-                                            <th>usuario</th>
+                                            <th>Usuario</th>
                                             <th>Estado</th>
                                             <th>Rol Asignado</th>
-                                            <th>accion</th>
+                                            <th>Modificar Usuario</th>
 
                                         </tr>
                                     </thead>

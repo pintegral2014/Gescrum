@@ -178,7 +178,7 @@
                                             <th>Dato Requerido</th>
                                             <th>Estado</th>
                                             <th>Usuario Creador</th>
-                                            <th>Acciones</th>
+                                            <th>Modificar/Eliminar</th>
 
                                         </tr>
                                         </thead>
