@@ -408,6 +408,7 @@
 
         <action name="misTareas" class="action.Iteracion" method="misTareas">
             <result name="success">/misTareas.jsp</result>
+            <result name="error">/misTareas.jsp</result>
         </action>
 
         <action name="dropearHistoria" class="action.Iteracion"  method="dropearHistorias">
