@@ -131,7 +131,7 @@ public class TestCaseDAO {
         try{
             Connection conn = interfaceConn.getConnectionDB();
             String sql = "update tbl_test_case  set test_enunciado = ?, test_objetivo = ?, test_dato_requerido = ?, " +
-                    "test_precondiciones = ?, test_fecha_mod = ?, test_usuario_mod = ? where test_id = ?";
+                    "test_precondiciones = ?, test_fecha_mod = ?, test_usuario_mod = ?, test_estado = ?, test_resultado_ejecucion = ? where test_id = ?";
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, testCaseDTO.getTestEnun());
             preparedStatement.setString(2, testCaseDTO.getTestObj());
@@ -139,7 +139,9 @@ public class TestCaseDAO {
             preparedStatement.setString(4, testCaseDTO.getTestPrec());
             preparedStatement.setDate(5, getCurrentDate());
             preparedStatement.setString(6, testCaseDTO.getTestUsuMod());
-            preparedStatement.setInt(7, testCaseDTO.getTestId());
+            preparedStatement.setString(7, testCaseDTO.getTestEstado());
+            preparedStatement.setString(8, testCaseDTO.getResultadoPrueba());
+            preparedStatement.setInt(9, testCaseDTO.getTestId());
             int update = preparedStatement.executeUpdate();
 
             if(update != 0){

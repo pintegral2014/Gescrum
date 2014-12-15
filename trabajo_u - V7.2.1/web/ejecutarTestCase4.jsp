@@ -57,6 +57,7 @@
                                                 <td><s:property value="fechaCreacion"/></td>
                                                 <td><s:property value="usuCreador"/></td>
                                                 <td>
+
                                                     <button class="btn btn-primary" onclick="listarTestCase(<s:property value="idTarea"/>)">Lista Testcase</button>
                                                 </td>
                                             </tr>

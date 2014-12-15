@@ -115,6 +115,8 @@ public class TestCase extends ActionSupport implements ModelDriven, SessionAware
         testCaseDTO.setTestDato(testCaseModel.getTestDato());
         testCaseDTO.setTestObj(testCaseModel.getTestObj());
         testCaseDTO.setTestPrec(testCaseModel.getTestPrec());
+        testCaseDTO.setTestEstado(testCaseModel.getTestEstado());
+        testCaseDTO.setResultadoPrueba(testCaseModel.getResultadoPrueba());
         testCaseDTO.setTestUsuMod(usuarioSession);
 
         boolean update = LogicaTestCase.modifDataTestCase(testCaseDTO);

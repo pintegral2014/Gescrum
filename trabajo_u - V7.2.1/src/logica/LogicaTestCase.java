@@ -1,5 +1,6 @@
 package logica;
 
+import dao.TareaDAO;
 import dto.TestCaseDTO;
 import dao.TestCaseDAO;
 
@@ -58,6 +59,11 @@ public class LogicaTestCase {
 
         boolean exito = false;
         boolean update = TestCaseDAO.updateTestCase(testCaseDTO);
+        boolean updateTarea = false;
+        if(testCaseDTO.getTestEstado() == "Aceptado"){
+            updateTarea = true;
+        }
+
         if(update){
             exito = true;
         }

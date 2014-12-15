@@ -58,7 +58,7 @@
                     $('#testDato').val(data.testCaseDTO.testDato);
                     $('#testObj').val(data.testCaseDTO.testObj);
                     $('#testPrec').val(data.testCaseDTO.testPrec);
-
+                    $('#testEstado').val(data.testCaseDTO.testEstado);
                     $('#myModal').modal('show');
 
 
@@ -140,6 +140,8 @@
     });
 
 
+
+
 </script>
 <div class="matter">
 
@@ -184,8 +186,9 @@
                                                 <td><s:property value="testEstado"/></td>
                                                 <td><s:property value="testUsuCre"/></td>
                                                 <td>
-                                                    <button class="btn btn-xs btn-warning btnChico" onclick="modificarTestCase(<s:property value="testId"/>)"> <span class="glyphicon glyphicon-pencil" ></span></button>
+                                                    <button class="btn btn-xs btn-warning" onclick="modificarTestCase(<s:property value="testId"/>)"> <span class="glyphicon glyphicon-pencil" ></span>Ejecutar o modificar</button>
                                                     <button class="btn btn-xs btn-danger btnChico" onclick="eliminarTestCase(<s:property value="testId"/>,<s:property value="tareaId"/> )"> <span class="glyphicon glyphicon-trash" ></span></button>
+
                                                 </td>
                                             </tr>
                                         </s:iterator>
@@ -216,11 +219,11 @@
             </div>
             <div class="modal-body">
                 <form role="form" id="formModTestCase">
-                    <div class="form-group">
+                    <div class="form-group" style="display: none">
                         <label class="control-label">id:</label>
                         <input type="text" class="form-control" name="tareaId2" id="tareaId2" readonly>
                     </div>
-                    <div class="form-group" >
+                    <div class="form-group" style="display: none">
                         <label class="control-label" >id:</label>
                         <input type="text" class="form-control" name="testId" id="testId" readonly>
                     </div>
@@ -236,10 +239,22 @@
                         <label class="control-label">Objetivo:</label>
                         <textarea class="form-control" name="testObj" id="testObj" rows="5" style="resize: none; overflow-y: scroll;" ></textarea >
                     </div>
-
                     <div class="form-group">
                         <label class="control-label">Precondiciones:</label>
                         <textarea class="form-control" name="testPrec" id="testPrec" rows="5" style="resize: none; overflow-y: scroll;" ></textarea >
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Estado:</label>
+                        <select name="testEstado" id="testEstado" class="form-control">
+                            <option value="ingresado">Ingresado</option>
+                            <option value="Aceptado">Aceptado</option>
+                            <option value="Rechazado">Rechazado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Resultado de Prueba:</label>
+                        <textarea class="form-control" name="resultadoPrueba" id="resultadoPrueba" rows="5" style="resize: none; overflow-y: scroll;" ></textarea >
                     </div>
                 </form>
             </div>
@@ -250,3 +265,4 @@
         </div>
     </div>
 </div>
+

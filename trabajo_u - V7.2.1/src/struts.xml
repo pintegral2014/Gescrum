@@ -379,12 +379,12 @@
         </action>
 
         <action name="listaEjecutarTestCase" class="action.Tarea" method="ListaTareaHdu">
-            <result name="success">/ejecutarTestCase4.jsp</result>
+            <result name="success">/tablasTestCase2.jsp</result>
             <result name="error">/inicioTestCase.jsp</result>
         </action>
 
         <action name="buscarTestCasexTarea3" class="action.TestCase" method="obtenerTestCasexTarea">
-            <result name="success">/listaEjecTestCase.jsp</result>
+            <result name="success">/listaTestCase.jsp</result>
             <result name="error">/listaTestCase.jsp</result>
         </action>
 
@@ -408,7 +408,7 @@
 
         <action name="dropearHistoria" class="action.Iteracion"  method="dropearHistorias">
             <result name="success">/Refrescar</result>
-        </action
+        </action>
 
     </package>
 

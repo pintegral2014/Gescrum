@@ -18,12 +18,14 @@ public class TestCaseDTO {
     private TareaDTO tareaDTO;
     private String testUsuMod;
     private Date testFechaMod;
+    private String resultadoPrueba;
 
     public TestCaseDTO() {
     }
 
-    public TestCaseDTO(int testId, String testEnun, String testObj, String testDato, String testPrec,
-                       String testEstado, Date testFechaCre, String testUsuCre, int tareaId, TareaDTO tareaDTO, String testUsuMod, Date testFechaMod) {
+    public TestCaseDTO(int testId, String testEnun, String testObj, String testDato,
+                       String testPrec, String testEstado, Date testFechaCre, String testUsuCre,
+                       int tareaId, TareaDTO tareaDTO, String testUsuMod, Date testFechaMod, String resultadoPrueba) {
         this.testId = testId;
         this.testEnun = testEnun;
         this.testObj = testObj;
@@ -36,6 +38,15 @@ public class TestCaseDTO {
         this.tareaDTO = tareaDTO;
         this.testUsuMod = testUsuMod;
         this.testFechaMod = testFechaMod;
+        this.resultadoPrueba = resultadoPrueba;
+    }
+
+    public String getResultadoPrueba() {
+        return resultadoPrueba;
+    }
+
+    public void setResultadoPrueba(String resultadoPrueba) {
+        this.resultadoPrueba = resultadoPrueba;
     }
 
     public String getTestUsuMod() {
