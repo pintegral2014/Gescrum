@@ -110,7 +110,7 @@
             <li class="has_sub">
                 <a style="cursor:pointer;"><i class="fa fa-terminal"></i><span class="tituloMenu"> Ejecución</span><span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
                 <ul>
-                    <li><a style="cursor:pointer;"  class="action" name="Ejecutar TestCase" id="ejecutarTestCase">Ejecutar TestCase</a></li>
+                    <li><a style="cursor:pointer;"  class="action" name="Ejecutar TestCase" id="inicioEjecutarTestCase">Ejecutar TestCase</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Asignar Tareas" id="listaGestionTarea">Asignar Tareas</a></li>
                     <li><a style="cursor:pointer;"  class="action" name="Esfuerzo - Burndown charts" id="sprintGrafico">Gráfico</a></li>
                     <li><a style="cursor:pointer;"  class="action" id="listaGrupoSprint" name="Generar Sprint">Generar Sprint</a></li>

@@ -148,5 +148,30 @@ public class TestCase extends ActionSupport implements ModelDriven, SessionAware
         }
 
     }
+    public String ejecutarTestCase()throws Exception{
+        String usuarioSession = (String) session.get("loginConexion");
+        TestCaseDTO testCaseDTO = new TestCaseDTO();
+        testCaseDTO.setTestId(testCaseModel.getTestId());
+        testCaseDTO.setTestEnun(testCaseModel.getTestEstado());
+        testCaseDTO.setTestDato(testCaseModel.getTestDato());
+        testCaseDTO.setTestObj(testCaseModel.getTestObj());
+        testCaseDTO.setTestPrec(testCaseModel.getTestPrec());
+        testCaseDTO.setTestUsuMod(usuarioSession);
+
+        boolean update = LogicaTestCase.modifDataTestCase(testCaseDTO);
+        if(update){
+            testCaseModel.setMensajeDTO(new MensajeDTO("success","<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "test case modificado con exito</span>" ));
+            return SUCCESS;
+        }else
+        {
+            testCaseModel.setMensajeDTO(new MensajeDTO("error","<span class='glyphicon glyphicon-remove' " +
+                    "style='color:red; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> " +
+                    "No se ha podido mopdificar test Case</span>"));
+            return ERROR;
+        }
+
+    }
 
 }

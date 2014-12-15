@@ -235,5 +235,19 @@ public class Historia extends ActionSupport implements ModelDriven{
             return ERROR;
         }
     }
+    public String hduXGrupo() throws Exception {
+        int grupo;
+        grupo = historiaModel.getGrupo().getGruId();
 
+        LogicaHistoria logicaHistoria = new LogicaHistoria();
+        List<HistoriaDTO> lista = logicaHistoria.hduPorGrupo(grupo);
+
+        if(lista.size() >= 0 ){
+            this.historiaModel.setListHistorias(lista);
+            return SUCCESS;
+        }
+        else {
+            return ERROR;
+        }
+    }
 }

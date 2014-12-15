@@ -1,9 +1,6 @@
 package action.model;
 
-import dto.HistoriaDTO;
-import dto.MensajeDTO;
-import dto.ProyectoDTO;
-import dto.SprintDTO;
+import dto.*;
 
 import java.util.List;
 
@@ -23,11 +20,20 @@ public class HistoriaModel {
     private MensajeDTO mensaje;
     private int idPro;
     private int sprint;
+    private GrupoDTO grupo;
     private List<ProyectoDTO> listPro;
     private List<HistoriaDTO> listHistorias;
     private ProyectoDTO proyecto;
     private HistoriaDTO historiaDTO;
     private String solicitadoPor;
+
+    public GrupoDTO getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GrupoDTO grupo) {
+        this.grupo = grupo;
+    }
 
     public int getHisId() {
         return hisId;

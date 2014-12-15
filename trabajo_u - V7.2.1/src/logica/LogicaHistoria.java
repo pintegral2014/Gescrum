@@ -121,4 +121,13 @@ public class LogicaHistoria {
 
 
     }
+
+    public List<HistoriaDTO> hduPorGrupo(int grupo) throws Exception{
+
+        List<HistoriaDTO> listahistoria = HistoriaDAO.hduPorGrupo(grupo);
+
+        return listahistoria;
+
+
+    }
 }

@@ -28,8 +28,17 @@ public class TestCaseModel {
     private TareaDTO tareaDTO;
     private String testUsuMod;
     private Date testFechaMod;
+    private String resultadoPrueba;
 
     public TestCaseModel() {
+    }
+
+    public String getResultadoPrueba() {
+        return resultadoPrueba;
+    }
+
+    public void setResultadoPrueba(String resultadoPrueba) {
+        this.resultadoPrueba = resultadoPrueba;
     }
 
     public int getTareaId2() {

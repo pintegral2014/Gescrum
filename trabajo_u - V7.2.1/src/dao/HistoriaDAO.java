@@ -4,7 +4,6 @@ import connection.ConnectionDB;
 import dto.HistoriaDTO;
 import dto.ProyectoDTO;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -369,5 +368,38 @@ public class HistoriaDAO {
             interfaceConn.cerrarConexion();
         }
         return exito;
+    }
+    public static List<HistoriaDTO> hduPorGrupo(int idGrupo)throws Exception{
+
+        PreparedStatement p = null;
+        List<HistoriaDTO> listhistory = null;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try {
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select distinct h.* from tbl_hdu h, tbl_tarea t, tbl_hdu_x_sprint hs, tbl_sprint sp, tbl_grupo g " +
+                         "where h.hdu_id = t.tbl_hdu_hdu_id and t.tar_id = hs.tbl_tarea_tar_id " +
+                         "and hs.tbl_sprint_spr_id = sp.spr_id and sp.tbl_grupo_gru_id = g.gru_id " +
+                         "and sp.spr_estado = 'En Proceso' and h.hdu_estado <> 'Caida' and g.gru_id = ?;";
+
+            p = conn.prepareStatement(sql);
+            p.setInt(1, idGrupo);
+            ResultSet res = p.executeQuery();
+            listhistory = new ArrayList<HistoriaDTO>();
+            while (res.next()){
+                HistoriaDTO historia = new HistoriaDTO();
+                historia.setHisId(res.getInt("hdu_id"));
+                historia.setNombrehistoria(res.getString("hdu_nombre"));
+                historia.setPrioridad(res.getInt("hdu_prioridad"));
+                historia.setEstado(res.getString("hdu_estado"));
+
+                listhistory.add(historia);
+            }
+            p.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listhistory;
+        }
     }
 }
