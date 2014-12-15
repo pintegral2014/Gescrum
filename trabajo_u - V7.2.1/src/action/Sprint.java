@@ -96,5 +96,46 @@ public class Sprint extends ActionSupport implements ModelDriven {
         }
     }
 
+    public String buscarSprint()throws Exception{
+        LogicaSprint logicaSprint = new LogicaSprint();
+        int idSprint = -1;
+        idSprint = modelSprint.getSprintId();
+        List<SprintDTO> Sprint = logicaSprint.traerSprint(idSprint);
+
+        if(Sprint.size() >= 0)
+        {
+            this.modelSprint.setListaSprint(Sprint);
+            return SUCCESS;
+        }
+        return ERROR;
+    }
+
+    public String modificarSprint ()throws Exception{
+        SprintDTO sprintDTO = new SprintDTO();
+
+        sprintDTO.setSprintId(modelSprint.getSprintId());
+        sprintDTO.setNombreSprint(modelSprint.getNombreSprint());
+        sprintDTO.setDescripcionSprint(modelSprint.getDescripcionSprint());
+        sprintDTO.setFechaFin(modelSprint.getFechaFin());
+        sprintDTO.setFechaCreacion(modelSprint.getFechaCreacion());
+        sprintDTO.setEstadoSprint(modelSprint.getEstadoSprint());
+        sprintDTO.setUsuCreadorSprint(modelSprint.getUsuCreadorSprint());
+
+        boolean update = LogicaSprint.modSprint(sprintDTO);
+
+        if(update){
+            modelSprint.setMensaje(new MensajeDTO("success", "<span class='glyphicon glyphicon-ok' " +
+                    "style='color:green; text-align: left; font-size: 40px;'></span> &nbsp;<span style='font-size: 18px; text-align: center;'> Sprint " +
+                    modelSprint.getNombreSprint() + " modificado con exito</span>"));
+            return SUCCESS;
+        }else {
+            modelSprint.setMensaje(new MensajeDTO("error", "<span class='glyphicon glyphicon-remove' style='color:red; text-align: left; font-size: 40px;'></span> &nbsp; " +
+                    "<span style='font-size: 18px; text-align: center;'> Sprint " +
+                    modelSprint.getNombreSprint() + " no se ha podido modificar</span>"));
+            return ERROR;
+
+        }
+
+    }
 
 }

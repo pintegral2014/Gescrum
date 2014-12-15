@@ -8,9 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@taglib prefix="s" uri="/struts-tags"%>
+<div id="librerias"></div>
 
-<script src="framework/graficos/js/highcharts.js"></script>
-<script src="framework/graficos/js/modules/exporting.js"></script>
 
 <style>
     .mostrarGrafico
@@ -106,6 +105,15 @@
 
     $(document).ready(function(){
 
+
+
+
+
+
+
+
+
+
         /* Widget close */
         $('.wclose').click(function(e){
             e.preventDefault();
@@ -135,6 +143,13 @@
             e.preventDefault();
             var $wbox = $('.wclose').parent().parent().parent();
             $wbox.show(100);
+
+            $.ajax({
+                url:'libreriaGrafico.jsp',
+                success: function(data){
+                    $('#librerias').html(data);
+                }
+            });
 
             var posicion=document.getElementById('sprint').options.selectedIndex; //posicion
             var id = document.getElementById('sprint').options[posicion].value;

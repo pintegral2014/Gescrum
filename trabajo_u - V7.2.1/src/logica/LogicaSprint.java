@@ -68,4 +68,26 @@ public class LogicaSprint {
         }
     }
 
+    public List<SprintDTO> traerSprint(int idSprint)throws Exception{
+        List<SprintDTO> Sprint = SprintDAO.buscarSprint(idSprint);
+
+        if(Sprint != null){
+            return Sprint;
+        }
+        return null;
+    }
+
+    public static Boolean modSprint (SprintDTO sprintDTO)throws Exception{
+
+        boolean exito = false;
+        boolean update = SprintDAO.updateSprint(sprintDTO);
+
+        if(update){
+            exito = true;
+        }
+        else
+        { exito = false;}
+        return exito;
+    }
+
 }

@@ -70,7 +70,7 @@
                                                         onclick="onClickEditarUsuario('<s:property value="usuId"/>')">
                                                     <span class="glyphicon glyphicon-edit" ></span>
                                                 </button>
-                                                <button class="btn btn-xs btnChico btn-danger mod" data-toggle="tooltip" data-placement="bottom" title="Deshabilitar usuario"
+                                                <button class="btn btn-xs btnChico btn-danger mod" style="display: none;" data-toggle="tooltip" data-placement="bottom" title="Deshabilitar usuario"
                                                         onclick="onClickBloquearUsuario('<s:property value="usuId"/>','<s:property value="usuEstado"/>')">
                                                     <span class="glyphicon glyphicon-remove" ></span>
                                                 </button>

@@ -16,7 +16,7 @@
 
 
             $.ajax({
-                url: 'listarSprintxGrupo.action',
+                url: 'listarSprintxGrupo.action?nombre='+nombre+'&id='+id,
                 data: $('#formBack').serializeArray(),
                 type: "post",
                 success: function(data){

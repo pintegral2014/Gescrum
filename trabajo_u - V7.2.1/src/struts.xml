@@ -334,6 +334,7 @@
                 <param name="includeProperties">mensaje.*</param>
             </result>
         </action>
+
         <action name="buscarDataTestCase" class="action.TestCase" method="obtenerDataTestCase">
             <result name="testcaseDataJSON" type="json">
                 <param name="includeProperties">testCaseDTO.*</param>
@@ -342,14 +343,17 @@
                 <param name="includeProperties">testCaseDTO.*</param>
             </result>
         </action>
+
         <action name="buscarTestCasexTarea" class="action.TestCase" method="obtenerTestCasexTarea">
             <result name="success">/listaTestCase.jsp</result>
             <result name="error">/listaTestCase.jsp</result>
         </action>
+
         <action name="buscarTestCasexTarea2" class="action.TestCase" method="obtenerTestCasexTarea2">
             <result name="success">/listaTestCase.jsp</result>
             <result name="error">/listaTestCase.jsp</result>
         </action>
+
         <action name="modTestCase" class="action.TestCase" method="modificarDataTestCase">
             <result name="success" type="json">
                 <param name="includeProperties">mensajeDTO.*</param>
@@ -357,8 +361,8 @@
             <result name="error" type="json">
                 <param name="includeProperties">mensajeDTO.*</param>
             </result>
-
         </action>
+
         <action name="borrarTestCase" class="action.TestCase" method="borrarTestcase">
             <result name="success" type="json">
                 <param name="includeProperties">mensajeDTO.*</param>
@@ -408,6 +412,24 @@
 
         <action name="dropearHistoria" class="action.Iteracion"  method="dropearHistorias">
             <result name="success">/Refrescar</result>
+        </action>
+
+        <action name="buscarSprint" class="action.Sprint" method="buscarSprint">
+            <result name="success" type="json">
+                <param name="includeProperties">listaSprint.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">listaSprint.*</param>
+            </result>
+        </action>
+
+        <action name="modSprint" class="action.Sprint" method="modificarSprint">
+            <result name="success" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">mensaje.*</param>
+            </result>
         </action>
 
     </package>

@@ -147,4 +147,74 @@ public class SprintDAO {
             return listaSprint2;
         }
     }
+
+    public static List<SprintDTO> buscarSprint(int idSprint)throws Exception {
+
+        PreparedStatement p = null;
+        List<SprintDTO> listaSprint3 = null;
+
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try{
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "select * from tbl_sprint where spr_id = ?";
+            p = conn.prepareStatement(sql);
+            p.setInt(1, idSprint);
+            ResultSet res = p.executeQuery();
+            listaSprint3 = new ArrayList<SprintDTO>();
+            if (res.next()){
+                SprintDTO Sprint = new SprintDTO();
+                Sprint.setSprintId(res.getInt("spr_id"));
+                Sprint.setNombreSprint(res.getString("spr_nombre"));
+                Sprint.setDescripcionSprint(res.getString("spr_descripcion"));
+                Sprint.setFechaFin(res.getString("spr_fecha_fin"));
+                Sprint.setFechaCreacion(res.getString("spr_fecha_creacion"));
+                Sprint.setEstadoSprint(res.getString("spr_estado"));
+                Sprint.setUsuCreadorSprint(res.getString("spr_usuario_creador"));
+                Sprint.setGruSprintId(res.getInt("tbl_grupo_gru_id"));
+                listaSprint3.add(Sprint);
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return listaSprint3;
+        }
+    }
+
+    public static boolean updateSprint(SprintDTO sprintDTO)throws Exception{
+        PreparedStatement preparedStatement = null;
+        boolean query = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try{
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "update tbl_sprint set spr_nombre = ?, spr_descripcion = ?, spr_fecha_fin = ?, spr_fecha_creacion = ?, spr_estado = ?, spr_usuario_creador = ?" +
+                    " where spr_id = ?";
+            preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setString(1, sprintDTO.getNombreSprint());
+            preparedStatement.setString(2,sprintDTO.getDescripcionSprint());
+            preparedStatement.setString(3,sprintDTO.getFechaFin());
+            preparedStatement.setString(4, sprintDTO.getFechaCreacion());
+            preparedStatement.setString(5, sprintDTO.getEstadoSprint());
+            preparedStatement.setString(6, sprintDTO.getUsuCreadorSprint());
+            preparedStatement.setInt(7, sprintDTO.getSprintId());
+
+            int update = preparedStatement.executeUpdate();
+
+            if(update != 0){
+                query = true;
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return query;
+        }
+
+    }
+
 }
