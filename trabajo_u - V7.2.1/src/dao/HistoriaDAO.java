@@ -402,4 +402,30 @@ public class HistoriaDAO {
             return listhistory;
         }
     }
+    public static boolean updateHduxTestCase(int id, String estado)throws Exception{
+        PreparedStatement preparedStatement = null;
+        boolean query = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try{
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "update tbl_hdu set hdu_estado = ? where hdu_id = (select t.tbl_hdu_hdu_id from tbl_tarea t where t.tar_id = ?)";
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, estado);
+            preparedStatement.setInt(2, id);
+
+            int update = preparedStatement.executeUpdate();
+
+            if(update != 0){
+                query = true;
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return query;
+        }
+    }
+
 }

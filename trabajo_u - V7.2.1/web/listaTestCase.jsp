@@ -52,6 +52,9 @@
             url : 'buscarDataTestCase.action',
             data : {'testId': id},
             success : function(data) {
+                if(data.testCaseDTO.testEstado == "Aceptado"){
+                    alert("El test Case ya fue aprobado");
+                }else {
                     $('#tareaId2').val(data.testCaseDTO.tareaId);
                     $('#testId').val(data.testCaseDTO.testId);
                     $('#testEnun').val(data.testCaseDTO.testEnun);
@@ -59,8 +62,10 @@
                     $('#testObj').val(data.testCaseDTO.testObj);
                     $('#testPrec').val(data.testCaseDTO.testPrec);
                     $('#testEstado').val(data.testCaseDTO.testEstado);
-                    $('#myModal').modal('show');
 
+                    $('#resultadoPrueba').val(data.testCaseDTO.resultadoPrueba);
+                    $('#myModal').modal('show');
+                }
 
             },
             error : function(erro) {

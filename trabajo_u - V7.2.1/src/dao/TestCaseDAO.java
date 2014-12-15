@@ -74,6 +74,7 @@ public class TestCaseDAO {
                 testCaseDTO.setTestDato(res.getString("test_dato_requerido"));
                 testCaseDTO.setTestPrec(res.getString("test_precondiciones"));
                 testCaseDTO.setTestEstado(res.getString("test_estado"));
+                testCaseDTO.setResultadoPrueba(res.getString("test_resultado_ejecucion"));
                 testCaseDTO.setTareaId(res.getInt("tbl_tarea_tar_id"));
 
             }

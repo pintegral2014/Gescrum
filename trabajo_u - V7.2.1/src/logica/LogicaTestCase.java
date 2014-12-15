@@ -1,5 +1,6 @@
 package logica;
 
+import dao.HistoriaDAO;
 import dao.TareaDAO;
 import dto.TestCaseDTO;
 import dao.TestCaseDAO;
@@ -58,13 +59,22 @@ public class LogicaTestCase {
     public static boolean modifDataTestCase (TestCaseDTO testCaseDTO)throws Exception{
 
         boolean exito = false;
+        String estadoActual = testCaseDTO.getTestEstado();
         boolean update = TestCaseDAO.updateTestCase(testCaseDTO);
         boolean updateTarea = false;
-        if(testCaseDTO.getTestEstado() == "Aceptado"){
-            updateTarea = true;
-        }
 
         if(update){
+            if(estadoActual.equals("Aceptado")){
+                updateTarea = TareaDAO.updateTareaxTestCase(testCaseDTO.getTareaId(), testCaseDTO.getTestEstado());
+                /*if(updateTarea){
+                    HistoriaDAO.updateHduxTestCase(testCaseDTO.getTareaId(), testCaseDTO.getTestEstado());
+                }*/
+            }else if(estadoActual.equals("Rechazado")){
+                    updateTarea = TareaDAO.updateTareaxTestCase(testCaseDTO.getTareaId(), testCaseDTO.getTestEstado());
+                    /*if(updateTarea){
+                        HistoriaDAO.updateHduxTestCase(testCaseDTO.getTareaId(), testCaseDTO.getTestEstado());
+                    }*/
+                  }
             exito = true;
         }
         else

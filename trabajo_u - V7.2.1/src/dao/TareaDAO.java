@@ -189,4 +189,31 @@ public class TareaDAO {
         }
 
     }
+
+    public static boolean updateTareaxTestCase (int idtarea, String estado)throws Exception{
+        PreparedStatement preparedStatement = null;
+        boolean query = false;
+        ConnectionDB interfaceConn = new ConnectionDB();
+        try{
+            Connection conn = interfaceConn.getConnectionDB();
+            String sql = "update tbl_hdu_x_sprint set ts_estado = ?, ts_fecha_mod = ? where tbl_tarea_tar_id = ?";
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, estado);
+            preparedStatement.setDate(2, getCurrentDate());
+            preparedStatement.setInt(3, idtarea);
+
+            int update = preparedStatement.executeUpdate();
+
+            if(update != 0){
+                query = true;
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            interfaceConn.cerrarConexion();
+            return query;
+        }
+    }
 }
